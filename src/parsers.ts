@@ -8,7 +8,29 @@ import {
 	IGroupConfig,
 } from './types';
 
-export function parse(html: string, config: IEbriScrapConfig): any {
+export enum ConfigTypes {
+	ARRAY = 'array',
+	GROUP = 'group',
+	FIELD = 'field',
+}
+
+export enum ExtractTypes {
+	HTML = 'html',
+	TEXT = 'text',
+	PROP = 'prop',
+	CSS = 'css',
+}
+
+export enum FormatTypes {
+	STRING = 'string',
+	ONE_LINE_STRING = 'one-line-string',
+	NUMBER = 'number',
+	DATE = 'date',
+}
+
+export type ValidTypes = string | number | Date;
+
+export function parse<T = any>(html: string, config: IEbriScrapConfig): T {
 	const $ = cheerio.load(html);
 	const keys = Object.keys(config) || [];
 
@@ -26,11 +48,11 @@ export function parse(html: string, config: IEbriScrapConfig): any {
 
 function genericParse($: CheerioStatic, config: AbstractPageConfig): any {
 	switch (config.type) {
-		case 'array':
+		case ConfigTypes.ARRAY:
 			return parseArray($, config);
-		case 'group':
+		case ConfigTypes.GROUP:
 			return parseGroup($, config);
-		case 'field':
+		case ConfigTypes.FIELD:
 			return parseField($, config);
 		default:
 			throw new Error(
@@ -39,20 +61,20 @@ function genericParse($: CheerioStatic, config: AbstractPageConfig): any {
 	}
 }
 
-function parseField($: CheerioStatic, config: FieldConfig): any {
+function parseField($: CheerioStatic, config: FieldConfig): ValidTypes {
 	let rawValue: string;
 
 	switch (config.extract) {
-		case 'html':
+		case ExtractTypes.HTML:
 			rawValue = $(config.selector).html() || '';
 			break;
-		case 'text':
+		case ExtractTypes.TEXT:
 			rawValue = $(config.selector).text() || '';
 			break;
-		case 'prop':
+		case ExtractTypes.PROP:
 			rawValue = $(config.selector).attr(config.propertyName);
 			break;
-		case 'css':
+		case ExtractTypes.CSS:
 			rawValue = $(config.selector).css(config.propertyName);
 			break;
 		default:
@@ -61,16 +83,16 @@ function parseField($: CheerioStatic, config: FieldConfig): any {
 			);
 	}
 
-	switch (config.format || 'string') {
-		case 'string':
+	switch (config.format || FormatTypes.STRING) {
+		case FormatTypes.STRING:
 			return rawValue;
-		case 'one-line-string':
+		case FormatTypes.ONE_LINE_STRING:
 			return rawValue.replace(/\n/g, '').trim();
-		case 'number':
+		case FormatTypes.NUMBER:
 			const sanitized = rawValue.replace(/[^\.\d]/g, '');
 
 			return parseFloat(sanitized);
-		case 'date':
+		case FormatTypes.DATE:
 			throw new Error('Date Not implement');
 		default:
 			throw new Error(
@@ -79,8 +101,8 @@ function parseField($: CheerioStatic, config: FieldConfig): any {
 	}
 }
 
-function parseArray($: CheerioStatic, config: IArrayConfig): string[] {
-	const result = [] as string[];
+function parseArray($: CheerioStatic, config: IArrayConfig): any {
+	const result = [] as any[];
 
 	$(config.containerSelector)
 		.find(config.itemSelector)

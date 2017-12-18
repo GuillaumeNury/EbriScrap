@@ -1,3 +1,5 @@
+import { ConfigTypes, ExtractTypes, FormatTypes } from './parsers';
+
 export type AbstractPageConfig = IGroupConfig | IArrayConfig | FieldConfig;
 
 export interface IEbriScrapConfig {
@@ -5,13 +7,13 @@ export interface IEbriScrapConfig {
 }
 
 export interface IGroupConfig {
-	type: 'group';
+	type: ConfigTypes.GROUP;
 	containerSelector: string;
 	children: { [field: string]: AbstractPageConfig };
 }
 
 export interface IArrayConfig {
-	type: 'array';
+	type: ConfigTypes.ARRAY;
 	containerSelector: string;
 	itemSelector: string;
 	field: AbstractPageConfig;
@@ -24,22 +26,22 @@ export type FieldConfig =
 	| CssFieldConfig;
 
 export interface CoreFieldConfig {
-	type: 'field';
+	type: ConfigTypes.FIELD;
 	selector: string;
-	format?: 'string' | 'one-line-string' | 'number' | 'date';
+	format?: FormatTypes;
 }
 
 export interface PropFieldConfig extends CoreFieldConfig {
-	extract: 'prop';
+	extract: ExtractTypes.PROP;
 	propertyName: string;
 }
 export interface HtmlFieldConfig extends CoreFieldConfig {
-	extract: 'html';
+	extract: ExtractTypes.HTML;
 }
 export interface TextFieldConfig extends CoreFieldConfig {
-	extract: 'text';
+	extract: ExtractTypes.TEXT;
 }
 export interface CssFieldConfig extends CoreFieldConfig {
-	extract: 'css';
+	extract: ExtractTypes.CSS;
 	propertyName: string;
 }

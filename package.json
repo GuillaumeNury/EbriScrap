@@ -1,0 +1,25 @@
+{
+	"name": "ebri-scrap",
+	"version": "1.0.0",
+	"description": "",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "rimraf dist && tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Guillaume Nury",
+	"license": "ISC",
+	"dependencies": {
+		"cheerio": "1.0.0-rc.2"
+	},
+	"devDependencies": {
+		"@types/cheerio": "0.22.6",
+		"@types/node": "8.5.1",
+		"@types/node-fetch": "1.6.7",
+		"node-fetch": "1.7.3",
+		"rimraf": "2.6.2",
+		"typescript": "2.6.2"
+	}
+}

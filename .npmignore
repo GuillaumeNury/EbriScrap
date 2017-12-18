@@ -1,0 +1,5 @@
+dist/examples/
+src/
+examples/
+index.ts
+yarn.lock

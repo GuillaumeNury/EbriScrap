@@ -1,4 +1,24 @@
-import { ConfigTypes, ExtractTypes, FormatTypes } from './parsers';
+export enum ConfigTypes {
+	ARRAY = 'array',
+	GROUP = 'group',
+	FIELD = 'field',
+}
+
+export enum ExtractTypes {
+	HTML = 'html',
+	TEXT = 'text',
+	PROP = 'prop',
+	CSS = 'css',
+}
+
+export enum FormatTypes {
+	STRING = 'string',
+	ONE_LINE_STRING = 'one-line-string',
+	NUMBER = 'number',
+	DATE = 'date',
+}
+
+export type ValidTypes = string | number | Date;
 
 export type AbstractPageConfig = IGroupConfig | IArrayConfig | FieldConfig;
 

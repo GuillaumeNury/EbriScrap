@@ -2,33 +2,15 @@ import * as cheerio from 'cheerio';
 
 import {
 	AbstractPageConfig,
+	ConfigTypes,
+	ExtractTypes,
 	FieldConfig,
+	FormatTypes,
 	IArrayConfig,
 	IEbriScrapConfig,
 	IGroupConfig,
+	ValidTypes,
 } from './types';
-
-export enum ConfigTypes {
-	ARRAY = 'array',
-	GROUP = 'group',
-	FIELD = 'field',
-}
-
-export enum ExtractTypes {
-	HTML = 'html',
-	TEXT = 'text',
-	PROP = 'prop',
-	CSS = 'css',
-}
-
-export enum FormatTypes {
-	STRING = 'string',
-	ONE_LINE_STRING = 'one-line-string',
-	NUMBER = 'number',
-	DATE = 'date',
-}
-
-export type ValidTypes = string | number | Date;
 
 export function parse<T = any>(html: string, config: IEbriScrapConfig): T {
 	const $ = cheerio.load(html);

@@ -6,7 +6,7 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "rimraf dist && tsc",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "jest"
 	},
 	"keywords": [],
 	"author": "Guillaume Nury",
@@ -16,10 +16,20 @@
 	},
 	"devDependencies": {
 		"@types/cheerio": "0.22.6",
+		"@types/jest": "21.1.8",
 		"@types/node": "8.5.1",
 		"@types/node-fetch": "1.6.7",
+		"jest": "22.0.0",
 		"node-fetch": "1.7.3",
 		"rimraf": "2.6.2",
+		"ts-jest": "^21.2.4",
 		"typescript": "2.6.2"
+	},
+	"jest": {
+		"moduleFileExtensions": ["ts", "js"],
+		"transform": {
+			"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+		},
+		"testRegex": "/src/.*\\.spec\\.ts$"
 	}
 }

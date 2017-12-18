@@ -69,13 +69,11 @@ function parseField($: CheerioStatic, config: FieldConfig): ValidTypes {
 		case FormatTypes.STRING:
 			return rawValue;
 		case FormatTypes.ONE_LINE_STRING:
-			return rawValue.replace(/\n/g, '').trim();
+			return rawValue.replace(/\s\s+/g, ' ').trim();
 		case FormatTypes.NUMBER:
 			const sanitized = rawValue.replace(/[^\.\d]/g, '');
 
 			return parseFloat(sanitized);
-		case FormatTypes.DATE:
-			throw new Error('Date Not implement');
 		default:
 			throw new Error(
 				'Invalid format config. Allowed values are string, number and date',
@@ -89,7 +87,7 @@ function parseArray($: CheerioStatic, config: IArrayConfig): any {
 	$(config.containerSelector)
 		.find(config.itemSelector)
 		.map((_idx, $elem) => {
-			const item = genericParse(cheerio.load($elem), config.field);
+			const item = genericParse(cheerio.load($elem), config.children);
 
 			result.push(item);
 		});

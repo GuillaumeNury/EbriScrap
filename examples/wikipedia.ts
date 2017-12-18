@@ -12,7 +12,7 @@ const config = {
 		type: 'array',
 		containerSelector: '.colonnes ul',
 		itemSelector: 'li',
-		field: {
+		children: {
 			type: 'field',
 			selector: 'li',
 			extract: 'text',

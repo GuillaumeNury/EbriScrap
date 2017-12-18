@@ -13,7 +13,7 @@ const config = {
 		type: 'array',
 		containerSelector: '.list-topics-container',
 		itemSelector: 'a',
-		field: {
+		children: {
 			type: 'group',
 			containerSelector: 'a',
 			children: {

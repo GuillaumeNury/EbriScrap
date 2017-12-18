@@ -15,10 +15,9 @@ export enum FormatTypes {
 	STRING = 'string',
 	ONE_LINE_STRING = 'one-line-string',
 	NUMBER = 'number',
-	DATE = 'date',
 }
 
-export type ValidTypes = string | number | Date;
+export type ValidTypes = string | number;
 
 export type AbstractPageConfig = IGroupConfig | IArrayConfig | FieldConfig;
 
@@ -27,16 +26,16 @@ export interface IEbriScrapConfig {
 }
 
 export interface IGroupConfig {
-	type: ConfigTypes.GROUP;
+	type: 'group';
 	containerSelector: string;
 	children: { [field: string]: AbstractPageConfig };
 }
 
 export interface IArrayConfig {
-	type: ConfigTypes.ARRAY;
+	type: 'array';
 	containerSelector: string;
 	itemSelector: string;
-	field: AbstractPageConfig;
+	children: AbstractPageConfig;
 }
 
 export type FieldConfig =
@@ -46,22 +45,22 @@ export type FieldConfig =
 	| CssFieldConfig;
 
 export interface CoreFieldConfig {
-	type: ConfigTypes.FIELD;
+	type: 'field';
 	selector: string;
-	format?: FormatTypes;
+	format?: 'date' | 'number' | 'one-line-string' | 'string';
 }
 
 export interface PropFieldConfig extends CoreFieldConfig {
-	extract: ExtractTypes.PROP;
+	extract: 'prop';
 	propertyName: string;
 }
 export interface HtmlFieldConfig extends CoreFieldConfig {
-	extract: ExtractTypes.HTML;
+	extract: 'html';
 }
 export interface TextFieldConfig extends CoreFieldConfig {
-	extract: ExtractTypes.TEXT;
+	extract: 'text';
 }
 export interface CssFieldConfig extends CoreFieldConfig {
-	extract: ExtractTypes.CSS;
+	extract: 'css';
 	propertyName: string;
 }

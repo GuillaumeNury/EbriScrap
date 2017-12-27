@@ -5,3 +5,6 @@ examples/
 coverage/
 index.ts
 yarn.lock
+.prettierrc
+.travis.yml
+tsconfig.json

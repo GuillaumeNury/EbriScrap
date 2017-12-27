@@ -47,7 +47,9 @@ describe('Field parser', () => {
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({ link: '<a href="a-super-link">Link</a>' });
+			expect(result).toEqual({
+				link: '<a href="a-super-link">Link</a>',
+			});
 		});
 		it('should work when extract = css', () => {
 			const html = `<div style="color: white"></div>`;
@@ -194,7 +196,9 @@ describe('Array parser', () => {
 
 		const result = parse(html, config);
 
-		expect(result).toEqual({ values: ['Value 1', 'Value 2', 'Value 3'] });
+		expect(result).toEqual({
+			values: ['Value 1', 'Value 2', 'Value 3'],
+		});
 	});
 	it('should work when children has a type = group', () => {
 		const html = `
@@ -315,7 +319,9 @@ describe('Group parser', () => {
 
 		const result = parse(html, config);
 
-		expect(result).toEqual({ data: { header: 'Header', value: 'Value' } });
+		expect(result).toEqual({
+			data: { header: 'Header', value: 'Value' },
+		});
 	});
 	it('should work with children of type = group', () => {
 		const html = `

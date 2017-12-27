@@ -14,12 +14,16 @@ export enum ExtractTypes {
 export enum FormatTypes {
 	STRING = 'string',
 	ONE_LINE_STRING = 'one-line-string',
+	HTML_TO_TEXT = 'html-to-text',
 	NUMBER = 'number',
 }
 
 export type ValidTypes = string | number;
 
-export type AbstractPageConfig = IGroupConfig | IArrayConfig | FieldConfig;
+export type AbstractPageConfig =
+	| IGroupConfig
+	| IArrayConfig
+	| FieldConfig;
 
 export interface IEbriScrapConfig {
 	[field: string]: AbstractPageConfig;
@@ -47,7 +51,12 @@ export type FieldConfig =
 export interface CoreFieldConfig {
 	type: 'field';
 	selector: string;
-	format?: 'date' | 'number' | 'one-line-string' | 'string';
+	format?:
+		| 'date'
+		| 'number'
+		| 'one-line-string'
+		| 'string'
+		| 'html-to-text';
 }
 
 export interface PropFieldConfig extends CoreFieldConfig {

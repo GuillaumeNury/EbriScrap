@@ -12,7 +12,13 @@ import {
 	ValidTypes,
 } from './types';
 
-export function parse<T = any>(html: string, config: IEbriScrapConfig): T {
+import { extract } from './extractors';
+import { format } from './formators';
+
+export function parse<T = any>(
+	html: string,
+	config: IEbriScrapConfig,
+): T {
 	const $ = cheerio.load(html);
 	const keys = Object.keys(config) || [];
 
@@ -28,7 +34,10 @@ export function parse<T = any>(html: string, config: IEbriScrapConfig): T {
 	);
 }
 
-function genericParse($: CheerioStatic, config: AbstractPageConfig): any {
+function genericParse(
+	$: CheerioStatic,
+	config: AbstractPageConfig,
+): any {
 	switch (config.type) {
 		case ConfigTypes.ARRAY:
 			return parseArray($, config);
@@ -43,42 +52,14 @@ function genericParse($: CheerioStatic, config: AbstractPageConfig): any {
 	}
 }
 
-function parseField($: CheerioStatic, config: FieldConfig): ValidTypes {
-	let rawValue: string;
+function parseField(
+	$: CheerioStatic,
+	config: FieldConfig,
+): ValidTypes {
+	const rawValue = extract($, config);
+	const formatted = format(rawValue, config.format as FormatTypes);
 
-	switch (config.extract) {
-		case ExtractTypes.HTML:
-			rawValue = $(config.selector).html() || '';
-			break;
-		case ExtractTypes.TEXT:
-			rawValue = $(config.selector).text() || '';
-			break;
-		case ExtractTypes.PROP:
-			rawValue = $(config.selector).attr(config.propertyName);
-			break;
-		case ExtractTypes.CSS:
-			rawValue = $(config.selector).css(config.propertyName);
-			break;
-		default:
-			throw new Error(
-				'Invalid extract property in configuration. Supported values are: html, text and prop',
-			);
-	}
-
-	switch (config.format || FormatTypes.STRING) {
-		case FormatTypes.STRING:
-			return rawValue;
-		case FormatTypes.ONE_LINE_STRING:
-			return rawValue.replace(/\s\s+/g, ' ').trim();
-		case FormatTypes.NUMBER:
-			const sanitized = rawValue.replace(/[^\.\d]/g, '');
-
-			return parseFloat(sanitized);
-		default:
-			throw new Error(
-				'Invalid format config. Allowed values are string, number and date',
-			);
-	}
+	return formatted;
 }
 
 function parseArray($: CheerioStatic, config: IArrayConfig): any {

@@ -20,7 +20,7 @@ export function parse<T = any>(
 	config: IEbriScrapConfig,
 ): T {
 	const $ = cheerio.load(html);
-	const keys = Object.keys(config) || [];
+	const keys = getKeys(config);
 
 	return keys.reduce(
 		(acc, key) => {
@@ -79,7 +79,7 @@ function parseArray($: CheerioStatic, config: IArrayConfig): any {
 function parseGroup($: CheerioStatic, config: IGroupConfig): any {
 	const container$ = $(config.containerSelector);
 
-	const keys = Object.keys(config.children) || [];
+	const keys = getKeys(config.children);
 
 	return keys.reduce(
 		(acc, key) => {
@@ -93,4 +93,8 @@ function parseGroup($: CheerioStatic, config: IGroupConfig): any {
 		},
 		{} as any,
 	);
+}
+
+function getKeys(object: Object): string[] {
+	return (!!object && Object.keys(object)) || [];
 }

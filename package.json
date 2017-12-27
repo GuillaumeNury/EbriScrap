@@ -30,13 +30,11 @@
 		"typescript": "2.6.2"
 	},
 	"jest": {
-		"moduleFileExtensions": [
-			"ts",
-			"js"
-		],
+		"moduleFileExtensions": ["ts", "js"],
 		"transform": {
 			"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
 		},
-		"testRegex": "/src/.*\\.spec\\.ts$"
+		"testRegex": "/src/.*\\.spec\\.ts$",
+		"mapCoverage": true
 	}
 }

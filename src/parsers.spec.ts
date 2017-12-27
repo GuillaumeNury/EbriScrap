@@ -170,6 +170,18 @@ describe('Field parser', () => {
 			);
 		});
 	});
+	describe('Edge case', () => {
+		it('should not fail on empty config', () => {
+			const result = parse('<h1>Title</h1>', null as any);
+
+			expect(result).toEqual({});
+		});
+		it('should not fail on non object config', () => {
+			const result = parse('<h1>Title</h1>', 42 as any);
+
+			expect(result).toEqual({});
+		});
+	});
 });
 
 describe('Array parser', () => {

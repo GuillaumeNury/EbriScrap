@@ -1,6 +1,6 @@
 {
 	"name": "ebri-scrap",
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -11,6 +11,10 @@
 	"keywords": [],
 	"author": "Guillaume Nury",
 	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/GuillaumeNury/EbriScrap"
+	},
 	"dependencies": {
 		"cheerio": "1.0.0-rc.2"
 	},
@@ -26,7 +30,10 @@
 		"typescript": "2.6.2"
 	},
 	"jest": {
-		"moduleFileExtensions": ["ts", "js"],
+		"moduleFileExtensions": [
+			"ts",
+			"js"
+		],
 		"transform": {
 			"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
 		},

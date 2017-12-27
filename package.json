@@ -35,6 +35,8 @@
 			"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
 		},
 		"testRegex": "/src/.*\\.spec\\.ts$",
-		"mapCoverage": true
+		"mapCoverage": true,
+		"coverageDirectory": "./coverage/",
+		"collectCoverage": true
 	}
 }

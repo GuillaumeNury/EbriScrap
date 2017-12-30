@@ -51,12 +51,7 @@ export type FieldConfig =
 export interface CoreFieldConfig {
 	type: 'field';
 	selector: string;
-	format?:
-		| 'date'
-		| 'number'
-		| 'one-line-string'
-		| 'string'
-		| 'html-to-text';
+	format?: 'number' | 'one-line-string' | 'string' | 'html-to-text';
 }
 
 export interface PropFieldConfig extends CoreFieldConfig {

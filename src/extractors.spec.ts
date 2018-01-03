@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
 
-import { FieldConfig, IEbriScrapConfig } from './types';
+import { FieldConfig } from './types';
 
 import { extract } from './extractors';
 

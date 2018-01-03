@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "rimraf dist && tsc",
 		"test": "jest",
-		"prepublish": "npm run build"
+		"prepare": "npm run build"
 	},
 	"keywords": [],
 	"author": "Guillaume Nury",
@@ -18,11 +18,13 @@
 	},
 	"dependencies": {
 		"cheerio": "1.0.0-rc.2",
-		"isobject": "^3.0.1"
+		"isobject": "^3.0.1",
+		"joi": "^13.0.2"
 	},
 	"devDependencies": {
 		"@types/cheerio": "0.22.6",
 		"@types/jest": "21.1.8",
+		"@types/joi": "^13.0.3",
 		"@types/node": "8.5.1",
 		"@types/node-fetch": "1.6.7",
 		"jest": "22.0.0",
@@ -32,19 +34,14 @@
 		"typescript": "2.6.2"
 	},
 	"jest": {
-		"moduleFileExtensions": [
-			"ts",
-			"js"
-		],
+		"moduleFileExtensions": ["ts", "js"],
 		"transform": {
 			"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
 		},
 		"testRegex": "/src/.*\\.spec\\.ts$",
 		"mapCoverage": true,
 		"coverageDirectory": "./coverage/",
-		"collectCoverageFrom": [
-			"src/**/*.ts"
-		],
+		"collectCoverageFrom": ["src/**/*.ts"],
 		"collectCoverage": true
 	}
 }

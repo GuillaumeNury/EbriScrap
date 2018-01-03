@@ -2,18 +2,71 @@ import {
 	CssFieldConfig,
 	FieldConfig,
 	HtmlFieldConfig,
+	IArrayConfig,
+	IEbriScrapConfig,
+	IGroupConfig,
 	PropFieldConfig,
 	TextFieldConfig,
 } from './types';
+import { validateConfig, validateGenericConfig } from './validators';
 
-import { validateFieldConfig } from './validators';
+import { config as githubConfig } from '../examples/github';
+import { config as wikipediaConfig } from '../examples/wikipedia';
 
 describe('Validators', () => {
+	describe('Examples', () => {
+		it('should work for wikipedia config', () => {
+			expect(() => validateConfig(wikipediaConfig)).not.toThrowError();
+		});
+		it('should work for github config', () => {
+			expect(() => validateConfig(githubConfig)).not.toThrowError();
+		});
+	});
+	describe('Config types', () => {
+		it('should pass if type=field', () => {
+			const config = {
+				type: 'field',
+				selector: 'h1',
+				extract: 'text',
+			} as FieldConfig;
+
+			expect(() => validateGenericConfig(config)).not.toThrowError();
+		});
+		it('should pass if type=group', () => {
+			const config = {
+				type: 'group',
+				containerSelector: 'tr',
+				children: {},
+			} as IGroupConfig;
+
+			expect(() => validateGenericConfig(config)).not.toThrowError();
+		});
+		it('should pass if type=array', () => {
+			const config = {
+				type: 'array',
+				containerSelector: 'tr',
+				itemSelector: 'td',
+				children: {
+					type: 'field',
+					selector: 'td',
+					extract: 'text',
+				},
+			} as IArrayConfig;
+
+			expect(() => validateGenericConfig(config)).not.toThrowError();
+		});
+		it('should not pass if type=poney', () => {
+			const config = {
+				type: 'poney' as any,
+			} as FieldConfig;
+
+			expect(() => validateGenericConfig(config)).toThrowError(
+				'Invalid configuration: "type" must be one of [array, group, field]',
+			);
+		});
+	});
 	describe('Field configs', () => {
 		describe('Valid', () => {
-			const shouldPass = (config: FieldConfig) =>
-				expect(() => validateFieldConfig(config)).not.toThrowError();
-
 			it('TextFieldConfig', () => {
 				const config = {
 					type: 'field',
@@ -21,7 +74,7 @@ describe('Validators', () => {
 					extract: 'text',
 				} as TextFieldConfig;
 
-				shouldPass(config);
+				expect(() => validateGenericConfig(config)).not.toThrowError();
 			});
 			it('PropFieldConfig', () => {
 				const config = {
@@ -31,7 +84,7 @@ describe('Validators', () => {
 					propertyName: 'href',
 				} as PropFieldConfig;
 
-				shouldPass(config);
+				expect(() => validateGenericConfig(config)).not.toThrowError();
 			});
 			it('CssFieldConfig', () => {
 				const config = {
@@ -41,7 +94,7 @@ describe('Validators', () => {
 					propertyName: 'color',
 				} as CssFieldConfig;
 
-				shouldPass(config);
+				expect(() => validateGenericConfig(config)).not.toThrowError();
 			});
 			it('HtmlFieldConfig', () => {
 				const config = {
@@ -50,29 +103,22 @@ describe('Validators', () => {
 					extract: 'html',
 				} as HtmlFieldConfig;
 
-				shouldPass(config);
+				expect(() => validateGenericConfig(config)).not.toThrowError();
 			});
 		});
 		describe('Invalid', () => {
-			const shouldNotPass = (config: FieldConfig, message?: string) =>
-				expect(() => validateFieldConfig(config)).toThrowError(
-					message,
-				);
-
 			it('should fail when config is not an object', () => {
 				const config = 42 as any;
 
-				shouldNotPass(
-					config,
-					'Invalid field config object. It should be an object.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "value" must be an object',
 				);
 			});
 			it('should fail when config is null', () => {
 				const config = null as any;
 
-				shouldNotPass(
-					config,
-					'Invalid field config object. It should be an object.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "value" must be an object',
 				);
 			});
 			it('should fail when missing selector', () => {
@@ -81,9 +127,8 @@ describe('Validators', () => {
 					extract: 'text',
 				} as TextFieldConfig;
 
-				shouldNotPass(
-					config,
-					'Invalid selector. It cannot be null or undefined.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "selector" is required',
 				);
 			});
 			it('should fail when missing extract value', () => {
@@ -92,9 +137,8 @@ describe('Validators', () => {
 					selector: 'h1',
 				} as TextFieldConfig;
 
-				shouldNotPass(
-					config,
-					'Invalid extract value. Supported values are: html, text, prop, css. Received undefined.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "extract" is required',
 				);
 			});
 			it('should fail when invalid extract value', () => {
@@ -104,9 +148,8 @@ describe('Validators', () => {
 					extract: 'poney' as any,
 				} as TextFieldConfig;
 
-				shouldNotPass(
-					config,
-					'Invalid extract value. Supported values are: html, text, prop, css. Received poney.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "extract" must be one of [html, text, prop, css]',
 				);
 			});
 			it('should fail when invalid format value', () => {
@@ -117,9 +160,8 @@ describe('Validators', () => {
 					format: 'poney' as any,
 				} as TextFieldConfig;
 
-				shouldNotPass(
-					config,
-					'Invalid format value. Supported values are: undefined, string, one-line-string, html-to-text, number. Received poney.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "format" must be one of [string, one-line-string, html-to-text, number]',
 				);
 			});
 			it('should fail when CssFieldConfig without propertyName', () => {
@@ -129,9 +171,8 @@ describe('Validators', () => {
 					extract: 'css',
 				} as CssFieldConfig;
 
-				shouldNotPass(
-					config,
-					'Missing propertyName. It is needed when extract=css or extract=prop.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "propertyName" is required',
 				);
 			});
 			it('should fail when PropFieldConfig without propertyName', () => {
@@ -141,11 +182,162 @@ describe('Validators', () => {
 					extract: 'prop',
 				} as PropFieldConfig;
 
-				shouldNotPass(
-					config,
-					'Missing propertyName. It is needed when extract=css or extract=prop.',
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration: "propertyName" is required',
 				);
 			});
+		});
+	});
+	describe('Group config', () => {
+		describe('Valid', () => {
+			it('should work if one child', () => {
+				const config = {
+					type: 'group',
+					containerSelector: 'tr',
+					children: {
+						child1: {
+							type: 'field',
+							selector: 'h1',
+							extract: 'text',
+						},
+					},
+				} as IGroupConfig;
+
+				expect(() => validateGenericConfig(config)).not.toThrowError();
+			});
+		});
+		describe('Invalid', () => {
+			it('should not work if one child with error', () => {
+				const config = {
+					type: 'group',
+					containerSelector: 'tr',
+					children: {
+						child1: {
+							type: 'field',
+							selector: 'h1',
+							// extract: 'text', Missing extract
+						} as FieldConfig,
+					},
+				} as IGroupConfig;
+
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration > children > child1: "extract" is required',
+				);
+			});
+			it('should not work if one child whith one child with error', () => {
+				const config = {
+					type: 'group',
+					containerSelector: 'tr',
+					children: {
+						child: {
+							type: 'group',
+							containerSelector: 'tr',
+							children: {
+								grandchild: {
+									type: 'field',
+									selector: 'h1',
+									// extract: 'text', Missing extract
+								} as FieldConfig,
+							},
+						},
+					},
+				} as IGroupConfig;
+
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration > children > child > children > grandchild: "extract" is required',
+				);
+			});
+		});
+	});
+	describe('Array config', () => {
+		describe('Valid', () => {
+			it('should work if one child', () => {
+				const config = {
+					type: 'array',
+					containerSelector: 'tr',
+					itemSelector: 'tr',
+					children: {
+						type: 'field',
+						selector: 'h1',
+						extract: 'text',
+					},
+				} as IArrayConfig;
+
+				expect(() => validateGenericConfig(config)).not.toThrowError();
+			});
+		});
+		describe('Invalid', () => {
+			it('should not work if one child with error', () => {
+				const config = {
+					type: 'array',
+					containerSelector: 'tr',
+					itemSelector: 'td',
+					children: {
+						type: 'field',
+						selector: 'h1',
+						// extract: 'text', Missing extract
+					} as FieldConfig,
+				} as IArrayConfig;
+
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration > children: "extract" is required',
+				);
+			});
+			it('should not work if one child whith one child with error', () => {
+				const config = {
+					type: 'array',
+					containerSelector: 'tr',
+					itemSelector: 'td',
+					children: {
+						type: 'array',
+						itemSelector: 'td',
+						containerSelector: 'tr',
+						children: {
+							type: 'field',
+							selector: 'h1',
+							// extract: 'text', Missing extract
+						} as FieldConfig,
+					},
+				} as IArrayConfig;
+
+				expect(() => validateGenericConfig(config)).toThrowError(
+					'Invalid configuration > children > children: "extract" is required',
+				);
+			});
+		});
+	});
+	describe('Whole config validation', () => {
+		it('should be ok if valid config', () => {
+			const config = {
+				field1: {
+					type: 'field',
+					selector: 'h1',
+					extract: 'text',
+				},
+				field2: {
+					type: 'group',
+					containerSelector: 'table',
+					children: {
+						field21: {
+							type: 'field',
+							selector: 'th',
+							extract: 'text',
+						},
+					},
+				},
+				field3: {
+					type: 'array',
+					containerSelector: 'table',
+					itemSelector: 'thead',
+					children: {
+						type: 'field',
+						selector: 'th',
+						extract: 'text',
+					},
+				},
+			} as IEbriScrapConfig;
+
+			expect(() => validateConfig(config)).not.toThrowError();
 		});
 	});
 });

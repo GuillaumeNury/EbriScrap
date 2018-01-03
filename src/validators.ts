@@ -1,80 +1,86 @@
-import * as isObject from 'isobject';
+import { ConfigTypes, ExtractTypes, FormatTypes } from './types';
 
-import { ExtractTypes, FormatTypes } from './types';
-import {
-	stringEnumContains,
-	stringEnumToString,
-	stringEnumValues,
-} from './utils';
+import joi from 'joi';
+import { stringEnumValues } from './utils';
 
-import { extract } from './extractors';
+const coreConfigItem = joi.object().keys({
+	type: joi
+		.string()
+		.required()
+		.valid(...stringEnumValues(ConfigTypes)),
+});
 
-const validExtractTypes = [];
+const fieldConfig = coreConfigItem.keys({
+	selector: joi.string().required(),
+	format: joi.string().valid(...stringEnumValues(FormatTypes)),
+	extract: joi
+		.string()
+		.required()
+		.valid(...stringEnumValues(ExtractTypes)),
+	propertyName: joi.string().when('extract', {
+		is: joi.valid(ExtractTypes.CSS, ExtractTypes.PROP),
+		then: joi.required(),
+		otherwise: joi.forbidden(),
+	}),
+});
 
-export function validateFieldConfig(config: any): void {
-	validateObjectType(config);
+const arrayConfig = coreConfigItem.keys({
+	containerSelector: joi.string().required(),
+	itemSelector: joi.string().required(),
+	children: joi.object().required(),
+});
 
-	const { extract, selector, type, format, propertyName } = config;
+const groupConfig = coreConfigItem.keys({
+	containerSelector: joi.string().required(),
+	children: joi.object().required(),
+});
 
-	validateExtract(extract);
-	validateSelector(selector);
-	validateFormat(format);
-	validatePropertyName(extract, propertyName);
+export function validateConfig(config: any): void {
+	validate(config, joi.object());
+	validateMapOfConfig(config);
 }
 
-function validateObjectType(config: any): void {
-	const isValidObject = !!config && isObject(config);
-	if (!isValidObject) {
-		throw new Error(
-			'Invalid field config object. It should be an object.',
-		);
-	}
-}
-
-function validatePropertyName(
-	extract: string,
-	propertyName: string,
+export function validateGenericConfig(
+	config: any,
+	path: string = '',
 ): void {
-	const needPropertyName =
-		extract === ExtractTypes.CSS || extract === ExtractTypes.PROP;
-	const hasValidPropertyName = !needPropertyName || !!propertyName;
+	validate(config, coreConfigItem.unknown(), path);
 
-	if (!hasValidPropertyName) {
-		throw new Error(
-			`Missing propertyName. It is needed when extract=css or extract=prop.`,
-		);
+	if (config.type === ConfigTypes.FIELD) {
+		validate(config, fieldConfig, path);
+
+		return;
+	}
+	if (config.type === ConfigTypes.GROUP) {
+		validate(config, groupConfig, path);
+		validateMapOfConfig(config.children, `${path} > children`);
+
+		return;
+	}
+	if (config.type === ConfigTypes.ARRAY) {
+		validate(config, arrayConfig, path);
+		validateGenericConfig(config.children, `${path} > children`);
+
+		return;
 	}
 }
 
-function validateFormat(format: string): void {
-	const hasValidFormat = format === undefined || format in FormatTypes;
-
-	if (!hasValidFormat) {
-		const formatTypes = stringEnumValues(FormatTypes).join(', ');
-		throw new Error(
-			`Invalid format value. Supported values are: undefined, ${formatTypes}. Received ${format}.`,
-		);
-	}
+function validateMapOfConfig(config: any, path: string = ''): void {
+	Object.keys(config).forEach(childKey =>
+		validateGenericConfig(config[childKey], `${path} > ${childKey}`),
+	);
 }
 
-function validateSelector(selector: string): void {
-	const hasValidSelector = selector !== null && selector !== undefined;
+function validate(
+	config: any,
+	joiConfig: joi.Schema,
+	path: string = '',
+): void {
+	const { error } = joi.validate(config, joiConfig);
 
-	if (!hasValidSelector) {
-		throw new Error(
-			`Invalid selector. It cannot be null or undefined.`,
-		);
-	}
-}
+	if (!!error) {
+		const { message } = error.details[0];
 
-function validateExtract(extract: string): void {
-	const hasValidExtract = stringEnumContains(ExtractTypes, extract);
-
-	if (!hasValidExtract) {
-		throw new Error(
-			`Invalid extract value. Supported values are: ${stringEnumToString(
-				ExtractTypes,
-			)}. Received ${extract}.`,
-		);
+		throw new Error(`Invalid configuration${path}: ${message}`);
 	}
 }

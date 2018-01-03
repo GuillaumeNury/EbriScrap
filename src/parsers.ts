@@ -3,7 +3,6 @@ import * as cheerio from 'cheerio';
 import {
 	AbstractPageConfig,
 	ConfigTypes,
-	ExtractTypes,
 	FieldConfig,
 	FormatTypes,
 	IArrayConfig,

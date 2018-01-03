@@ -2,7 +2,7 @@ import { IEbriScrapConfig, parse } from '../index';
 
 import fetch from 'node-fetch';
 
-const config = {
+export const config = {
 	title: {
 		type: 'field',
 		selector: '#firstHeading',

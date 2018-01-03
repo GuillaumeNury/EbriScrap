@@ -46,22 +46,23 @@ export function validateGenericConfig(
 ): void {
 	validate(config, coreConfigItem.unknown(), path);
 
+	let schema: joi.Schema = null;
+	let childrenValidator: (config: any, path: string) => void;
+
 	if (config.type === ConfigTypes.FIELD) {
-		validate(config, fieldConfig, path);
-
-		return;
+		schema = fieldConfig;
+	} else if (config.type === ConfigTypes.GROUP) {
+		schema = groupConfig;
+		childrenValidator = validateMapOfConfig;
+	} else if (config.type === ConfigTypes.ARRAY) {
+		schema = arrayConfig;
+		childrenValidator = validateGenericConfig;
 	}
-	if (config.type === ConfigTypes.GROUP) {
-		validate(config, groupConfig, path);
-		validateMapOfConfig(config.children, `${path} > children`);
 
-		return;
-	}
-	if (config.type === ConfigTypes.ARRAY) {
-		validate(config, arrayConfig, path);
-		validateGenericConfig(config.children, `${path} > children`);
+	validate(config, schema, path);
 
-		return;
+	if (!!childrenValidator) {
+		childrenValidator(config.children, `${path} > children`);
 	}
 }
 

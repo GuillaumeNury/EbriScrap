@@ -3,7 +3,7 @@ node_js:
   - "6"
 
 install:
-  - npm install -g codecov
+  - yarn global add codecov
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
@@ -11,13 +11,11 @@ before_script:
   - ./cc-test-reporter before-build
 
 script: 
-  - npm install
-  - npm test
+  - yarn
+  - yarn test
 
 after_script:
   - codecov
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-cache:
-  directories:
-    - node_modules
+cache: yarn

@@ -86,6 +86,39 @@ describe('Validators', () => {
 
 				expect(() => validateGenericConfig(config)).not.toThrowError();
 			});
+			it('PropFieldConfig with format as string', () => {
+				const config = {
+					type: 'field',
+					selector: 'a',
+					extract: 'prop',
+					propertyName: 'href',
+					format: 'url',
+				} as PropFieldConfig;
+
+				expect(() => validateGenericConfig(config)).not.toThrowError();
+			});
+			it('PropFieldConfig with format as object', () => {
+				const config = {
+					type: 'field',
+					selector: 'a',
+					extract: 'prop',
+					propertyName: 'href',
+					format: { type: 'url' },
+				} as PropFieldConfig;
+
+				expect(() => validateGenericConfig(config)).not.toThrowError();
+			});
+			it('PropFieldConfig with format as object, with baseUrl', () => {
+				const config = {
+					type: 'field',
+					selector: 'a',
+					extract: 'prop',
+					propertyName: 'href',
+					format: { type: 'url', baseUrl: 'www.toto.com' },
+				} as PropFieldConfig;
+
+				expect(() => validateGenericConfig(config)).not.toThrowError();
+			});
 			it('CssFieldConfig', () => {
 				const config = {
 					type: 'field',

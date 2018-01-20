@@ -1,6 +1,7 @@
+import * as joi from 'joi';
+
 import { ConfigTypes, ExtractTypes, FormatTypes } from './types';
 
-import joi from 'joi';
 import { stringEnumValues } from './utils';
 
 const coreConfigItem = joi.object().keys({
@@ -12,7 +13,13 @@ const coreConfigItem = joi.object().keys({
 
 const fieldConfig = coreConfigItem.keys({
 	selector: joi.string().required(),
-	format: joi.string().valid(...stringEnumValues(FormatTypes)),
+	format: [
+		joi.string().valid(...stringEnumValues(FormatTypes)),
+		joi.object().keys({
+			type: joi.string().valid(...stringEnumValues(FormatTypes)),
+			baseUrl: joi.string().optional(),
+		}),
+	],
 	extract: joi
 		.string()
 		.required()

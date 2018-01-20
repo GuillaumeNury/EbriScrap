@@ -1,19 +1,40 @@
 import * as cheerio from 'cheerio';
 
-import { FormatTypes } from './types';
+import {
+	FieldConfig,
+	FormatConfigs,
+	FormatTypes,
+	IUrlFormatConfig,
+} from './types';
+import { isObject, isString } from 'lodash';
+
+import { urlJoin } from './utils';
 
 const formattorsMap = {
 	[FormatTypes.STRING]: formatString,
 	[FormatTypes.HTML_TO_TEXT]: formatHtmlToText,
 	[FormatTypes.ONE_LINE_STRING]: formatOneLineString,
 	[FormatTypes.NUMBER]: formatNumber,
-};
+	[FormatTypes.URL]: formatUrl,
+} as { [format: string]: FormatFunc };
 
-export function format(
+type FormatFunc = (
 	rawValue: string,
-	format: FormatTypes = FormatTypes.STRING,
-): any {
-	const formator = formattorsMap[format];
+	config?:
+		| 'number'
+		| 'one-line-string'
+		| 'string'
+		| 'html-to-text'
+		| 'url'
+		| FormatConfigs,
+) => string | number;
+
+export function format(rawValue: string, config: FieldConfig): any {
+	const formatConfig = isString(config.format)
+		? config.format
+		: config.format ? config.format.type : FormatTypes.STRING;
+
+	const formator = formattorsMap[formatConfig];
 
 	if (!formator) {
 		throw new Error(
@@ -21,7 +42,7 @@ export function format(
 		);
 	}
 
-	return formator(rawValue);
+	return formator(rawValue, config.format);
 }
 
 function formatHtmlToText(rawValue: string): string {
@@ -49,4 +70,13 @@ function formatNumber(rawValue: string): number {
 
 function formatString(rawValue: string): string {
 	return rawValue;
+}
+
+function formatUrl(
+	rawValue: string,
+	config: IUrlFormatConfig,
+): string {
+	return config && isObject(config)
+		? urlJoin(config.baseUrl, rawValue)
+		: rawValue;
 }

@@ -16,6 +16,7 @@ export enum FormatTypes {
 	ONE_LINE_STRING = 'one-line-string',
 	HTML_TO_TEXT = 'html-to-text',
 	NUMBER = 'number',
+	URL = 'url',
 }
 
 export type ValidTypes = string | number;
@@ -51,7 +52,13 @@ export type FieldConfig =
 export interface CoreFieldConfig {
 	type: 'field';
 	selector: string;
-	format?: 'number' | 'one-line-string' | 'string' | 'html-to-text';
+	format?:
+		| 'number'
+		| 'one-line-string'
+		| 'string'
+		| 'html-to-text'
+		| 'url'
+		| FormatConfigs;
 }
 
 export interface PropFieldConfig extends CoreFieldConfig {
@@ -67,4 +74,20 @@ export interface TextFieldConfig extends CoreFieldConfig {
 export interface CssFieldConfig extends CoreFieldConfig {
 	extract: 'css';
 	propertyName: string;
+}
+
+export type FormatConfigs = IFormatConfig | IUrlFormatConfig;
+
+export interface IFormatConfig {
+	type:
+		| 'number'
+		| 'one-line-string'
+		| 'string'
+		| 'html-to-text'
+		| 'url';
+}
+
+export interface IUrlFormatConfig {
+	type: FormatTypes.URL;
+	baseUrl?: string;
 }

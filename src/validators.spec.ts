@@ -161,7 +161,7 @@ describe('Validators', () => {
 				} as TextFieldConfig;
 
 				expect(() => validateGenericConfig(config)).toThrowError(
-					'Invalid configuration: "format" must be one of [string, one-line-string, html-to-text, number]',
+					'Invalid configuration: "format" must be one of [string, one-line-string, html-to-text, number, url]',
 				);
 			});
 			it('should fail when CssFieldConfig without propertyName', () => {

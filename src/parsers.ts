@@ -4,7 +4,6 @@ import {
 	AbstractPageConfig,
 	ConfigTypes,
 	FieldConfig,
-	FormatTypes,
 	IArrayConfig,
 	IEbriScrapConfig,
 	IGroupConfig,
@@ -56,7 +55,7 @@ function parseField(
 	config: FieldConfig,
 ): ValidTypes {
 	const rawValue = extract($, config);
-	const formatted = format(rawValue, config.format as FormatTypes);
+	const formatted = format(rawValue, config);
 
 	return formatted;
 }

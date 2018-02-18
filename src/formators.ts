@@ -97,6 +97,7 @@ function formatRegex(
 
 	return config.output.replace(
 		/\$([0-9]+)/g,
-		(_match, matchGroupIndex) => matches[matchGroupIndex],
+		(match, matchGroupIndex) =>
+			matches ? matches[matchGroupIndex] : match,
 	);
 }

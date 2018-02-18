@@ -99,12 +99,40 @@ describe('Formators', () => {
 		const result = format(rawValue, {
 			format: {
 				type: FormatTypes.REGEX,
-				regex: '/before(.*?)after/',
+				regex: 'before(.*?)after',
 				output: '$1',
 			},
 		} as any);
 
 		expect(result).toEqual('WowThisIsAmazing');
+	});
+	it('should not fail if nothing is matched when format = regex', () => {
+		debugger;
+		const rawValue = 'beforeWowThisIsAmazingafter';
+
+		const result = format(rawValue, {
+			format: {
+				type: FormatTypes.REGEX,
+				regex: '(.*)unicorn(.*)',
+				output: '$1poney$2',
+			},
+		} as any);
+
+		expect(result).toEqual('$1poney$2');
+	});
+	it('should work when format = regex with multiple capturing groups', () => {
+		debugger;
+		const rawValue = 'WowThisIsABitAmazing';
+
+		const result = format(rawValue, {
+			format: {
+				type: FormatTypes.REGEX,
+				regex: '^(.*?)ABit(.*?)$',
+				output: '$1Truly$2',
+			},
+		} as any);
+
+		expect(result).toEqual('WowThisIsTrulyAmazing');
 	});
 	it('should return rawValue when format = regex without a config object', () => {
 		debugger;

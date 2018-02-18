@@ -4,6 +4,7 @@ import {
 	FieldConfig,
 	FormatConfigs,
 	FormatTypes,
+	IRegexFormatConfig,
 	IUrlFormatConfig,
 } from './types';
 import { isObject, isString } from 'lodash';
@@ -16,6 +17,7 @@ const formattorsMap = {
 	[FormatTypes.ONE_LINE_STRING]: formatOneLineString,
 	[FormatTypes.NUMBER]: formatNumber,
 	[FormatTypes.URL]: formatUrl,
+	[FormatTypes.REGEX]: formatRegex,
 } as { [format: string]: FormatFunc };
 
 type FormatFunc = (
@@ -26,6 +28,7 @@ type FormatFunc = (
 		| 'string'
 		| 'html-to-text'
 		| 'url'
+		| 'regex'
 		| FormatConfigs,
 ) => string | number;
 
@@ -79,4 +82,21 @@ function formatUrl(
 	return config && isObject(config)
 		? urlJoin(config.baseUrl, rawValue)
 		: rawValue;
+}
+
+function formatRegex(
+	rawValue: string,
+	config: IRegexFormatConfig,
+): string {
+	if (!config || !isObject(config)) {
+		return rawValue;
+	}
+
+	const regex = new RegExp(config.regex);
+	const matches = (rawValue || '').match(regex);
+
+	return config.output.replace(
+		/\$([0-9]+)/g,
+		(_match, matchGroupIndex) => matches[matchGroupIndex],
+	);
 }

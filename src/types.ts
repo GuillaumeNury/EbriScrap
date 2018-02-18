@@ -17,6 +17,7 @@ export enum FormatTypes {
 	HTML_TO_TEXT = 'html-to-text',
 	NUMBER = 'number',
 	URL = 'url',
+	REGEX = 'regex',
 }
 
 export type ValidTypes = string | number;
@@ -76,7 +77,10 @@ export interface CssFieldConfig extends CoreFieldConfig {
 	propertyName: string;
 }
 
-export type FormatConfigs = IFormatConfig | IUrlFormatConfig;
+export type FormatConfigs =
+	| IFormatConfig
+	| IUrlFormatConfig
+	| IRegexFormatConfig;
 
 export interface IFormatConfig {
 	type:
@@ -90,4 +94,10 @@ export interface IFormatConfig {
 export interface IUrlFormatConfig {
 	type: FormatTypes.URL;
 	baseUrl?: string;
+}
+
+export interface IRegexFormatConfig {
+	type: FormatTypes.REGEX;
+	regex: string;
+	output: string;
 }

@@ -92,6 +92,30 @@ describe('Formators', () => {
 
 		expect(result).toEqual('https://www.toto.com/a-path/other-things');
 	});
+	it('should work when format = regex', () => {
+		debugger;
+		const rawValue = 'beforeWowThisIsAmazingafter';
+
+		const result = format(rawValue, {
+			format: {
+				type: FormatTypes.REGEX,
+				regex: '/before(.*?)after/',
+				output: '$1',
+			},
+		} as any);
+
+		expect(result).toEqual('WowThisIsAmazing');
+	});
+	it('should return rawValue when format = regex without a config object', () => {
+		debugger;
+		const rawValue = 'beforeWowThisIsAmazingafter';
+
+		const result = format(rawValue, {
+			format: FormatTypes.REGEX,
+		} as any);
+
+		expect(result).toEqual(rawValue);
+	});
 	it('should throw when format = not existing', () => {
 		const rawValue = `<h1>Title</h1>`;
 

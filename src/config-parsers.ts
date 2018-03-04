@@ -234,18 +234,17 @@ function removeLeadingAndEndingChar(text: string, ...chars: string[]) {
 }
 
 function splitByColonsIgnoringQuotes(text: string): string[] {
-	const regex = new RegExp(`('[^']*?')|("[^"]*?")|[^ *: *]+`, 'g');
+	const regex = new RegExp(`('[^']*?')|("[^"]*?")|( *[^:] *)+`, 'g');
 	const matches = text.match(regex) || [];
 
 	return matches.map(part => part.trim());
 }
 
 function splitByPipe(text: string): string[] {
+	const randomSeparatorChar = '\u000B\u000B\u000B';
+
 	return text
-		.replace(
-			/ *\| */g,
-			(match, index, str) => (str[index - 1] === '\\' ? match : '|'),
-		)
-		.match(/([^\\\][^\|]|\\\|)+/g)
+		.replace(/ *([^\\])\| */g, `$1${randomSeparatorChar}`)
+		.split(randomSeparatorChar)
 		.map(p => p.replace(/\\\|/g, '|')); // Replace ignored pipe with pipe
 }

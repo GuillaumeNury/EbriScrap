@@ -46,6 +46,8 @@ interface IRawExtractorConfig extends IPipe {
 	raw: string;
 }
 
+const randomSeparatorChar = '\u000B\u000B\u000B';
+
 export function parseConfig(rawConfig: any): ConfigTypes {
 	if (isString(rawConfig)) {
 		return parseFieldConfig(rawConfig);
@@ -169,6 +171,21 @@ function getSelector(selectors: IRawSelectorConfig[] = []): string {
 	return selectors[0].raw;
 }
 
+function validateExtractor(extractor: IRawExtractorConfig): void {
+	const isValid = includes(
+		stringEnumValues(ExtractTypes),
+		extractor.name,
+	);
+
+	if (!isValid) {
+		throw new Error(
+			`Invalid extractor "${
+				extractor.name
+			}". Allowed extractors are ${enumAsString(ExtractTypes)}.`,
+		);
+	}
+}
+
 function getExtractor(extractors: IRawExtractorConfig[] = []): IPipe {
 	if (extractors && extractors.length > 1) {
 		throw new Error(
@@ -179,18 +196,7 @@ function getExtractor(extractors: IRawExtractorConfig[] = []): IPipe {
 	}
 
 	if (extractors[0]) {
-		const isValid = includes(
-			stringEnumValues(ExtractTypes),
-			extractors[0].name,
-		);
-
-		if (!isValid) {
-			throw new Error(
-				`Invalid extractor "${
-					extractors[0].name
-				}". Allowed extractors are ${enumAsString(ExtractTypes)}.`,
-			);
-		}
+		validateExtractor(extractors[0]);
 	}
 
 	return extractors[0] || { name: 'text', args: [] };
@@ -234,17 +240,35 @@ function removeLeadingAndEndingChar(text: string, ...chars: string[]) {
 }
 
 function splitByColonsIgnoringQuotes(text: string): string[] {
-	const regex = new RegExp(`('[^']*?')|("[^"]*?")|( *[^:] *)+`, 'g');
-	const matches = text.match(regex) || [];
+	const params = {} as { [key: string]: string };
 
-	return matches.map(part => part.trim());
+	return text
+		.replace(/('.*')|(".*")/g, (_m, group1, group2, index) => {
+			params[index] = group1 === undefined ? group2 : group1;
+
+			return `${randomSeparatorChar}${index}${randomSeparatorChar}`;
+		})
+		.split(/ *?: */)
+		.map(p =>
+			p.replace(
+				new RegExp(`${randomSeparatorChar}(.*)${randomSeparatorChar}`),
+				(_match, grp) => params[grp],
+			),
+		)
+		.map(p => removeLeadingAndEndingChar(p, "'", '"'));
 }
 
 function splitByPipe(text: string): string[] {
-	const randomSeparatorChar = '\u000B\u000B\u000B';
-
-	return text
-		.replace(/ *([^\\])\| */g, `$1${randomSeparatorChar}`)
-		.split(randomSeparatorChar)
-		.map(p => p.replace(/\\\|/g, '|')); // Replace ignored pipe with pipe
+	return (
+		text
+			// Remove useless space before and after |
+			.replace(
+				/ *\| */g,
+				(match, index, str) => (str[index - 1] === '\\' ? match : '|'),
+			)
+			.replace(/([^\\])\|/g, `$1${randomSeparatorChar}`)
+			.split(randomSeparatorChar)
+			// Replace ignored pipe with pipe
+			.map(p => p.replace(/\\\|/g, '|'))
+	);
 }

@@ -18,13 +18,11 @@
 	},
 	"dependencies": {
 		"cheerio": "1.0.0-rc.2",
-		"joi": "^13.0.2",
 		"lodash": "^4.17.4"
 	},
 	"devDependencies": {
 		"@types/cheerio": "0.22.6",
 		"@types/jest": "21.1.8",
-		"@types/joi": "^13.0.3",
 		"@types/lodash": "^4.14.93",
 		"@types/node": "8.5.1",
 		"@types/node-fetch": "1.6.7",

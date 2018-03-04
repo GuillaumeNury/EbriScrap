@@ -166,7 +166,6 @@ describe('Config parsers', () => {
 				`Missing property 'data' in array configuration: [{"itemSelector":"li","containerSelector":"ul"}]`,
 			);
 		});
-	});
 		it('should throw on missing containerSelector property', () => {
 			const config = [
 				{
@@ -181,12 +180,11 @@ describe('Config parsers', () => {
 				`Missing property 'containerSelector' in array configuration: [{"itemSelector":"li","data":"p"}]`,
 			);
 		});
-	});
 		it('should throw on missing itemSelector property', () => {
 			const config = [
 				{
 					containerSelector: 'ul',
-					data: 'p'
+					data: 'p',
 				} as IRawArrayConfigItem,
 			];
 

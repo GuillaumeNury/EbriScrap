@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
 
-import { FieldConfig, FormatTypes, IPipe } from './types';
+import { FormatTypes, IPipe } from './types';
 import { enumAsString, urlJoin } from './utils';
 
 import { reduce } from 'lodash';

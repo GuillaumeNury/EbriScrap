@@ -9,6 +9,7 @@ describe('Formators', () => {
 		const result = format(rawValue, [
 			{
 				name: FormatTypes.STRING,
+				args: [],
 			},
 		] as IPipe[]);
 
@@ -25,6 +26,7 @@ describe('Formators', () => {
 		const result = format(rawValue, [
 			{
 				name: FormatTypes.ONE_LINE_STRING,
+				args: [],
 			},
 		] as IPipe[]);
 
@@ -36,6 +38,7 @@ describe('Formators', () => {
 		const result = format(rawValue, [
 			{
 				name: FormatTypes.NUMBER,
+				args: [],
 			},
 		] as IPipe[]);
 
@@ -47,6 +50,7 @@ describe('Formators', () => {
 		const result = format(rawValue, [
 			{
 				name: FormatTypes.HTML_TO_TEXT,
+				args: [],
 			},
 		] as IPipe[]);
 
@@ -58,6 +62,7 @@ describe('Formators', () => {
 		const result = format(rawValue, [
 			{
 				name: FormatTypes.URL,
+				args: [],
 			},
 		] as IPipe[]);
 
@@ -69,6 +74,7 @@ describe('Formators', () => {
 		const result = format(rawValue, [
 			{
 				name: FormatTypes.URL,
+				args: [],
 			},
 		] as IPipe[]);
 
@@ -141,6 +147,7 @@ describe('Formators', () => {
 			format(rawValue, [
 				{
 					name: FormatTypes.REGEX,
+					args: [],
 				},
 			] as IPipe[]);
 
@@ -167,7 +174,9 @@ describe('Formators', () => {
 		const rawValue = `<h1>Title</h1>`;
 
 		expect(() =>
-			format(rawValue, [{ name: 'not-existing' }] as IPipe[]),
+			format(rawValue, [
+				{ name: 'not-existing', args: [] },
+			] as IPipe[]),
 		).toThrowError(
 			'Unknown formattor "not-existing". Allowed formators are string, one-line-string, html-to-text, number, url, regex',
 		);

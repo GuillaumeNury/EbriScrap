@@ -1,61 +1,44 @@
 import * as cheerio from 'cheerio';
 
 import {
-	AbstractPageConfig,
+	ArrayConfig,
 	ConfigTypes,
 	FieldConfig,
+	GroupConfig,
 	IArrayConfig,
-	IEbriScrapConfig,
 	IGroupConfig,
-	ValidTypes,
 } from './types';
 
+import { EbriScrapConfig } from './types';
 import { extract } from './extractors';
 import { format } from './formators';
+import { parseConfig } from './config-parsers';
 
 export function parse<T = any>(
 	html: string,
-	config: IEbriScrapConfig,
+	config: EbriScrapConfig,
 ): T {
+	const parsedConfig = parseConfig(config);
 	const $ = cheerio.load(html);
-	const keys = getKeys(config);
 
-	return keys.reduce(
-		(acc, key) => {
-			const child = config[key];
-
-			acc[key] = genericParse($, child);
-
-			return acc;
-		},
-		{} as any,
-	);
+	return genericParse($, parsedConfig);
 }
 
-function genericParse(
-	$: CheerioStatic,
-	config: AbstractPageConfig,
-): any {
-	switch (config.type) {
-		case ConfigTypes.ARRAY:
-			return parseArray($, config);
-		case ConfigTypes.GROUP:
-			return parseGroup($, config);
-		case ConfigTypes.FIELD:
-			return parseField($, config);
-		default:
-			throw new Error(
-				'Invalid config type. Allowed values are: array, group, field',
-			);
+function genericParse($: CheerioStatic, config: ConfigTypes): any {
+	if (config instanceof FieldConfig) {
+		return parseField($, config);
+	}
+	if (config instanceof GroupConfig) {
+		return parseGroup($, config);
+	}
+	if (config instanceof ArrayConfig) {
+		return parseArray($, config);
 	}
 }
 
-function parseField(
-	$: CheerioStatic,
-	config: FieldConfig,
-): ValidTypes {
+function parseField($: CheerioStatic, config: FieldConfig): any {
 	const rawValue = extract($, config);
-	const formatted = format(rawValue, config);
+	const formatted = format(rawValue, config.formators);
 
 	return formatted;
 }
@@ -66,7 +49,7 @@ function parseArray($: CheerioStatic, config: IArrayConfig): any {
 	$(config.containerSelector)
 		.find(config.itemSelector)
 		.map((_idx, $elem) => {
-			const item = genericParse(cheerio.load($elem), config.children);
+			const item = genericParse(cheerio.load($elem), config.data);
 
 			result.push(item);
 		});
@@ -75,17 +58,13 @@ function parseArray($: CheerioStatic, config: IArrayConfig): any {
 }
 
 function parseGroup($: CheerioStatic, config: IGroupConfig): any {
-	const container$ = $(config.containerSelector);
-
-	const keys = getKeys(config.children);
+	const keys = getKeys(config);
 
 	return keys.reduce(
 		(acc, key) => {
-			const child = config.children[key];
+			const child = config[key];
 
-			const child$ = container$[0];
-
-			acc[key] = genericParse(cheerio.load(child$), child);
+			acc[key] = genericParse($, child);
 
 			return acc;
 		},

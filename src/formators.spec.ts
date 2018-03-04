@@ -1,20 +1,16 @@
-import { FormatTypes } from './types';
+import { FormatTypes, IPipe } from './types';
+
 import { format } from './formators';
 
 describe('Formators', () => {
-	it('should work when format = undefined', () => {
-		const rawValue = `A Text`;
-
-		const result = format(rawValue, { format: undefined } as any);
-
-		expect(result).toEqual('A Text');
-	});
 	it('should work when format = string', () => {
 		const rawValue = `A Text`;
 
-		const result = format(rawValue, {
-			format: FormatTypes.STRING,
-		} as any);
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.STRING,
+			},
+		] as IPipe[]);
 
 		expect(result).toEqual('A Text');
 	});
@@ -26,131 +22,154 @@ describe('Formators', () => {
 				text
 			`;
 
-		const result = format(rawValue, {
-			format: FormatTypes.ONE_LINE_STRING,
-		} as any);
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.ONE_LINE_STRING,
+			},
+		] as IPipe[]);
 
 		expect(result).toEqual('A multiline text');
 	});
 	it('should work when format = number', () => {
 		const rawValue = `<div>12 345.67 €</div>`;
 
-		const result = format(rawValue, {
-			format: FormatTypes.NUMBER,
-		} as any);
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.NUMBER,
+			},
+		] as IPipe[]);
 
 		expect(result).toEqual(12345.67);
 	});
 	it('should work when format = html-to-text', () => {
 		const rawValue = 'A<br><p>multiline</p><div>text</div>!';
 
-		const result = format(rawValue, {
-			format: FormatTypes.HTML_TO_TEXT,
-		} as any);
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.HTML_TO_TEXT,
+			},
+		] as IPipe[]);
 
 		expect(result).toEqual('A\n\nmultiline\n\ntext\n!');
 	});
 	it('should work when format = url with string config', () => {
 		const rawValue = '/a-path/other-things';
 
-		const result = format(rawValue, {
-			format: FormatTypes.URL,
-		} as any);
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.URL,
+			},
+		] as IPipe[]);
 
 		expect(result).toEqual(rawValue);
 	});
 	it('should work when format = url with object config', () => {
 		const rawValue = '/a-path/other-things';
 
-		const result = format(rawValue, {
-			format: { type: FormatTypes.URL },
-		} as any);
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.URL,
+			},
+		] as IPipe[]);
 
 		expect(result).toEqual(rawValue);
 	});
 	it('should work when format = url with base url', () => {
 		const rawValue = '/a-path/other-things';
 
-		const result = format(rawValue, {
-			format: {
-				type: FormatTypes.URL,
-				baseUrl: 'https://www.toto.com',
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.URL,
+				args: ['https://www.toto.com'],
 			},
-		} as any);
+		] as IPipe[]);
 
 		expect(result).toEqual('https://www.toto.com/a-path/other-things');
 	});
 	it('should work when format = url with base url, without leading /', () => {
 		const rawValue = 'a-path/other-things';
 
-		const result = format(rawValue, {
-			format: {
-				type: FormatTypes.URL,
-				baseUrl: 'https://www.toto.com',
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.URL,
+				args: ['https://www.toto.com'],
 			},
-		} as any);
+		] as IPipe[]);
 
 		expect(result).toEqual('https://www.toto.com/a-path/other-things');
 	});
 	it('should work when format = regex', () => {
-		debugger;
 		const rawValue = 'beforeWowThisIsAmazingafter';
 
-		const result = format(rawValue, {
-			format: {
-				type: FormatTypes.REGEX,
-				regex: 'before(.*?)after',
-				output: '$1',
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.REGEX,
+				args: ['before(.*?)after', '$1'],
 			},
-		} as any);
+		] as IPipe[]);
 
 		expect(result).toEqual('WowThisIsAmazing');
 	});
 	it('should not fail if nothing is matched when format = regex', () => {
-		debugger;
 		const rawValue = 'beforeWowThisIsAmazingafter';
 
-		const result = format(rawValue, {
-			format: {
-				type: FormatTypes.REGEX,
-				regex: '(.*)unicorn(.*)',
-				output: '$1poney$2',
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.REGEX,
+				args: ['(.*)unicorn(.*)', '$1poney$2'],
 			},
-		} as any);
+		] as IPipe[]);
 
 		expect(result).toEqual('$1poney$2');
 	});
 	it('should work when format = regex with multiple capturing groups', () => {
-		debugger;
 		const rawValue = 'WowThisIsABitAmazing';
 
-		const result = format(rawValue, {
-			format: {
-				type: FormatTypes.REGEX,
-				regex: '^(.*?)ABit(.*?)$',
-				output: '$1Truly$2',
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.REGEX,
+				args: ['^(.*?)ABit(.*?)$', '$1Truly$2'],
 			},
-		} as any);
+		] as IPipe[]);
 
 		expect(result).toEqual('WowThisIsTrulyAmazing');
 	});
-	it('should return rawValue when format = regex without a config object', () => {
-		debugger;
+	it('should return rawValue when format = regex without arguments', () => {
 		const rawValue = 'beforeWowThisIsAmazingafter';
 
-		const result = format(rawValue, {
-			format: FormatTypes.REGEX,
-		} as any);
+		const result = () =>
+			format(rawValue, [
+				{
+					name: FormatTypes.REGEX,
+				},
+			] as IPipe[]);
 
-		expect(result).toEqual(rawValue);
+		expect(result).toThrowError(
+			'Cannot use regex formattor. Missing first parameter. Use selector | regex:(.*):$1',
+		);
+	});
+	it('should return rawValue when format = regex with one missing argument', () => {
+		const rawValue = 'beforeWowThisIsAmazingafter';
+
+		const result = () =>
+			format(rawValue, [
+				{
+					name: FormatTypes.REGEX,
+					args: ['poney'],
+				},
+			] as IPipe[]);
+
+		expect(result).toThrowError(
+			'Cannot use regex formattor. Missing second parameter. Use selector | regex:(.*):$1',
+		);
 	});
 	it('should throw when format = not existing', () => {
 		const rawValue = `<h1>Title</h1>`;
 
 		expect(() =>
-			format(rawValue, { format: 'not-existing' } as any),
+			format(rawValue, [{ name: 'not-existing' }] as IPipe[]),
 		).toThrowError(
-			'Invalid format config. Allowed values are string, number and date',
+			'Unknown formattor "not-existing". Allowed formators are string, one-line-string, html-to-text, number, url, regex',
 		);
 	});
 });

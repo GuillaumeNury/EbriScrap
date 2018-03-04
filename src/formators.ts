@@ -1,15 +1,9 @@
 import * as cheerio from 'cheerio';
 
-import {
-	FieldConfig,
-	FormatConfigs,
-	FormatTypes,
-	IRegexFormatConfig,
-	IUrlFormatConfig,
-} from './types';
-import { isObject, isString } from 'lodash';
+import { FieldConfig, FormatTypes, IPipe } from './types';
+import { enumAsString, urlJoin } from './utils';
 
-import { urlJoin } from './utils';
+import { reduce } from 'lodash';
 
 const formattorsMap = {
 	[FormatTypes.STRING]: formatString,
@@ -22,30 +16,29 @@ const formattorsMap = {
 
 type FormatFunc = (
 	rawValue: string,
-	config?:
-		| 'number'
-		| 'one-line-string'
-		| 'string'
-		| 'html-to-text'
-		| 'url'
-		| 'regex'
-		| FormatConfigs,
+	...args: string[]
 ) => string | number;
 
-export function format(rawValue: string, config: FieldConfig): any {
-	const formatConfig = isString(config.format)
-		? config.format
-		: config.format ? config.format.type : FormatTypes.STRING;
+export function format(rawValue: any, formators: IPipe[] = []): any {
+	const formattedValue = reduce(
+		formators,
+		(acc, formatorConfig) => {
+			const formator = formattorsMap[formatorConfig.name];
 
-	const formator = formattorsMap[formatConfig];
+			if (!formator) {
+				throw new Error(
+					`Unknown formattor "${
+						formatorConfig.name
+					}". Allowed formators are ${enumAsString(FormatTypes)}`,
+				);
+			}
 
-	if (!formator) {
-		throw new Error(
-			'Invalid format config. Allowed values are string, number and date',
-		);
-	}
+			return formator(acc, ...formatorConfig.args);
+		},
+		rawValue,
+	);
 
-	return formator(rawValue, config.format);
+	return formattedValue;
 }
 
 function formatHtmlToText(rawValue: string): string {
@@ -75,27 +68,30 @@ function formatString(rawValue: string): string {
 	return rawValue;
 }
 
-function formatUrl(
-	rawValue: string,
-	config: IUrlFormatConfig,
-): string {
-	return config && isObject(config)
-		? urlJoin(config.baseUrl, rawValue)
-		: rawValue;
+function formatUrl(rawValue: string, baseUrl: string): string {
+	return baseUrl ? urlJoin(baseUrl, rawValue) : rawValue;
 }
 
 function formatRegex(
 	rawValue: string,
-	config: IRegexFormatConfig,
+	strRegex: string,
+	output: string,
 ): string {
-	if (!config || !isObject(config)) {
-		return rawValue;
+	if (!strRegex) {
+		throw new Error(
+			'Cannot use regex formattor. Missing first parameter. Use selector | regex:(.*):$1',
+		);
+	}
+	if (!output) {
+		throw new Error(
+			'Cannot use regex formattor. Missing second parameter. Use selector | regex:(.*):$1',
+		);
 	}
 
-	const regex = new RegExp(config.regex);
+	const regex = new RegExp(strRegex);
 	const matches = (rawValue || '').match(regex);
 
-	return config.output.replace(
+	return output.replace(
 		/\$([0-9]+)/g,
 		(match, matchGroupIndex) =>
 			matches ? matches[matchGroupIndex] : match,

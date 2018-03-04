@@ -1,4 +1,3 @@
-import { IEbriScrapConfig } from './types';
 import { parse } from './parsers';
 
 describe('Field parser', () => {
@@ -6,115 +5,49 @@ describe('Field parser', () => {
 		it('should work when extract = text', () => {
 			const html = `<h1>Title</h1>`;
 
-			const config = {
-				title: {
-					type: 'field',
-					extract: 'text',
-					selector: 'h1',
-				},
-			} as IEbriScrapConfig;
+			const config = 'h1';
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({ title: 'Title' });
+			expect(result).toEqual('Title');
 		});
 		it('should work when extract = prop', () => {
 			const html = `<a href="a-super-link">Link</a>`;
 
-			const config = {
-				link: {
-					type: 'field',
-					extract: 'prop',
-					propertyName: 'href',
-					selector: 'a',
-				},
-			} as IEbriScrapConfig;
+			const config = 'a | extract:prop:href';
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({ link: 'a-super-link' });
+			expect(result).toEqual('a-super-link');
 		});
 		it('should work when extract = html', () => {
 			const html = `<div><a href="a-super-link">Link</a></div>`;
 
-			const config = {
-				link: {
-					type: 'field',
-					extract: 'html',
-					selector: 'div',
-				},
-			} as IEbriScrapConfig;
+			const config = 'div | extract:html';
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({
-				link: '<a href="a-super-link">Link</a>',
-			});
+			expect(result).toEqual('<a href="a-super-link">Link</a>');
 		});
 		it('should work when extract = css', () => {
 			const html = `<div style="color: white"></div>`;
 
-			const config = {
-				color: {
-					type: 'field',
-					extract: 'css',
-					propertyName: 'color',
-					selector: 'div',
-				},
-			} as IEbriScrapConfig;
+			const config = 'div | extract:css:color';
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({ color: 'white' });
-		});
-		it('should throw when extract = not existing', () => {
-			const html = `<h1>Title</h1>`;
-
-			const config = {
-				title: {
-					type: 'field',
-					extract: 'not existing' as any,
-					selector: 'h1',
-				},
-			} as IEbriScrapConfig;
-
-			expect(() => parse(html, config)).toThrowError(
-				'Invalid extract property in configuration. Supported values are: html, text and prop',
-			);
+			expect(result).toEqual('white');
 		});
 	});
 	describe('Format types', () => {
-		it('should work when format = undefined', () => {
-			const html = `<div>A Text</div>`;
-
-			const config = {
-				value: {
-					type: 'field',
-					extract: 'text',
-					selector: 'div',
-					format: undefined,
-				},
-			} as IEbriScrapConfig;
-
-			const result = parse(html, config);
-
-			expect(result).toEqual({ value: 'A Text' });
-		});
 		it('should work when format = string', () => {
 			const html = `<div>A Text</div>`;
 
-			const config = {
-				value: {
-					type: 'field',
-					extract: 'text',
-					selector: 'div',
-					format: 'string',
-				},
-			} as IEbriScrapConfig;
+			const config = 'div | format:string';
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({ value: 'A Text' });
+			expect(result).toEqual('A Text');
 		});
 		it('should work when format = one-line-string', () => {
 			const html = `
@@ -124,62 +57,20 @@ describe('Field parser', () => {
 					<p>text</p>	
 				</div>`;
 
-			const config = {
-				value: {
-					type: 'field',
-					extract: 'text',
-					selector: 'div',
-					format: 'one-line-string',
-				},
-			} as IEbriScrapConfig;
+			const config = 'div | format:one-line-string';
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({ value: 'A multiline text' });
+			expect(result).toEqual('A multiline text');
 		});
 		it('should work when format = number', () => {
 			const html = `<div>12 345.67 €</div>`;
 
-			const config = {
-				value: {
-					type: 'field',
-					extract: 'text',
-					selector: 'div',
-					format: 'number',
-				},
-			} as IEbriScrapConfig;
+			const config = 'div | format:number';
 
 			const result = parse(html, config);
 
-			expect(result).toEqual({ value: 12345.67 });
-		});
-		it('should throw when format = not existing', () => {
-			const html = `<h1>Title</h1>`;
-
-			const config = {
-				title: {
-					type: 'field',
-					extract: 'text',
-					format: 'not existing' as any,
-					selector: 'h1',
-				},
-			} as IEbriScrapConfig;
-
-			expect(() => parse(html, config)).toThrowError(
-				'Invalid format config. Allowed values are string, number and date',
-			);
-		});
-	});
-	describe('Edge case', () => {
-		it('should not fail on empty config', () => {
-			const result = parse('<h1>Title</h1>', null as any);
-
-			expect(result).toEqual({});
-		});
-		it('should not fail on non object config', () => {
-			const result = parse('<h1>Title</h1>', 42 as any);
-
-			expect(result).toEqual({});
+			expect(result).toEqual(12345.67);
 		});
 	});
 });
@@ -193,24 +84,17 @@ describe('Array parser', () => {
 				<li>Value 3</li>
 			</ul>`;
 
-		const config = {
-			values: {
-				type: 'array',
+		const config = [
+			{
 				containerSelector: 'ul',
 				itemSelector: 'li',
-				children: {
-					type: 'field',
-					selector: 'li',
-					extract: 'text',
-				},
+				data: 'li',
 			},
-		} as IEbriScrapConfig;
+		];
 
 		const result = parse(html, config);
 
-		expect(result).toEqual({
-			values: ['Value 1', 'Value 2', 'Value 3'],
-		});
+		expect(result).toEqual(['Value 1', 'Value 2', 'Value 3']);
 	});
 	it('should work when children has a type = group', () => {
 		const html = `
@@ -220,40 +104,24 @@ describe('Array parser', () => {
 				<li><a href="/value-3">Value 3</a></li>
 			</ul>`;
 
-		const config = {
-			values: {
-				type: 'array',
+		const config = [
+			{
 				containerSelector: 'ul',
 				itemSelector: 'li',
-				children: {
-					type: 'group',
-					containerSelector: 'a',
-					children: {
-						name: {
-							type: 'field',
-							selector: 'a',
-							extract: 'text',
-						},
-						link: {
-							type: 'field',
-							selector: 'a',
-							extract: 'prop',
-							propertyName: 'href',
-						},
-					},
+				data: {
+					name: 'a',
+					link: 'a | extract:prop:href',
 				},
 			},
-		} as IEbriScrapConfig;
+		];
 
 		const result = parse(html, config);
 
-		expect(result).toEqual({
-			values: [
-				{ name: 'Value 1', link: '/value-1' },
-				{ name: 'Value 2', link: '/value-2' },
-				{ name: 'Value 3', link: '/value-3' },
-			],
-		});
+		expect(result).toEqual([
+			{ name: 'Value 1', link: '/value-1' },
+			{ name: 'Value 2', link: '/value-2' },
+			{ name: 'Value 3', link: '/value-3' },
+		]);
 	});
 	it('should work when children has a type = array', () => {
 		const html = `
@@ -272,33 +140,27 @@ describe('Array parser', () => {
 				</li>
 			</ul>`;
 
-		const config = {
-			values: {
-				type: 'array',
+		const config = [
+			{
 				containerSelector: 'ul',
 				itemSelector: 'li',
-				children: {
-					type: 'array',
-					containerSelector: 'li',
-					itemSelector: 'p',
-					children: {
-						type: 'field',
-						selector: 'p',
-						extract: 'text',
+				data: [
+					{
+						containerSelector: 'li',
+						itemSelector: 'p',
+						data: 'p',
 					},
-				},
+				],
 			},
-		} as IEbriScrapConfig;
+		];
 
 		const result = parse(html, config);
 
-		expect(result).toEqual({
-			values: [
-				['Value 1.1', 'Value 1.2'],
-				['Value 2.1', 'Value 2.2'],
-				['Value 3.1', 'Value 3.2'],
-			],
-		});
+		expect(result).toEqual([
+			['Value 1.1', 'Value 1.2'],
+			['Value 2.1', 'Value 2.2'],
+			['Value 3.1', 'Value 3.2'],
+		]);
 	});
 });
 
@@ -311,28 +173,15 @@ describe('Group parser', () => {
 			</div>`;
 
 		const config = {
-			data: {
-				type: 'group',
-				containerSelector: 'div',
-				children: {
-					header: {
-						type: 'field',
-						selector: 'h3',
-						extract: 'text',
-					},
-					value: {
-						type: 'field',
-						selector: 'p',
-						extract: 'text',
-					},
-				},
-			},
-		} as IEbriScrapConfig;
+			header: 'h3',
+			value: 'p',
+		};
 
 		const result = parse(html, config);
 
 		expect(result).toEqual({
-			data: { header: 'Header', value: 'Value' },
+			header: 'Header',
+			value: 'Value',
 		});
 	});
 	it('should work with children of type = group', () => {
@@ -345,47 +194,19 @@ describe('Group parser', () => {
 			</div>`;
 
 		const config = {
-			data: {
-				type: 'group',
-				containerSelector: 'div',
-				children: {
-					header: {
-						type: 'field',
-						selector: 'h3',
-						extract: 'text',
-					},
-					values: {
-						type: 'group',
-						containerSelector: 'div',
-						children: {
-							val1: {
-								type: 'field',
-								selector: 'p:nth-of-type(1)',
-								extract: 'text',
-							},
-							val2: {
-								type: 'field',
-								selector: 'p:nth-of-type(2)',
-								extract: 'text',
-							},
-							val3: {
-								type: 'field',
-								selector: 'p:nth-of-type(3)',
-								extract: 'text',
-							},
-						},
-					},
-				},
+			header: 'h3',
+			values: {
+				val1: 'p:nth-of-type(1)',
+				val2: 'p:nth-of-type(2)',
+				val3: 'p:nth-of-type(3)',
 			},
-		} as IEbriScrapConfig;
+		};
 
 		const result = parse(html, config);
 
 		expect(result).toEqual({
-			data: {
-				header: 'Header',
-				values: { val1: 'Value 1', val2: 'Value 2', val3: 'Value 3' },
-			},
+			header: 'Header',
+			values: { val1: 'Value 1', val2: 'Value 2', val3: 'Value 3' },
 		});
 	});
 	it('should work with children of type = array', () => {
@@ -398,54 +219,21 @@ describe('Group parser', () => {
 			</div>`;
 
 		const config = {
-			data: {
-				type: 'group',
-				containerSelector: 'div',
-				children: {
-					header: {
-						type: 'field',
-						selector: 'h3',
-						extract: 'text',
-					},
-					values: {
-						type: 'array',
-						containerSelector: 'div',
-						itemSelector: 'p',
-						children: {
-							type: 'field',
-							selector: 'p',
-							extract: 'text',
-						},
-					},
+			header: 'h3',
+			values: [
+				{
+					containerSelector: 'div',
+					itemSelector: 'p',
+					data: 'p',
 				},
-			},
-		} as IEbriScrapConfig;
+			],
+		};
 
 		const result = parse(html, config);
 
 		expect(result).toEqual({
-			data: {
-				header: 'Header',
-				values: ['Value 1', 'Value 2', 'Value 3'],
-			},
+			header: 'Header',
+			values: ['Value 1', 'Value 2', 'Value 3'],
 		});
-	});
-});
-
-describe('Wrong type parser', () => {
-	it('should throw when type = not existing', () => {
-		const html = `<h1>Title</h1>`;
-
-		const config = {
-			title: {
-				type: 'not existing' as any,
-				extract: 'text',
-				selector: 'h1',
-			},
-		} as IEbriScrapConfig;
-
-		expect(() => parse(html, config)).toThrowError(
-			'Invalid config type. Allowed values are: array, group, field',
-		);
 	});
 });

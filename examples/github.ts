@@ -1,44 +1,21 @@
-import { IEbriScrapConfig, parse } from '../index';
-
 import fetch from 'node-fetch';
+import { parse } from '../index';
 
 export const config = {
-	repository: {
-		type: 'field',
-		selector: '.pagehead .public',
-		extract: 'text',
-		format: 'one-line-string',
-	},
-	topics: {
-		type: 'array',
-		containerSelector: '.list-topics-container',
-		itemSelector: 'a',
-		children: {
-			type: 'group',
-			containerSelector: 'a',
-			children: {
-				name: {
-					type: 'field',
-					selector: 'a',
-					extract: 'text',
-					format: 'one-line-string',
-				},
-				link: {
-					type: 'field',
-					selector: 'a',
-					extract: 'prop',
-					propertyName: 'href',
-				},
+	repository: '.pagehead .public | format:one-line-string',
+	topics: [
+		{
+			containerSelector: '.list-topics-container',
+			itemSelector: 'a',
+			data: {
+				name: 'a | format:one-line-string',
+				link: 'a | extract:prop:href',
 			},
 		},
-	},
-	contributors: {
-		type: 'field',
-		selector: '.numbers-summary li:nth-child(4) span',
-		extract: 'text',
-		format: 'number',
-	},
-} as IEbriScrapConfig;
+	],
+	contributors:
+		'.numbers-summary li:nth-child(4) span | format:number',
+};
 
 const url = 'https://github.com/Microsoft/TypeScript';
 

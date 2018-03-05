@@ -26,43 +26,166 @@ Go to [Examples](./examples) to see EbriScrap in action.
 
 ### Configuration
 
-Root EbriScrap configuration is a dictionary in which values are Field / Group or Array configuration item.
+Root EbriScrap configuration can be a `string`, an `object`, or an `array`.
 
 ### Configuration Item
 
 #### Field
 
 In order to extract a single value, you have to use a field configuartion item.
+You have to specify **one** selector, **up to one** extractor and **as many** formators as you want !
 
-| Key          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type         | It must be `field` in order to configure a Field item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| selector     | It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector. Example: `h1`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| extract      | Possibilities are: <br/> `text`: extract the innerText of selected node <br/> `html`: get raw HTML of the selected node <br/> `prop`: extract a property for the selected node (ex: extract href from a link) <br/> `css`: extract a style property from selected node                                                                                                                                                                                                                                                                                                                                               |
-| propertyName | Mandatory **only** when extract is `prop` or `css`.<br/> The property that need to be extracted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| format?      | _(optional)_ Possibilities are: <br/> `number`: strip all non number characters and parse as float <br/> `regex`: find and replace text with a config object like `{ type: 'regex', regex: '/a(.*)b/', output: '$1'}` <br/> `url`: add a base url if a link is absolute, pass an object like `{ type: 'url', baseUrl: 'https://www.google.com' }`<br/> `string`: default parser, it returns raw extracted value <br/> `one-line-string`: replace all new lines (`\n`), tabs (`\t`) and multi spaces with a single space <br/> `html-to-text`: replace `<br>`, `<p>`, `<div>` with new lines, and then, extract text. |
+Here is an example: `"selector | extract:extractor1 | format:formator1 | format:formator2"`.
+
+##### Selector
+
+It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector. Example: `h1`.
+
+##### Extractor
+
+* `text` _(default)_: it calls `.innerText` on the HTML element matched by the selector.
+
+      	Example:
+      	```javascript
+      	const html = '<div>Hello world</div>';
+
+      	const config = 'div'; // or const config = 'div | extract:text';
+
+      	parse(html, config) // Output: "Hello world"
+      	```
+
+* `html`: it returns the raw HTML of the HTML element matched by the selector.
+
+      	Example:
+      	```javascript
+      	const html = '<div>Hello world</div>';
+
+      	const config = 'div | extract:html';
+
+      	parse(html, config) // Output: "<div>Hello world</div>"
+      	```
+
+* `prop`: it returns a property of the HTML element matched by the selector.
+
+      	Example:
+      	```javascript
+      	const html = '<a href="/unicorn-world">Hello world</div>';
+
+      	const config = 'a | extract:prop:href';
+
+      	parse(html, config) // Output: "/unicorn-world"
+      	```
+
+* `css`: it returns a css of the HTML element matched by the selector. **Warning:** it only works with style property on the element !
+
+      	Example:
+      	```javascript
+      	const html = '<div style="font-size: 42px">Hello world</div>';
+
+      	const config = 'a | extract:css:font-size';
+
+      	parse(html, config) // Output: "42px"
+      	```
+
+##### Formattors
+
+* `number`: strip all no-digit characters and parse as float
+
+      	Example:
+      	```javascript
+      	const html = '<div>42</div>';
+
+      	const config = 'div | format:number';
+
+      	parse(html, config) // Output: 42
+      	```
+
+* `regex`: find and replace with a text, using a regular expression.
+  This formator needs two parameters: `format:<THE_REGEX>:<REPLACEMENT_STRING>`
+
+      	Example:
+      	```javascript
+      	const html = '<div>42</div>';
+
+      	const config = 'div | format:regex:4(.*):$1';
+
+      	parse(html, config) // Output: 2
+      	```
+
+* `url`: add a base url if the path is relative
+  This formator needs one parameter: `format:<BASE_URL>`
+
+      	Example:
+      	```javascript
+      	const html = '<a href="/unicorn-world">Hello world</div>';
+
+      	/* WARNING: as https://one-fake-domain.com contains colons, quotes (single or double) are mandatory ! */
+      	const config = "a | extract:prop:href | format:url:'https://one-fake-domain.com'";
+
+      	parse(html, config) // Output: "https://one-fake-domain.com/unicorn-world"
+      	```
+
+* `html-to-text`: replace `<br>`, `<p>`, `<div>` with new lines, and then, returns text.
+
+- `one-line-string`: replace all new lines (`\n`), tabs (`\t`) and multi spaces with a single space
 
 #### Group
 
-In order to get nested object in parsing result, you have to use a group configuration item.
+A group configuration is a dictionary in which keys are the keys of the output object, and values are a piece of EbriScrapConfiguration (another group configuration, a field or an array configuration).
 
-| Key               | Value                                                                                                                                          |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| type              | It must be `group` in order to configure a group item                                                                                          |
-| containerSelector | It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector. It will be the root node for all children configurations. |
-| children          | It is a dictionary in which values should be Field / Array or Group configuration item.                                                        |
+Example:
+
+```javascript
+const html = `
+	<section>
+		<h1>What a wonderful world</h1>
+		<p>Lorem Ipsum...</p>
+	</section>`;
+
+const config = {
+	title: 'h1',
+	content: 'p',
+};
+
+parse(html, config); // Output: { title: 'What a wonderful world': content: 'Lorem Ipsum...' }
+```
 
 #### Array
 
-In order to get array of values in parsing result, you have to use an array configuration item.
+Array configuration are a bit more complicated. It is an array, with a single item with additional information:
 
-| Key               | Value                                                                                                                                          |
-| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| type              | It must be `array` in order to configure a array item                                                                                          |
-| containerSelector | It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector. It will be the root node for all children configurations. |
-| children          | It is a single Field / Array or Group configuration item.                                                                                      |
+* `containerSelector`: the selector of the container (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
+* `itemSelector`: the selector on which you want to iterate (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
+* `data`: a Field/Group/Array configuration
 
-### Example
+Example:
+
+```javascript
+const html = `
+	<ul>
+		<li>
+			<p>Content 1</p>
+		</li>
+		<li>
+			<p>Content 2</p>
+		</li>
+		<li>
+			<p>Content 3</p>
+		</li>
+	</ul>`;
+
+const config = [
+	{
+		containerSelector: 'ul',
+		itemSelector: 'li',
+		data: 'p',
+	},
+];
+
+parse(html, config); // Output: ['Content 1', 'Content 2', 'Content 3']
+```
+
+### Walkthrough example
 
 Say we have the following HTML:
 
@@ -127,11 +250,7 @@ Here is what you have to do:
 It is a regular text field. We want to extract the text in `<title>`:
 
 ```javascript
-{
-  type: 'field',
-  selector: 'title',
-  extract: 'text'
-}
+const nameConfig = 'title';
 ```
 
 #### Library name
@@ -139,11 +258,7 @@ It is a regular text field. We want to extract the text in `<title>`:
 One again, it is a regular text field. We want to extract the text in the first `<td>`:
 
 ```javascript
-{
-  type: 'field',
-  selector: 'td:first-of-type',
-  extract: 'text'
-}
+const libNameConfig = 'td:first-of-type';
 ```
 
 #### Library link
@@ -151,12 +266,7 @@ One again, it is a regular text field. We want to extract the text in the first 
 This time, we want to get the link in the `href` property of the `<a>` in the second `<td>`:
 
 ```javascript
-{
-  type: 'field',
-  selector: 'td:nth-of-type(2) a',
-  extract: 'prop',
-  propertyName: 'href'
-}
+const libLinkConfig = 'td:nth-of-type(2) a | extract:prop:href';
 ```
 
 #### Library
@@ -165,12 +275,14 @@ Now that we have name and url, we want to create an object with two keys (`name`
 
 ```javascript
 {
-  type: 'group',
-  containerSelector: 'tr',
-  children: {
-    name: { /* Library name configuration item */ },
-    link: { /* Library link configuration item */ }
-  },
+  name: /* Library name configuration item */,
+  link: /* Library link configuration item */
+}
+
+// so we have:
+{
+  name: 'td:first-of-type',
+  link: 'td:nth-of-type(2) a | extract:prop:href'
 }
 ```
 
@@ -179,12 +291,13 @@ Now that we have name and url, we want to create an object with two keys (`name`
 We want to apply librairy configuration on every `<tr>` in `<tbody>`:
 
 ```javascript
-{
-  type: 'array',
-  containerSelector: 'tbody',
-  itemSelector: 'tr',
-  children: { /* Library configuration item */ }
-}
+[
+  {
+    containerSelector: 'tbody',
+    itemSelector: 'tr',
+    data: /* Library configuration item */
+  }
+]
 ```
 
 #### Resulting configuration
@@ -193,32 +306,16 @@ Here is the full configuration:
 
 ```javascript
 {
-  name: {
-    type: 'field',
-    selector: 'title',
-    extract: 'text'
-  },
-  librairies: {
-    type: 'array',
-    containerSelector: 'tbody',
-    itemSelector: 'tr',
-    children: {
-      type: 'group',
-      containerSelector: 'tr',
-      children: {
-        name: {
-          type: 'field',
-          selector: 'td:first-of-type',
-          extract: 'text'
+  name: 'title',
+  librairies: [
+      {
+        containerSelector: 'tbody',
+        itemSelector: 'tr',
+        data: {
+          name: 'td:first-of-type',
+          link: 'td:nth-of-type(2) a | extract:prop:href'
         },
-        link: {
-          type: 'field',
-          selector: 'td:nth-of-type(2) a',
-          extract: 'prop',
-          propertyName: 'href'
-        }
-      },
-    }
-  }
+      }
+  ]
 }
 ```

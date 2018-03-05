@@ -1,5 +1,11 @@
 import { trim } from 'lodash';
 
+export function enumAsString(_enum: {
+	[key: number]: string;
+}): string {
+	return stringEnumValues(_enum).join(', ');
+}
+
 export function stringEnumValues(_enum: {
 	[key: number]: string;
 }): string[] {

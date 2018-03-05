@@ -1,7 +1,6 @@
 import * as cheerio from 'cheerio';
 
 import { FieldConfig } from './types';
-
 import { extract } from './extractors';
 
 describe('Extractors', () => {
@@ -9,8 +8,7 @@ describe('Extractors', () => {
 		const $ = cheerio.load(`<h1>Title</h1>`);
 
 		const config = {
-			type: 'field',
-			extract: 'text',
+			extractor: { name: 'text', args: [] },
 			selector: 'h1',
 		} as FieldConfig;
 
@@ -22,8 +20,7 @@ describe('Extractors', () => {
 		const $ = cheerio.load(`<h1>Title</h1>`);
 
 		const config = {
-			type: 'field',
-			extract: 'text',
+			extractor: { name: 'text', args: [] },
 			selector: 'p',
 		} as FieldConfig;
 
@@ -35,9 +32,7 @@ describe('Extractors', () => {
 		const $ = cheerio.load(`<a href="a-super-link">Link</a>`);
 
 		const config = {
-			type: 'field',
-			extract: 'prop',
-			propertyName: 'href',
+			extractor: { name: 'prop', args: ['href'] },
 			selector: 'a',
 		} as FieldConfig;
 
@@ -51,8 +46,7 @@ describe('Extractors', () => {
 		);
 
 		const config = {
-			type: 'field',
-			extract: 'html',
+			extractor: { name: 'html', args: [] },
 			selector: 'div',
 		} as FieldConfig;
 
@@ -66,8 +60,7 @@ describe('Extractors', () => {
 		);
 
 		const config = {
-			type: 'field',
-			extract: 'html',
+			extractor: { name: 'html', args: [] },
 			selector: 'h1',
 		} as FieldConfig;
 
@@ -79,9 +72,7 @@ describe('Extractors', () => {
 		const $ = cheerio.load(`<div style="color: white"></div>`);
 
 		const config = {
-			type: 'field',
-			extract: 'css',
-			propertyName: 'color',
+			extractor: { name: 'css', args: ['color'] },
 			selector: 'div',
 		} as FieldConfig;
 
@@ -93,13 +84,12 @@ describe('Extractors', () => {
 		const $ = cheerio.load(`<h1>Title</h1>`);
 
 		const config = {
-			type: 'field',
-			extract: 'not existing' as any,
+			extractor: { name: 'not exising', args: ['color'] },
 			selector: 'h1',
 		} as FieldConfig;
 
 		expect(() => extract($, config)).toThrowError(
-			'Invalid extract property in configuration. Supported values are: html, text and prop',
+			'Invalid extract property in configuration. Supported values are: html, text, prop, css',
 		);
 	});
 });

@@ -1,24 +1,17 @@
-import { IEbriScrapConfig, parse } from '../index';
+import { EbriScrapConfig, parse } from '../index';
 
 import fetch from 'node-fetch';
 
 export const config = {
-	title: {
-		type: 'field',
-		selector: '#firstHeading',
-		extract: 'text',
-	},
-	frameworks: {
-		type: 'array',
-		containerSelector: '.colonnes ul',
-		itemSelector: 'li',
-		children: {
-			type: 'field',
-			selector: 'li',
-			extract: 'text',
+	title: '#firstHeading',
+	frameworks: [
+		{
+			containerSelector: '.colonnes ul',
+			itemSelector: 'li',
+			data: 'li',
 		},
-	},
-} as IEbriScrapConfig;
+	],
+} as EbriScrapConfig;
 
 const url = 'https://fr.wikipedia.org/wiki/Node.js';
 

@@ -1,9 +1,7 @@
 import * as cheerio from 'cheerio';
-
+import { reduce } from 'lodash';
 import { FormatTypes, IPipe } from './types';
 import { enumAsString, urlJoin } from './utils';
-
-import { reduce } from 'lodash';
 
 const formattorsMap = {
 	[FormatTypes.STRING]: formatString,
@@ -12,6 +10,7 @@ const formattorsMap = {
 	[FormatTypes.NUMBER]: formatNumber,
 	[FormatTypes.URL]: formatUrl,
 	[FormatTypes.REGEX]: formatRegex,
+	[FormatTypes.TRIM]: formatTrim,
 } as { [format: string]: FormatFunc };
 
 type FormatFunc = (
@@ -96,4 +95,8 @@ function formatRegex(
 		(match, matchGroupIndex) =>
 			matches ? matches[matchGroupIndex] : match,
 	);
+}
+
+function formatTrim(rawValue: string): string {
+	return rawValue.trim();
 }

@@ -1,6 +1,6 @@
 {
 	"name": "ebri-scrap",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -33,14 +33,19 @@
 		"typescript": "2.6.2"
 	},
 	"jest": {
-		"moduleFileExtensions": ["ts", "js"],
+		"moduleFileExtensions": [
+			"ts",
+			"js"
+		],
 		"transform": {
 			"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
 		},
 		"testRegex": "/src/.*\\.spec\\.ts$",
 		"mapCoverage": true,
 		"coverageDirectory": "./coverage/",
-		"collectCoverageFrom": ["src/**/*.ts"],
+		"collectCoverageFrom": [
+			"src/**/*.ts"
+		],
 		"collectCoverage": true
 	}
 }

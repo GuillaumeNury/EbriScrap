@@ -43,91 +43,100 @@ It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selec
 
 ##### Extractor
 
-* `text` _(default)_: it calls `.innerText` on the HTML element matched by the selector.
+- `text` _(default)_: it calls `.innerText` on the HTML element matched by the selector.
 
-      	Example:
-      	```javascript
-      	const html = '<div>Hello world</div>';
+  Example:
 
-      	const config = 'div'; // or const config = 'div | extract:text';
+  ```javascript
+  const html = '<div>Hello world</div>';
 
-      	parse(html, config) // Output: "Hello world"
-      	```
+  const config = 'div'; // or const config = 'div | extract:text';
 
-* `html`: it returns the raw HTML of the HTML element matched by the selector.
+  parse(html, config); // Output: "Hello world"
+  ```
 
-      	Example:
-      	```javascript
-      	const html = '<div>Hello world</div>';
+- `html`: it returns the raw HTML of the HTML element matched by the selector.
 
-      	const config = 'div | extract:html';
+  Example:
 
-      	parse(html, config) // Output: "<div>Hello world</div>"
-      	```
+  ```javascript
+  const html = '<div>Hello world</div>';
 
-* `prop`: it returns a property of the HTML element matched by the selector.
+  const config = 'div | extract:html';
 
-      	Example:
-      	```javascript
-      	const html = '<a href="/unicorn-world">Hello world</div>';
+  parse(html, config); // Output: "<div>Hello world</div>"
+  ```
 
-      	const config = 'a | extract:prop:href';
+- `prop`: it returns a property of the HTML element matched by the selector.
 
-      	parse(html, config) // Output: "/unicorn-world"
-      	```
+  Example:
 
-* `css`: it returns a css of the HTML element matched by the selector. **Warning:** it only works with style property on the element !
+  ```javascript
+  const html = '<a href="/unicorn-world">Hello world</div>';
 
-      	Example:
-      	```javascript
-      	const html = '<div style="font-size: 42px">Hello world</div>';
+  const config = 'a | extract:prop:href';
 
-      	const config = 'a | extract:css:font-size';
+  parse(html, config); // Output: "/unicorn-world"
+  ```
 
-      	parse(html, config) // Output: "42px"
-      	```
+- `css`: it returns a css of the HTML element matched by the selector. **Warning:** it only works with style property on the element !
+
+  Example:
+
+  ```javascript
+  const html = '<div style="font-size: 42px">Hello world</div>';
+
+  const config = 'a | extract:css:font-size';
+
+  parse(html, config); // Output: "42px"
+  ```
 
 ##### Formattors
 
-* `number`: strip all no-digit characters and parse as float
+- `number`: strip all no-digit characters and parse as float
 
-      	Example:
-      	```javascript
-      	const html = '<div>42</div>';
+  Example:
 
-      	const config = 'div | format:number';
+  ```javascript
+  const html = '<div>42</div>';
 
-      	parse(html, config) // Output: 42
-      	```
+  const config = 'div | format:number';
 
-* `regex`: find and replace with a text, using a regular expression.
+  parse(html, config); // Output: 42
+  ```
+
+- `regex`: find and replace with a text, using a regular expression.
   This formator needs two parameters: `format:<THE_REGEX>:<REPLACEMENT_STRING>`
 
-      	Example:
-      	```javascript
-      	const html = '<div>42</div>';
+  Example:
 
-      	const config = 'div | format:regex:4(.*):$1';
+  ```javascript
+  const html = '<div>42</div>';
 
-      	parse(html, config) // Output: 2
-      	```
+  const config = 'div | format:regex:4(.*):$1';
 
-* `url`: add a base url if the path is relative
+  parse(html, config); // Output: 2
+  ```
+
+- `url`: add a base url if the path is relative
   This formator needs one parameter: `format:<BASE_URL>`
 
-      	Example:
-      	```javascript
-      	const html = '<a href="/unicorn-world">Hello world</div>';
+  Example:
 
-      	/* WARNING: as https://one-fake-domain.com contains colons, quotes (single or double) are mandatory ! */
-      	const config = "a | extract:prop:href | format:url:'https://one-fake-domain.com'";
+  ```javascript
+  const html = '<a href="/unicorn-world">Hello world</div>';
 
-      	parse(html, config) // Output: "https://one-fake-domain.com/unicorn-world"
-      	```
+  /* WARNING: as https://one-fake-domain.com contains colons, quotes (single or double) are mandatory ! */
+  const config =
+  	"a | extract:prop:href | format:url:'https://one-fake-domain.com'";
 
-* `html-to-text`: replace `<br>`, `<p>`, `<div>` with new lines, and then, returns text.
+  parse(html, config); // Output: "https://one-fake-domain.com/unicorn-world"
+  ```
+
+- `html-to-text`: replace `<br>`, `<p>`, `<div>` with new lines, and then, returns text.
 
 - `one-line-string`: replace all new lines (`\n`), tabs (`\t`) and multi spaces with a single space
+- `trim`: remove leading and ending spaces
 
 #### Group
 
@@ -154,9 +163,9 @@ parse(html, config); // Output: { title: 'What a wonderful world': content: 'Lor
 
 Array configuration are a bit more complicated. It is an array, with a single item with additional information:
 
-* `containerSelector`: the selector of the container (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
-* `itemSelector`: the selector on which you want to iterate (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
-* `data`: a Field/Group/Array configuration
+- `containerSelector`: the selector of the container (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
+- `itemSelector`: the selector on which you want to iterate (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
+- `data`: a Field/Group/Array configuration
 
 Example:
 

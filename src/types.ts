@@ -12,6 +12,7 @@ export enum FormatTypes {
 	NUMBER = 'number',
 	URL = 'url',
 	REGEX = 'regex',
+	TRIM = 'trim',
 }
 
 export interface IPipe {

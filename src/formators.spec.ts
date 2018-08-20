@@ -1,6 +1,5 @@
-import { FormatTypes, IPipe } from './types';
-
 import { format } from './formators';
+import { FormatTypes, IPipe } from './types';
 
 describe('Formators', () => {
 	it('should work when format = string', () => {
@@ -169,6 +168,19 @@ describe('Formators', () => {
 		expect(result).toThrowError(
 			'Cannot use regex formattor. Missing second parameter. Use selector | regex:(.*):$1',
 		);
+	});
+	it('should return trimmed value when format = trim', () => {
+		const rawValue =
+			'                WowThisIsAmazing                 ';
+
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.TRIM,
+				args: [],
+			},
+		] as IPipe[]);
+
+		expect(result).toBe('WowThisIsAmazing');
 	});
 	it('should throw when format = not existing', () => {
 		const rawValue = `<h1>Title</h1>`;

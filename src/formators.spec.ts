@@ -1,7 +1,15 @@
 import { format } from './formators';
 import { FormatTypes, IPipe } from './types';
+import { stringEnumValues } from './utils';
 
 describe('Formators', () => {
+	it('should work when no formattors', () => {
+		const rawValue = `A Text`;
+
+		const result = format(rawValue);
+
+		expect(result).toEqual(rawValue);
+	});
 	it('should work when format = string', () => {
 		const rawValue = `A Text`;
 
@@ -181,6 +189,21 @@ describe('Formators', () => {
 		] as IPipe[]);
 
 		expect(result).toBe('WowThisIsAmazing');
+	});
+	it('should return undefined when rawValue is undefined', () => {
+		const rawValue: string = undefined;
+		const formatTypes = stringEnumValues(FormatTypes);
+
+		for (const formatType of formatTypes) {
+			const result = format(rawValue, [
+				{
+					name: formatType,
+					args: [],
+				},
+			] as IPipe[]);
+
+			expect(result).toBe(undefined);
+		}
 	});
 	it('should throw when format = not existing', () => {
 		const rawValue = `<h1>Title</h1>`;

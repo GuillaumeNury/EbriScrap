@@ -1,6 +1,6 @@
 {
 	"name": "ebri-scrap",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -45,6 +45,7 @@
 		"collectCoverageFrom": [
 			"src/**/*.ts"
 		],
+		"mapCoverage": true,
 		"collectCoverage": true,
 		"testEnvironment": "node"
 	}

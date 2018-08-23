@@ -4,13 +4,13 @@ import { FormatTypes, IPipe } from './types';
 import { enumAsString, urlJoin } from './utils';
 
 const formattorsMap = {
-	[FormatTypes.STRING]: formatString,
-	[FormatTypes.HTML_TO_TEXT]: formatHtmlToText,
-	[FormatTypes.ONE_LINE_STRING]: formatOneLineString,
-	[FormatTypes.NUMBER]: formatNumber,
-	[FormatTypes.URL]: formatUrl,
-	[FormatTypes.REGEX]: formatRegex,
-	[FormatTypes.TRIM]: formatTrim,
+	[FormatTypes.STRING]: ignoreUndefined(formatString),
+	[FormatTypes.HTML_TO_TEXT]: ignoreUndefined(formatHtmlToText),
+	[FormatTypes.ONE_LINE_STRING]: ignoreUndefined(formatOneLineString),
+	[FormatTypes.NUMBER]: ignoreUndefined(formatNumber),
+	[FormatTypes.URL]: ignoreUndefined(formatUrl),
+	[FormatTypes.REGEX]: ignoreUndefined(formatRegex),
+	[FormatTypes.TRIM]: ignoreUndefined(formatTrim),
 } as { [format: string]: FormatFunc };
 
 type FormatFunc = (
@@ -38,6 +38,11 @@ export function format(rawValue: any, formators: IPipe[] = []): any {
 	);
 
 	return formattedValue;
+}
+
+function ignoreUndefined(formattor: FormatFunc): FormatFunc {
+	return (rawValue: string, ...args: string[]) =>
+		rawValue === undefined ? rawValue : formattor(rawValue, ...args);
 }
 
 function formatHtmlToText(rawValue: string): string {

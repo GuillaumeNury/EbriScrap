@@ -59,10 +59,10 @@ export interface IFieldConfig {
 
 export interface IRawArrayConfig extends Array<IRawArrayConfigItem> {}
 
-export interface IRawArrayConfigItem {
+export interface IRawArrayConfigItem<T = any> {
 	containerSelector: string;
 	itemSelector: string;
-	data: any;
+	data: T;
 }
 
 export interface IRawGroupConfig {
@@ -73,3 +73,9 @@ export type EbriScrapConfig =
 	| IRawArrayConfig
 	| IRawGroupConfig
 	| string;
+
+export type TypedEbriScrapConfig<T> = T extends string
+	? string
+	: T extends (infer U)[]
+		? [IRawArrayConfigItem<U>]
+		: { [K in keyof T]: TypedEbriScrapConfig<T[K]> };

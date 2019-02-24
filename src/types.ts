@@ -74,8 +74,14 @@ export type EbriScrapConfig =
 	| IRawGroupConfig
 	| string;
 
-export type TypedEbriScrapConfig<T> = T extends string
+interface TypedEbriScrapConfigArray<T>
+	extends Array<IRawArrayConfigItem<TypedEbriScrapConfig<T>>> {}
+
+export type TypedEbriScrapConfig<T> = T extends (
+	| string
+	| number
+	| boolean)
 	? string
 	: T extends (infer U)[]
-		? [IRawArrayConfigItem<U>]
-		: { [K in keyof T]: TypedEbriScrapConfig<T[K]> };
+	? TypedEbriScrapConfigArray<U>
+	: { [K in keyof T]: TypedEbriScrapConfig<T[K]> };

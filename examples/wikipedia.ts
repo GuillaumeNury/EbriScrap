@@ -1,8 +1,12 @@
-import { EbriScrapConfig, parse } from '../index';
-
 import fetch from 'node-fetch';
+import { parse, TypedEbriScrapConfig } from '../index';
 
-export const config = {
+interface IWikipediaScrapResult {
+	title: string;
+	frameworks: string[];
+}
+
+export const config: TypedEbriScrapConfig<IWikipediaScrapResult> = {
 	title: '#firstHeading',
 	frameworks: [
 		{
@@ -11,7 +15,7 @@ export const config = {
 			data: 'li',
 		},
 	],
-} as EbriScrapConfig;
+};
 
 const url = 'https://fr.wikipedia.org/wiki/Node.js';
 

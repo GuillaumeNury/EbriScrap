@@ -18,19 +18,19 @@
 	},
 	"dependencies": {
 		"cheerio": "1.0.0-rc.2",
-		"lodash": "^4.17.4"
+		"lodash": "^4.17.11"
 	},
 	"devDependencies": {
-		"@types/cheerio": "0.22.6",
-		"@types/jest": "23.3.1",
-		"@types/lodash": "^4.14.93",
-		"@types/node": "8.5.1",
-		"@types/node-fetch": "1.6.7",
-		"jest": "23.5.0",
-		"node-fetch": "1.7.3",
-		"rimraf": "2.6.2",
-		"ts-jest": "^23.1.4",
-		"typescript": "3.0.1"
+		"@types/cheerio": "0.22.10",
+		"@types/jest": "24.0.6",
+		"@types/lodash": "^4.14.121",
+		"@types/node": "11.9.5",
+		"@types/node-fetch": "2.1.6",
+		"jest": "24.1.0",
+		"node-fetch": "2.3.0",
+		"rimraf": "2.6.3",
+		"ts-jest": "^24.0.0",
+		"typescript": "3.3.3333"
 	},
 	"jest": {
 		"moduleFileExtensions": [

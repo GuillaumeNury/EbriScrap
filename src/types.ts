@@ -85,3 +85,27 @@ export type TypedEbriScrapConfig<T> = T extends (
 	: T extends (infer U)[]
 	? TypedEbriScrapConfigArray<U>
 	: { [K in keyof T]: TypedEbriScrapConfig<T[K]> };
+
+export type DebugInfo =
+	| IFieldDebugInfo
+	| IGroupDebugInfo
+	| IArrayDebugInfo;
+
+export interface IDebugInfo<T> {
+	debugInfo: DebugInfo;
+	parsed: T;
+}
+
+export interface IFieldDebugInfo {
+	raw?: string;
+	parsed?: string;
+}
+
+export interface IGroupDebugInfo {
+	[key: string]: DebugInfo;
+}
+
+export interface IArrayDebugInfo {
+	raw: string;
+	parsed: DebugInfo[];
+}

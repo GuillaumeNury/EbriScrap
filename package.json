@@ -1,52 +1,55 @@
 {
-	"name": "ebri-scrap",
-	"version": "3.2.0",
-	"description": "",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"scripts": {
-		"build": "rimraf dist && tsc",
-		"test": "jest",
-		"prepare": "npm run build"
-	},
-	"keywords": [],
-	"author": "Guillaume Nury",
-	"license": "ISC",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/GuillaumeNury/EbriScrap"
-	},
-	"dependencies": {
-		"cheerio": "1.0.0-rc.2",
-		"lodash": "^4.17.11"
-	},
-	"devDependencies": {
-		"@types/cheerio": "0.22.10",
-		"@types/jest": "24.0.6",
-		"@types/lodash": "^4.14.121",
-		"@types/node": "11.9.5",
-		"@types/node-fetch": "2.1.6",
-		"jest": "24.1.0",
-		"node-fetch": "2.3.0",
-		"rimraf": "2.6.3",
-		"ts-jest": "^24.0.0",
-		"typescript": "3.3.3333"
-	},
-	"jest": {
-		"moduleFileExtensions": [
-			"ts",
-			"js"
-		],
-		"transform": {
-			"\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-		},
-		"testRegex": "/src/.*\\.spec\\.ts$",
-		"coverageDirectory": "./coverage/",
-		"collectCoverageFrom": [
-			"src/**/*.ts"
-		],
-		"mapCoverage": true,
-		"collectCoverage": true,
-		"testEnvironment": "node"
-	}
+  "name": "ebri-scrap",
+  "version": "3.2.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "test": "jest",
+    "prepare": "npm run snyk-protect; npm run build",
+    "snyk-protect": "snyk protect"
+  },
+  "keywords": [],
+  "author": "Guillaume Nury",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GuillaumeNury/EbriScrap"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0-rc.2",
+    "lodash": "^4.17.11",
+    "snyk": "^1.189.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "0.22.10",
+    "@types/jest": "24.0.6",
+    "@types/lodash": "^4.14.121",
+    "@types/node": "11.9.5",
+    "@types/node-fetch": "2.1.6",
+    "jest": "24.1.0",
+    "node-fetch": "2.3.0",
+    "rimraf": "2.6.3",
+    "ts-jest": "^24.0.0",
+    "typescript": "3.3.3333"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/src/.*\\.spec\\.ts$",
+    "coverageDirectory": "./coverage/",
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "mapCoverage": true,
+    "collectCoverage": true,
+    "testEnvironment": "node"
+  },
+  "snyk": true
 }

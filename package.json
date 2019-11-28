@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.2",
-    "lodash": "^4.17.11",
-    "snyk": "^1.189.0"
+    "lodash": "^4.17.12",
+    "snyk": "^1.251.2"
   },
   "devDependencies": {
     "@types/cheerio": "0.22.10",

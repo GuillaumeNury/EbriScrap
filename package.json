@@ -17,25 +17,21 @@
 		"url": "https://github.com/GuillaumeNury/EbriScrap"
 	},
 	"dependencies": {
-		"cheerio": "1.0.0-rc.2",
 		"css-select": "^2.1.0",
 		"domutils": "^2.0.0",
 		"htmlparser2": "^4.1.0",
 		"lodash": "^4.17.11"
 	},
 	"devDependencies": {
-		"@types/cheerio": "0.22.10",
-		"@types/domutils": "^1.7.2",
-		"@types/htmlparser2": "^3.10.1",
 		"@types/jest": "24.0.6",
 		"@types/lodash": "^4.14.121",
-		"@types/node": "11.9.5",
-		"@types/node-fetch": "2.1.6",
+		"@types/node": "13.11.1",
+		"@types/node-fetch": "2.5.6",
 		"jest": "24.1.0",
 		"node-fetch": "2.3.0",
 		"rimraf": "2.6.3",
 		"ts-jest": "^24.0.0",
-		"typescript": "3.3.3333"
+		"typescript": "3.8.3"
 	},
 	"jest": {
 		"moduleFileExtensions": [

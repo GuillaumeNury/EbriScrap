@@ -17,12 +17,14 @@ export const config: TypedEbriScrapConfig<IWikipediaScrapResult> = {
 	],
 };
 
-const url = 'https://fr.wikipedia.org/wiki/Node.js';
-
-fetch(url)
-	.then(d => d.text())
-	.then(d => parse(d, config))
-	.then(d => console.log('Result', d));
+export function main() {
+	const url = 'https://fr.wikipedia.org/wiki/Node.js';
+	
+	fetch(url)
+		.then(d => d.text())
+		.then(d => parse(d, config))
+		.then(d => console.log('Result', d));
+}
 
 /**
  * OUTPUT

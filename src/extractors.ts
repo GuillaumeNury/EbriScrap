@@ -17,7 +17,7 @@ function getAttribute(nodes: Node[], attribute: string): string {
 
 function getStyleProperty(nodes: Node[], property: string) {
 	for (const node of nodes) {
-		const expressions = getAttribute([node], 'style')
+		const expressions = (getAttribute([node], 'style') || '')
 			.split(';')
 			.map(expression => expression.trim());
 

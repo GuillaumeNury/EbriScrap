@@ -26,12 +26,15 @@ export const config: TypedEbriScrapConfig<IGithubScrapResult> = {
 		'.numbers-summary li:nth-child(4) span | format:number',
 };
 
-const url = 'https://github.com/Microsoft/TypeScript';
 
-fetch(url)
-	.then(d => d.text())
-	.then(d => parse(d, config))
-	.then(d => console.log('Result', d));
+export function main() {
+	const url = 'https://github.com/Microsoft/TypeScript';
+	
+	fetch(url)
+		.then(d => d.text())
+		.then(d => parse(d, config))
+		.then(d => console.log('Result', d));
+}
 
 /**
  * OUTPUT

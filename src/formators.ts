@@ -1,4 +1,3 @@
-import { reduce } from 'lodash';
 import { FormatTypes, IPipe } from './types';
 import { enumAsString, urlJoin } from './utils';
 import { parseDOM } from 'htmlparser2';
@@ -20,8 +19,7 @@ type FormatFunc = (
 ) => string | number;
 
 export function format(rawValue: any, formators: IPipe[] = []): any {
-	const formattedValue = reduce(
-		formators,
+	const formattedValue = formators.reduce(
 		(acc, formatorConfig) => {
 			const formator = formattorsMap[formatorConfig.name];
 

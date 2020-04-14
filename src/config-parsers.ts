@@ -13,23 +13,9 @@ import {
 	IRawArrayConfig,
 	IRawGroupConfig,
 } from './types';
-import {
-	each,
-	groupBy,
-	includes,
-	isArray,
-	isObject,
-	isString,
-	reduce,
-} from 'lodash';
 import { enumAsString, stringEnumValues } from './utils';
 
 import { ExtractTypes } from './types';
-
-type RawConfigItem =
-	| IRawSelectorConfig
-	| IRawFormatorConfig
-	| IRawExtractorConfig;
 
 interface IRawSelectorConfig {
 	type: 'selector';
@@ -49,13 +35,13 @@ interface IRawExtractorConfig extends IPipe {
 const randomSeparatorChar = '\u000B\u000B\u000B';
 
 export function parseConfig(rawConfig: any): ConfigTypes {
-	if (isString(rawConfig)) {
+	if (typeof rawConfig === 'string') {
 		return parseFieldConfig(rawConfig);
 	}
-	if (isArray(rawConfig)) {
+	if (Array.isArray(rawConfig)) {
 		return parseArrayConfig(rawConfig);
 	}
-	if (isObject(rawConfig)) {
+	if (rawConfig && typeof rawConfig === 'object') {
 		return parseGroupConfig(rawConfig);
 	}
 
@@ -67,8 +53,7 @@ export function parseConfig(rawConfig: any): ConfigTypes {
 function parseGroupConfig(rawConfig: IRawGroupConfig): IGroupConfig {
 	const keys = Object.keys(rawConfig);
 
-	return reduce(
-		keys,
+	return keys.reduce(
 		(acc, key) => {
 			acc[key] = parseConfig(rawConfig[key]);
 
@@ -114,20 +99,13 @@ function parseArrayConfig(rawConfig: IRawArrayConfig): IArrayConfig {
 
 function parseFieldConfig(rawConfig: string): IFieldConfig {
 	try {
-		const parts = getRawConfigItems(rawConfig);
+		const { selector, extract, format } = getRawConfig(rawConfig);
 
 		const config = new FieldConfig();
-		const groups = groupBy(parts, p => p.type);
 
-		config.selector = getSelector(
-			groups.selector as IRawSelectorConfig[],
-		);
-		config.extractor = getExtractor(
-			groups.extract as IRawExtractorConfig[],
-		);
-		config.formators = getFormators(
-			groups.format as IRawFormatorConfig[],
-		);
+		config.selector = getSelector(selector);
+		config.extractor = getExtractor(extract);
+		config.formators = getFormators(format);
 		config.raw = rawConfig;
 
 		return config;
@@ -136,25 +114,43 @@ function parseFieldConfig(rawConfig: string): IFieldConfig {
 	}
 }
 
-function getRawConfigItems(rawConfig: string): RawConfigItem[] {
-	return splitByPipe(rawConfig).map(part => {
-		if (part.startsWith('format')) {
-			return {
-				type: 'format',
-				raw: part,
-				...formatPipe(part),
-			} as IRawFormatorConfig;
-		}
-		if (part.startsWith('extract')) {
-			return {
-				type: 'extract',
-				raw: part,
-				...formatPipe(part),
-			} as IRawExtractorConfig;
-		}
+interface IRawConfig {
+	selector: IRawSelectorConfig[],
+	extract: IRawExtractorConfig[],
+	format: IRawFormatorConfig[],
+}
 
-		return { type: 'selector', raw: part } as IRawSelectorConfig;
-	});
+function getRawConfig(rawConfig: string): IRawConfig {
+	return splitByPipe(rawConfig).reduce(
+		(acc, part) => {
+			if (part.startsWith('format')) {
+				acc.format.push({
+					type: 'format',
+					raw: part,
+					...formatPipe(part),
+				});
+			}
+			else if (part.startsWith('extract')) {
+				acc.extract.push({
+						type: 'extract',
+						raw: part,
+						...formatPipe(part),
+				});
+			}
+			else {
+				acc.selector.push({
+					type: 'selector',
+					raw: part,
+				});
+			}
+			
+			return acc;
+		},
+		{
+			selector: [],
+			extract: [],
+			format: [],
+		} as IRawConfig);
 }
 
 function getSelector(selectors: IRawSelectorConfig[] = []): string {
@@ -172,10 +168,7 @@ function getSelector(selectors: IRawSelectorConfig[] = []): string {
 }
 
 function validateExtractor(extractor: IRawExtractorConfig): void {
-	const isValid = includes(
-		stringEnumValues(ExtractTypes),
-		extractor.name,
-	);
+	const isValid = stringEnumValues(ExtractTypes).includes(extractor.name);
 
 	if (!isValid) {
 		throw new Error(
@@ -203,8 +196,8 @@ function getExtractor(extractors: IRawExtractorConfig[] = []): IPipe {
 }
 
 function getFormators(formators: IRawFormatorConfig[] = []): IPipe[] {
-	each(formators, f => {
-		const isValid = includes(stringEnumValues(FormatTypes), f.name);
+	formators.forEach(f => {
+		const isValid = stringEnumValues(FormatTypes).includes(f.name);
 
 		if (!isValid) {
 			throw new Error(

@@ -1,7 +1,8 @@
-import * as cheerio from 'cheerio';
 import { reduce } from 'lodash';
 import { FormatTypes, IPipe } from './types';
 import { enumAsString, urlJoin } from './utils';
+import { parseDOM } from 'htmlparser2';
+import { getText } from 'domutils';
 
 const formattorsMap = {
 	[FormatTypes.STRING]: ignoreUndefined(formatString),
@@ -52,10 +53,7 @@ function formatHtmlToText(rawValue: string): string {
 		.replace(/<p>(.*?)<\/p>/g, (_, match) => `\n${match}\n`)
 		.replace(/<div>(.*?)<\/div>/g, (_, match) => `\n${match}\n`);
 
-	return cheerio
-		.load(sanitizedHtml)
-		.root()
-		.text();
+	return getText(parseDOM(sanitizedHtml));
 }
 
 function formatOneLineString(rawValue: string): string {

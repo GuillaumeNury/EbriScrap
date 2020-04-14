@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { parse, TypedEbriScrapConfig } from '../index';
+import { parse, EbriScrapConfig } from '../index';
 
 interface IGithubScrapResult {
 	repository: string;
@@ -10,7 +10,7 @@ interface IGithubScrapResult {
 	contributors: number;
 }
 
-export const config: TypedEbriScrapConfig<IGithubScrapResult> = {
+export const config: EbriScrapConfig<IGithubScrapResult> = {
 	repository: '.pagehead .public | format:one-line-string',
 	topics: [
 		{

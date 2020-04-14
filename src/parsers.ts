@@ -15,9 +15,9 @@ import {
 } from './types';
 import { parseDOM } from 'htmlparser2';
 
-export function parse<T = any>(
+export function parse<T>(
 	html: string,
-	config: EbriScrapConfig,
+	config: EbriScrapConfig<T>,
 ): T {
 	const parsedConfig = parseConfig(config);
 	const nodes = parseDOM(html);

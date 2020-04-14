@@ -69,43 +69,14 @@ export interface IRawGroupConfig {
 	[key: string]: any;
 }
 
-export type EbriScrapConfig =
-	| IRawArrayConfig
-	| IRawGroupConfig
-	| string;
+interface EbriScrapConfigArray<T>
+	extends Array<IRawArrayConfigItem<EbriScrapConfig<T>>> {}
 
-interface TypedEbriScrapConfigArray<T>
-	extends Array<IRawArrayConfigItem<TypedEbriScrapConfig<T>>> {}
-
-export type TypedEbriScrapConfig<T> = T extends (
+export type EbriScrapConfig<T = any> = T extends (
 	| string
 	| number
 	| boolean)
 	? string
 	: T extends (infer U)[]
-	? TypedEbriScrapConfigArray<U>
-	: { [K in keyof T]: TypedEbriScrapConfig<T[K]> };
-
-export type DebugInfo =
-	| IFieldDebugInfo
-	| IGroupDebugInfo
-	| IArrayDebugInfo;
-
-export interface IDebugInfo<T> {
-	debugInfo: DebugInfo;
-	parsed: T;
-}
-
-export interface IFieldDebugInfo {
-	raw?: string;
-	parsed?: string;
-}
-
-export interface IGroupDebugInfo {
-	[key: string]: DebugInfo;
-}
-
-export interface IArrayDebugInfo {
-	raw: string;
-	parsed: DebugInfo[];
-}
+	? EbriScrapConfigArray<U>
+	: { [K in keyof T]: EbriScrapConfig<T[K]> };

@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
-import { parse, TypedEbriScrapConfig } from '../index';
+import { parse, EbriScrapConfig } from '../index';
 
 interface IWikipediaScrapResult {
 	title: string;
 	frameworks: string[];
 }
 
-export const config: TypedEbriScrapConfig<IWikipediaScrapResult> = {
+export const config: EbriScrapConfig<IWikipediaScrapResult> = {
 	title: '#firstHeading',
 	frameworks: [
 		{

@@ -1,5 +1,4 @@
-import { parse, parseWithDebugInfo } from './parsers';
-import { TypedEbriScrapConfig } from './types';
+import { parse } from './parsers';
 
 describe('Field parser', () => {
 	describe('Extract types', () => {
@@ -236,63 +235,5 @@ describe('Group parser', () => {
 			header: 'Header',
 			values: ['Value 1', 'Value 2', 'Value 3'],
 		});
-	});
-});
-
-describe('parseWithDebug', () => {
-	it('should return correct debug info', () => {
-		const html = `
-			<ul>
-				<li>Item 1</li>
-				<li>Item 2</li>
-			</ul>
-		`;
-
-		type ResultType = { items: { text: string }[] };
-
-		const config: TypedEbriScrapConfig<ResultType> = {
-			items: [
-				{
-					itemSelector: 'li',
-					containerSelector: 'ul',
-					data: {
-						text: 'li',
-					},
-				},
-			],
-		};
-
-		const { parsed, debugInfo } = parseWithDebugInfo(html, config);
-
-		const expectedResult: ResultType = {
-			items: [{ text: 'Item 1' }, { text: 'Item 2' }],
-		};
-		const expectedRawHtml = `<html><head></head><body><ul>
-				<li>Item 1</li>
-				<li>Item 2</li>
-			</ul>
-		</body></html>`;
-		const expectedDebugInfo = {
-			items: {
-				raw: expectedRawHtml,
-				parsed: [
-					{
-						text: {
-							raw: '<li>Item 1</li>',
-							parsed: 'Item 1',
-						},
-					},
-					{
-						text: {
-							raw: '<li>Item 2</li>',
-							parsed: 'Item 2',
-						},
-					},
-				],
-			},
-		};
-
-		expect(parsed).toEqual(expectedResult);
-		expect(debugInfo).toEqual(expectedDebugInfo);
 	});
 });

@@ -24,7 +24,7 @@ import {
 } from 'lodash';
 import { enumAsString, stringEnumValues } from './utils';
 
-import { ExtractTypes } from '..';
+import { ExtractTypes } from './types';
 
 type RawConfigItem =
 	| IRawSelectorConfig

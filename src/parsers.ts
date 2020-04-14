@@ -1,4 +1,6 @@
-import * as cheerio from 'cheerio';
+import { selectAll } from 'css-select';
+import { Node } from "domhandler";
+
 import { parseConfig } from './config-parsers';
 import { extract } from './extractors';
 import { format } from './formators';
@@ -9,95 +11,58 @@ import {
 	FieldConfig,
 	GroupConfig,
 	IArrayConfig,
-	IArrayDebugInfo,
-	IDebugInfo,
-	IFieldDebugInfo,
 	IGroupConfig,
-	IGroupDebugInfo,
 } from './types';
+import { parseDOM } from 'htmlparser2';
 
 export function parse<T = any>(
 	html: string,
 	config: EbriScrapConfig,
 ): T {
-	return parseWithDebugInfo<T>(html, config).parsed;
-}
-
-export function parseWithDebugInfo<T = any>(
-	html: string,
-	config: EbriScrapConfig,
-): IDebugInfo<T> {
 	const parsedConfig = parseConfig(config);
-	const $ = cheerio.load(html);
-
-	const debugInfo = {};
-	const parsed = genericParse($, parsedConfig, debugInfo);
-
-	return { debugInfo, parsed };
+	const nodes = parseDOM(html);
+	return genericParse(nodes, parsedConfig);
 }
 
 function genericParse(
-	$: CheerioStatic,
+	nodes: Node[],
 	config: ConfigTypes,
-	debugInfo: any,
 ): any {
 	if (config instanceof FieldConfig) {
-		return parseField($, config, debugInfo);
+		return parseField(nodes, config);
 	}
 	if (config instanceof GroupConfig) {
-		return parseGroup($, config, debugInfo);
+		return parseGroup(nodes, config);
 	}
 	if (config instanceof ArrayConfig) {
-		return parseArray($, config, debugInfo);
+		return parseArray(nodes, config);
 	}
 }
 
 function parseField(
-	$: CheerioStatic,
+	nodes: Node[],
 	config: FieldConfig,
-	debugInfo: IFieldDebugInfo,
 ): any {
-	const rawValue = extract($, config);
+	const rawValue = extract(nodes, config);
 	const parsed = format(rawValue, config.formators);
-
-	debugInfo.raw = $.html();
-	debugInfo.parsed = parsed;
-
 	return parsed;
 }
 
 function parseArray(
-	$: CheerioStatic,
+	nodes: Node[],
 	config: IArrayConfig,
-	debugInfo: IArrayDebugInfo,
 ): any {
-	const result = [] as any[];
-
-	debugInfo.raw = $.html();
-	debugInfo.parsed = [];
-
-	$(config.containerSelector)
-		.find(config.itemSelector)
-		.map((_idx, $elem) => {
-			const innerDebugInfo = {};
-
-			const item = genericParse(
-				cheerio.load($elem),
-				config.data,
-				innerDebugInfo,
-			);
-
-			debugInfo.parsed.push(innerDebugInfo);
-			result.push(item);
-		});
-
-	return result;
+	return selectAll(config.containerSelector, nodes)
+		.reduce((acc, container) => [
+			...acc,
+			...selectAll(config.itemSelector, container)
+				.map(item => genericParse([item], config.data))
+		], []);
 }
 
 function parseGroup(
-	$: CheerioStatic,
+	nodes: Node[],
 	config: IGroupConfig,
-	debugInfo: IGroupDebugInfo,
 ): any {
 	const keys = getKeys(config);
 
@@ -105,8 +70,7 @@ function parseGroup(
 		(acc, key) => {
 			const child = config[key];
 
-			debugInfo[key] = {};
-			acc[key] = genericParse($, child, debugInfo[key]);
+			acc[key] = genericParse(nodes, child);
 
 			return acc;
 		},

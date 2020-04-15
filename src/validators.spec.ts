@@ -1,6 +1,31 @@
-import { config as githubConfig } from '../examples/github';
 import { validateConfig } from './validators';
-import { config as wikipediaConfig } from '../examples/wikipedia';
+
+const wikipediaConfig = {
+	title: '#firstHeading',
+	frameworks: [
+		{
+			containerSelector: '.colonnes ul',
+			itemSelector: 'li',
+			data: 'li',
+		},
+	],
+};
+
+const githubConfig = {
+	repository: '.pagehead .public | format:one-line-string',
+	topics: [
+		{
+			containerSelector: '.list-topics-container',
+			itemSelector: 'a',
+			data: {
+				name: 'a | format:one-line-string',
+				link: 'a | extract:prop:href',
+			},
+		},
+	],
+	contributors:
+		'.numbers-summary li:nth-child(4) span | format:number',
+};
 
 describe('Validators', () => {
 	describe('Examples', () => {

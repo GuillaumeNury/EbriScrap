@@ -20,7 +20,7 @@ EbriScrap is a tool that parse a HTML string, and return a JS object with all in
 
 ## Examples
 
-Go to [Examples](./examples) to see EbriScrap in action.
+Go to [Examples](./tests/cases) to see EbriScrap in action.
 
 ## Documentation
 
@@ -128,7 +128,7 @@ It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selec
 
   /* WARNING: as https://one-fake-domain.com contains colons, quotes (single or double) are mandatory ! */
   const config =
-  	"a | extract:prop:href | format:url:'https://one-fake-domain.com'";
+   "a | extract:prop:href | format:url:'https://one-fake-domain.com'";
 
   parse(html, config); // Output: "https://one-fake-domain.com/unicorn-world"
   ```
@@ -146,14 +146,14 @@ Example:
 
 ```javascript
 const html = `
-	<section>
-		<h1>What a wonderful world</h1>
-		<p>Lorem Ipsum...</p>
-	</section>`;
+ <section>
+  <h1>What a wonderful world</h1>
+  <p>Lorem Ipsum...</p>
+ </section>`;
 
 const config = {
-	title: 'h1',
-	content: 'p',
+ title: 'h1',
+ content: 'p',
 };
 
 parse(html, config); // Output: { title: 'What a wonderful world': content: 'Lorem Ipsum...' }
@@ -171,24 +171,24 @@ Example:
 
 ```javascript
 const html = `
-	<ul>
-		<li>
-			<p>Content 1</p>
-		</li>
-		<li>
-			<p>Content 2</p>
-		</li>
-		<li>
-			<p>Content 3</p>
-		</li>
-	</ul>`;
+ <ul>
+  <li>
+   <p>Content 1</p>
+  </li>
+  <li>
+   <p>Content 2</p>
+  </li>
+  <li>
+   <p>Content 3</p>
+  </li>
+ </ul>`;
 
 const config = [
-	{
-		containerSelector: 'ul',
-		itemSelector: 'li',
-		data: 'p',
-	},
+ {
+  containerSelector: 'ul',
+  itemSelector: 'li',
+  data: 'p',
+ },
 ];
 
 parse(html, config); // Output: ['Content 1', 'Content 2', 'Content 3']

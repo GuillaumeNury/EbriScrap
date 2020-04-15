@@ -1,0 +1,22 @@
+{
+  "repository": "microsoft / TypeScript",
+  "topics": [
+    {
+      "name": "typescript",
+      "link": "/topics/typescript"
+    },
+    {
+      "name": "javascript",
+      "link": "/topics/javascript"
+    },
+    {
+      "name": "language",
+      "link": "/topics/language"
+    },
+    {
+      "name": "typechecker",
+      "link": "/topics/typechecker"
+    }
+  ],
+  "contributors": 118
+}

@@ -1,0 +1,425 @@
+{
+  "count": 20000,
+  "items": [
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-hyundai-i20-RZCGBWAT582F855C5280.html",
+      "name": "Hyundai i20 1,25 Level 2 Plus",
+      "price": 13090,
+      "kilometers": 4752,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/gebrauchtwagen.at/RZCGBWAT582F855C5280/HYUNDAI-I20-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-toyota-iq-RZCATSFR840B53DC2EBE.html",
+      "name": "Toyota iQ 68 VVT-i",
+      "price": 10990,
+      "kilometers": 27900,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.fr/RZCATSFR840B53DC2EBE/TOYOTA-IQ-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-renault-espace-RZCGBWAT33AA5B61DAEC.html",
+      "name": "Renault Espace Premium Edition 2,0dCi .TÜV NEU. 81000 KM",
+      "price": 8900,
+      "kilometers": 81000,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/gebrauchtwagen.at/RZCGBWAT33AA5B61DAEC/RENAULT-ESPACE-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-citroen-c5-RZCATSES6BE2B2D9744F.html",
+      "name": "Citroen C5 Break 2.0HDI Premier",
+      "price": 1700,
+      "kilometers": 204553,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES6BE2B2D9744F/CITROEN-C5-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-golf-RZCATWNL33318724.html",
+      "name": "Volkswagen Golf Plus - 1.6 FSI Turijn Airco/Navi/El.ramen/PDC/APK",
+      "price": 2999,
+      "kilometers": 189250,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33318724/VOLKSWAGEN-GOLF-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-caddy-RZCATWNL33318680.html",
+      "name": "Volkswagen Caddy - 1.9 TDI 169DKM NAP",
+      "price": 2999,
+      "kilometers": 168908,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33318680/VOLKSWAGEN-CADDY-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-t5-RZCATSDE1B5F1E6D4640.html",
+      "name": "Volkswagen T5 Multivan 1,9 TDI\"AHK\"PDC\"7 Sitze\"StandHeizung",
+      "price": 10490,
+      "kilometers": 233848,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE1B5F1E6D4640/VOLKSWAGEN-T5-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-ford-transit-RZCATSDE213CE5C5C6B6.html",
+      "name": "Ford Transit Custom 290 2,2 TDCI |02-16|1Hd|92kW|NAVI",
+      "price": 10490,
+      "kilometers": 167381,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE213CE5C5C6B6/FORD-TRANSIT-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-caddy-RZCATSDEA319C1E0DE87.html",
+      "name": "Volkswagen Caddy 2.0 TDI (5-Si.)*Klima*Navi*1. Hand",
+      "price": 10490,
+      "kilometers": 186020,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEA319C1E0DE87/VOLKSWAGEN-CADDY-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-t5-RZCATSDEA80C3DBA8B00.html",
+      "name": "Volkswagen andere T5 2,0 TDI BMT LANG (LR) |NP37,4t¤|1H|AC|PD",
+      "price": 10490,
+      "kilometers": 135116,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEA80C3DBA8B00/VOLKSWAGEN-T5-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-bmw-x3-RZCATSDEDD25103E4701.html",
+      "name": "BMW X3 xDrive20d*AHK schwenkbar*SHZ*8xAlu*Keyless*",
+      "price": 10490,
+      "kilometers": 177370,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEDD25103E4701/BMW-X3-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mercedes+benz-classe+cl-RZCATSDE9DE6346D2DA4.html",
+      "name": "Mercedes-Benz CL 500 BiXenon BOSE PDC Comand Memory",
+      "price": 10490,
+      "kilometers": 117600,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE9DE6346D2DA4/MERCEDES-BENZ-CLASSE-CL-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mitsubishi-montero-RZCMLAES343402618.html",
+      "name": "MITSUBISHI - MONTERO",
+      "price": 2500,
+      "kilometers": 180000,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/milanuncios.es/RZCMLAES343402618/MITSUBISHI-MONTERO-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-bmw-serie+3-RZCATSDE92AB22146FE5.html",
+      "name": "BMW 318 d xDrive Touring, M-Paket, Leder, Pano, HiFi",
+      "price": 18290,
+      "kilometers": 39500,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE92AB22146FE5/BMW-SERIE-3-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-audi-a6-RZCATSDEF028B7A0728D.html",
+      "name": "Audi A6 2.0 TFSI Aut.*Navi*Xenon*PDC*Tempo*SHZ*",
+      "price": 18290,
+      "kilometers": 81816,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEF028B7A0728D/AUDI-A6-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-audi-a6-RZCATSDEAD018A27BA75.html",
+      "name": "Audi A6 2.0 TFSI Aut.*Navi*Xenon*PDC*Tempo*SHZ*",
+      "price": 18290,
+      "kilometers": 81816,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEAD018A27BA75/AUDI-A6-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-hyundai-i10-RZCATSDE0BCCD42D0779.html",
+      "name": "Hyundai i10 New 1.2 Style DAB PDC SHZ LHZ Carplay Androi",
+      "price": 18290,
+      "kilometers": 15,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE0BCCD42D0779/HYUNDAI-I10-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-opel-insignia-RZCATSES4626753CFDE7.html",
+      "name": "Opel Insignia ST 2.0CDTI ecoF. SelectiveS&S 160",
+      "price": 10200,
+      "kilometers": 97476,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES4626753CFDE7/OPEL-INSIGNIA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-passat-RZCATSESCB8DFD1FCD55.html",
+      "name": "Volkswagen Passat Variant 2.0TDI CR Edition Plus DSG",
+      "price": 9900,
+      "kilometers": 124866,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSESCB8DFD1FCD55/VOLKSWAGEN-PASSAT-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mercedes+benz-classe+c-RZCATSES07B840B7E6C1.html",
+      "name": "Mercedes-Benz C 220 CDI Classic",
+      "price": 10200,
+      "kilometers": 136522,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES07B840B7E6C1/MERCEDES-BENZ-CLASSE-C-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-citroen-c4+cactus-RZCATSESA4BF2AD019F2.html",
+      "name": "Citroen C4 Cactus 1.6 BlueHDi Shine 100",
+      "price": 10273,
+      "kilometers": 60488,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSESA4BF2AD019F2/CITROEN-C4-CACTUS-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-nissan-juke-RZCATSESBBD264739861.html",
+      "name": "Nissan Juke 1.5dCi Acenta 4x2",
+      "price": 10234,
+      "kilometers": 79942,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSESBBD264739861/NISSAN-JUKE-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-opel-insignia-RZCATSES398D51A56DFA.html",
+      "name": "Opel Insignia ST 2.0CDTI ecoF. SelectiveS&S 160",
+      "price": 10200,
+      "kilometers": 97476,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES398D51A56DFA/OPEL-INSIGNIA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-honda-civic-RZCATSESEC8530884307.html",
+      "name": "Honda Civic 1.4 i-VTEC Sport",
+      "price": 10200,
+      "kilometers": 95662,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSESEC8530884307/HONDA-CIVIC-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mini-cooper-RZCATSES9913E50411A8.html",
+      "name": "MINI Cooper S",
+      "price": 9700,
+      "kilometers": 134501,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES9913E50411A8/MINI-COOPER-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-smart-forfour-RZCATSES17C960095DDC.html",
+      "name": "smart forFour 52",
+      "price": 9720,
+      "kilometers": 59081,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES17C960095DDC/SMART-FORFOUR-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-opel-zafira-RZCATSES10C34229ECFB.html",
+      "name": "Opel Zafira T. 2.0CDTi Eco Selective S/S 130",
+      "price": 9719,
+      "kilometers": 115660,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES10C34229ECFB/OPEL-ZAFIRA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-citroen-c_crosser-RZCATSES53E8E060A467.html",
+      "name": "Citroen C-Crosser 2.2HDI VTR",
+      "price": 9700,
+      "kilometers": 100878,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES53E8E060A467/CITROEN-C-CROSSER-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-bmw-serie+1-RZCATSNL5ADD48125AB8.html",
+      "name": "BMW 118 Cabrio 118i Executive Airco / Navigatie / Stoelver",
+      "price": 8950,
+      "kilometers": 154530,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.nl/RZCATSNL5ADD48125AB8/BMW-SERIE-1-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-smart-fortwo-RZCATSDE8542F3B82F85.html",
+      "name": "smart forTwo 0.9 coupe passion Klima 8-fach bereift",
+      "price": 8200,
+      "kilometers": 23529,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE8542F3B82F85/SMART-FORTWO-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-ford-fiesta-RZCATSDEEB0FFD839CA0.html",
+      "name": "Ford Fiesta 1.0 EcoBoost Start-Stop Titanium",
+      "price": 8200,
+      "kilometers": 92000,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEEB0FFD839CA0/FORD-FIESTA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-audi-a5-RZCGBWAT10EF9524549B.html",
+      "name": "Audi A5 Cabrio 2,0 TDI DPF",
+      "price": 23400,
+      "kilometers": 34500,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/gebrauchtwagen.at/RZCGBWAT10EF9524549B/AUDI-A5-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-chrysler-pt+cruiser-RZCATSDEF1F027DA14A1.html",
+      "name": "Chrysler PT Cruiser 2.0 Limited",
+      "price": 1499,
+      "kilometers": 172999,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEF1F027DA14A1/CHRYSLER-PT-CRUISER-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-skoda-octavia-RZCATSDE51A92D94D28E.html",
+      "name": "Skoda Octavia 2.0 Combi Ambiente",
+      "price": 1499,
+      "kilometers": 220000,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE51A92D94D28E/SKODA-OCTAVIA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-renault-megane-RZCATSFR7610148E43F5.html",
+      "name": "Renault Megane Mégane III dCi 90 FAP eco2 Authentique Euro 5",
+      "price": 3500,
+      "kilometers": 144002,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.fr/RZCATSFR7610148E43F5/RENAULT-MEGANE-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-renault-kangoo-RZCATWNL33317630.html",
+      "name": "Renault Kangoo - 1.6 16V Automaat APK TOT 22-3-'21",
+      "price": 2950,
+      "kilometers": 216305,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317630/RENAULT-KANGOO-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-suzuki-ignis-RZCATWNL33318682.html",
+      "name": "Suzuki Ignis - 1.5 GLX Automaat|hoge instap|airco",
+      "price": 2950,
+      "kilometers": 164028,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33318682/SUZUKI-IGNIS-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-fiat-freemont-RZCATSDE5FCC2FCD0560.html",
+      "name": "Fiat Freemont 2.0 Diesel Lounge 170",
+      "price": 8000,
+      "kilometers": 188000,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDE5FCC2FCD0560/FIAT-FREEMONT-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-seat-altea-RZCATSNLBC38F58B0873.html",
+      "name": "SEAT Altea XL 1.9 TDI DSG / Clima / Export / Handel",
+      "price": 995,
+      "kilometers": 361562,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.nl/RZCATSNLBC38F58B0873/SEAT-ALTEA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-t5-RZCATSDEE468311DFC1F.html",
+      "name": "Volkswagen andere T5*Camping*Herd*Spüle*2xBetten*Klima*230V*T",
+      "price": 28999,
+      "kilometers": 111000,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEE468311DFC1F/VOLKSWAGEN-T5-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-hyundai-i30-RZCGBWATE50A7C56877C.html",
+      "name": "Hyundai i30 Coupe 1,4 CRDi Europe plus",
+      "price": 7500,
+      "kilometers": 56700,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/gebrauchtwagen.at/RZCGBWATE50A7C56877C/HYUNDAI-I30-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-seat-toledo-RZCATSES3A8D985BB3A1.html",
+      "name": "SEAT Toledo 1.9 TDi Sport",
+      "price": 1800,
+      "kilometers": 183440,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES3A8D985BB3A1/SEAT-TOLEDO-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-opel-astra-RZCATSES8A85203F88C0.html",
+      "name": "Opel Astra 2.0DtI 16v Comfort",
+      "price": 1750,
+      "kilometers": 149886,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.es/RZCATSES8A85203F88C0/OPEL-ASTRA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-audi-a5-RZCATSDEF9A0FCF7B841.html",
+      "name": "Audi A5 Coupe 2.0 TFSI S tronic",
+      "price": 28999,
+      "kilometers": 10830,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autoscout24.de/RZCATSDEF9A0FCF7B841/AUDI-A5-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-crafter-RZCATWNL33317379.html",
+      "name": "Volkswagen Crafter - 35 2.0 TDI 140pk L3H3 Highline",
+      "price": 32995,
+      "kilometers": 1,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317379/VOLKSWAGEN-CRAFTER-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-kia-niro-RZCATWNL33317344.html",
+      "name": "Kia Niro - Elektrisch 204pk ExecutiveLine (DEMO)",
+      "price": 46543,
+      "kilometers": 500,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317344/KIA-NIRO-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-skoda-karoq-RZCATWNL33317522.html",
+      "name": "Skoda Karoq - 1.6 TDI Greentech 115pk Ambition Business",
+      "price": 37750,
+      "kilometers": 12,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317522/SKODA-KAROQ-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-audi-q8-RZCATWNL33317660.html",
+      "name": "Audi Q8 - 55 TFSI 340pk quattro Pro Line S",
+      "price": 124950,
+      "kilometers": 4125,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317660/AUDI-Q8-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mercedes+benz-classe+b-RZCATWNL33317578.html",
+      "name": "Mercedes-Benz B-klasse - 200 Business Solution AMG Automaat *Stardeal",
+      "price": 35850,
+      "kilometers": 6038,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317578/MERCEDES-BENZ-CLASSE-B-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volvo-v40-RZCATWNL33318176.html",
+      "name": "Volvo V40 - 1.5 T3 Momentum | Navi | Stoelverw | PDC achter | LED | 17inch",
+      "price": 22900,
+      "kilometers": 22975,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33318176/VOLVO-V40-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mercedes+benz-sprinter-RZCATWNL33317318.html",
+      "name": "Mercedes-Benz Sprinter - 311 CDI DC Pick up Open laadbak 7 Zitplaatsen, Airco, Bluetooth",
+      "price": 25950,
+      "kilometers": 27208,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317318/MERCEDES-BENZ-SPRINTER-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-ford-fiesta-RZCATWNL33317411.html",
+      "name": "Ford Fiesta - 1.1 85pk 5D Trend+Cruise+Sync 3 Navi",
+      "price": 13995,
+      "kilometers": 20970,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317411/FORD-FIESTA-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-toyota-auris-RZCATWNL33317622.html",
+      "name": "Toyota Auris Touring Sports - 1.8 Hybrid Dynamic, Automaat, Navigatie",
+      "price": 19900,
+      "kilometers": 43595,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317622/TOYOTA-AURIS-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-renault-clio-RZCATWNL33317665.html",
+      "name": "Renault Clio - 1.5 dCi Ecoleader Zen Navi Airco Bluetooth DAB+ Cruise",
+      "price": 8949,
+      "kilometers": 71370,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317665/RENAULT-CLIO-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-ford-transit-RZCATWNL33317420.html",
+      "name": "Ford Transit Custom - GB 2.2 TDCi 100PK 270 L1H1 Trend",
+      "price": 10945,
+      "kilometers": 65633,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317420/FORD-TRANSIT-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volvo-xc60-RZCATWNL33318061.html",
+      "name": "Volvo XC60 - 2.4 D5 AWD Summum | Aut | Panoramadak | Camera | Adaptieve Cruise | 20 Inch",
+      "price": 33950,
+      "kilometers": 66093,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33318061/VOLVO-XC60-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-volkswagen-golf-RZCATWNL33317661.html",
+      "name": "Volkswagen Golf - 2.0 TDI Business Edition R Connected R-Line DynAudio Achteruitrijcamera Gr Navi Clima DAB+",
+      "price": 15949,
+      "kilometers": 134086,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317661/VOLKSWAGEN-GOLF-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mini-cooper-RZCATWNL33318412.html",
+      "name": "Mini Mini Cooper - 1.5 Business Plus Chil iAutomatische transmissie met dubbele koppeling Park Distance Contr",
+      "price": 36106,
+      "kilometers": 0,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33318412/MINI-COOPER-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-mini-cooper-RZCATWNL33318397.html",
+      "name": "Mini Mini Cooper - 1.5 Business Plus Chil iAutomatische transmissie met dubbele koppeling Park Distance Contr",
+      "price": 36106,
+      "kilometers": 0,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33318397/MINI-COOPER-00.jpg"
+    },
+    {
+      "url": "https://www.reezocar.com/occasion/annonce-skoda-octavia-RZCATWNL33317524.html",
+      "name": "Skoda Octavia - 1.0 TSI Greentech 115pk Business Edition",
+      "price": 27770,
+      "kilometers": 6,
+      "mainPictureUrl": "https://pict1.reezocar.com/images/360/autowereld.nl/RZCATWNL33317524/SKODA-OCTAVIA-00.jpg"
+    }
+  ]
+}

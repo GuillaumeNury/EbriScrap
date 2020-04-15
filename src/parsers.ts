@@ -19,7 +19,7 @@ import {
 export function parse<T extends EbriScrapConfig>(html: string, config: T): ɵEbriParseResult<T>
 export function parse<T>(html: string, config: EbriScrapConfig<T>): ɵEbriParseResult<T> {
 	const parsedConfig = parseConfig(config);
-	const nodes = parseDOM(html);
+	const nodes = parseDOM(html, { decodeEntities: true });
 	return genericParse(nodes, parsedConfig);
 }
 

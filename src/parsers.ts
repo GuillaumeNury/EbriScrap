@@ -1,5 +1,6 @@
 import { selectAll } from 'css-select';
 import { Node } from "domhandler";
+import { parseDOM } from 'htmlparser2';
 
 import { parseConfig } from './config-parsers';
 import { extract } from './extractors';
@@ -7,18 +8,16 @@ import { format } from './formators';
 import {
 	ArrayConfig,
 	ConfigTypes,
-	EbriScrapConfig,
 	FieldConfig,
 	GroupConfig,
 	IArrayConfig,
 	IGroupConfig,
+	EbriScrapConfig,
+	ɵEbriParseResult,
 } from './types';
-import { parseDOM } from 'htmlparser2';
 
-export function parse<T>(
-	html: string,
-	config: EbriScrapConfig<T>,
-): T {
+export function parse<T extends EbriScrapConfig>(html: string, config: T): ɵEbriParseResult<T>
+export function parse<T>(html: string, config: EbriScrapConfig<T>): ɵEbriParseResult<T> {
 	const parsedConfig = parseConfig(config);
 	const nodes = parseDOM(html);
 	return genericParse(nodes, parsedConfig);

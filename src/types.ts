@@ -69,14 +69,30 @@ export interface IRawGroupConfig {
 	[key: string]: any;
 }
 
-interface EbriScrapConfigArray<T>
+export interface EbriScrapConfigArray<T>
 	extends Array<IRawArrayConfigItem<EbriScrapConfig<T>>> {}
 
-export type EbriScrapConfig<T = any> = T extends (
-	| string
-	| number
-	| boolean)
-	? string
-	: T extends (infer U)[]
-	? EbriScrapConfigArray<U>
-	: { [K in keyof T]: EbriScrapConfig<T[K]> };
+export type EbriScrapConfigObject<T> = {
+	[K in keyof T]: EbriScrapConfig<T[K]>
+}
+
+export type EbriScrapConfig<T = any> = T extends Array<infer U>
+	? EbriScrapConfigArray<U extends unknown ? any : U>
+	: T extends object
+		? EbriScrapConfigObject<T>
+		: string;
+
+export type EbriScrapDataArray<T> = T extends IRawArrayConfigItem<infer U>
+	? EbriScrapData<U>
+	: unknown;
+
+export type EbriScrapData<T> = T extends Array<infer U>
+	? EbriScrapDataArray<U>[]
+	: T extends object
+		? { [K in keyof T]: EbriScrapData<T[K]> }
+		: T;
+
+/**
+ * Only used in order to improve type inferrence. Do not use.
+ */
+export type ɵEbriParseResult<T> = T extends EbriScrapConfig<infer U> ? U : EbriScrapData<T>;

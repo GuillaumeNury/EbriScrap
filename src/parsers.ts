@@ -13,11 +13,10 @@ import {
 	IArrayConfig,
 	IGroupConfig,
 	EbriScrapConfig,
-	ɵEbriParseResult,
+	EbriScrapData,
 } from './types';
 
-export function parse<T extends EbriScrapConfig>(html: string, config: T): ɵEbriParseResult<T>
-export function parse<T>(html: string, config: EbriScrapConfig<T>): ɵEbriParseResult<T> {
+export function parse<T extends EbriScrapConfig>(html: string, config: T): EbriScrapData<T> {
 	const parsedConfig = parseConfig(config);
 	const nodes = parseDOM(html, { decodeEntities: true });
 	return genericParse(nodes, parsedConfig);

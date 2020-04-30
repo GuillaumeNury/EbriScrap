@@ -1,5 +1,5 @@
 import { selectAll } from 'css-select';
-import { Node } from "domhandler";
+import { Node, NodeWithChildren } from "domhandler";
 import { parseDOM } from 'htmlparser2';
 
 import { parseConfig } from './config-parsers';
@@ -54,9 +54,31 @@ function parseArray(
 	return selectAll(config.containerSelector, nodes)
 		.reduce((acc, container) => [
 			...acc,
-			...selectAll(config.itemSelector, container)
-				.map(item => genericParse([item], config.data))
+			...parseArrayItems(config, container),
 		], []);
+}
+
+function parseArrayItems(
+	config: IArrayConfig,
+	container: Node
+): any {
+	const items = selectAll(config.itemSelector, container);
+
+	if (!config.includeSiblings || !(container instanceof NodeWithChildren)) {
+		return items.map(item => genericParse([item], config.data));
+	}
+	
+	return items.map((item, itemIndex) => {
+		const { children } = container
+		const fromIndex = children.indexOf(item);
+		const toIndex = itemIndex === items.length - 1
+			// Take all remaining children
+			? children.length - 1
+			// Find element just before next item
+			: children.indexOf(items[itemIndex + 1]) - 1;
+
+		return genericParse(children.slice(fromIndex, toIndex), config.data);
+	});
 }
 
 function parseGroup(

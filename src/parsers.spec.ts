@@ -162,6 +162,44 @@ describe('Array parser', () => {
 			['Value 3.1', 'Value 3.2'],
 		]);
 	});
+	it('should work when using includeSiblings', () => {
+		const html = `
+			<body>
+				<section>
+					<h1>Title 1</h1>
+					<p>Text 1.1</p>
+					<p>Text 1.2</p>
+					<p>Text 1.3</p>
+					<h1>Title 2</h1>
+					<p>Text 2.1</p>
+					<p>Text 2.2</p>
+					<p>Text 2.3</p>
+				</section>
+				<footer>Not this text</footer>
+			</body>
+		`;
+
+		const config = [
+			{
+				containerSelector: 'section',
+				itemSelector: 'h1',
+				includeSiblings: true,
+				data: {
+					title: 'h1',
+					text: 'p'
+				},
+			},
+		];
+
+		const result = parse(html, config);
+
+		expect(result).toEqual(
+			[
+				{ title: 'Title 1', text: 'Text 1.1Text 1.2Text 1.3' },
+				{ title: 'Title 2', text: 'Text 2.1Text 2.2Text 2.3' },
+			]
+		);
+	});
 });
 
 describe('Group parser', () => {

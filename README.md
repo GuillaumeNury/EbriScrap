@@ -166,6 +166,7 @@ Array configuration are a bit more complicated. It is an array, with a single it
 - `containerSelector`: the selector of the container (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
 - `itemSelector`: the selector on which you want to iterate (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
 - `data`: a Field/Group/Array configuration
+- `includeSiblings`: _optional_ include siblings of selected item (see example below)
 
 Example:
 
@@ -192,6 +193,38 @@ const config = [
 ];
 
 parse(html, config); // Output: ['Content 1', 'Content 2', 'Content 3']
+```
+
+```javascript
+const html = `<body>
+  <h1>Title 1</h1>
+  <p>Text 1.1</p>
+  <p>Text 1.2</p>
+  <p>Text 1.3</p>
+
+  <h1>Title 2</h1>
+  <p>Text 2.1</p>
+  <p>Text 2.2</p>
+  <p>Text 2.3</p>
+</body>`;
+
+const config = [
+  {
+    containerSelector: 'section',
+    itemSelector: 'h1',
+    includeSiblings: true,
+    data: {
+      title: 'h1',
+      text: 'p'
+    },
+  },
+];
+
+parse(html, config);
+/* Output: [
+  { title: 'Title 1', text: 'Text 1.1Text 1.2Text 1.3' },
+  { title: 'Title 2', text: 'Text 2.1Text 2.2Text 2.3' },
+] */
 ```
 
 ### Walkthrough example

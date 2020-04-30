@@ -72,7 +72,7 @@ function parseArrayConfig(rawConfig: IRawArrayConfig): IArrayConfig {
 		);
 	}
 
-	const { data, containerSelector, itemSelector } = rawConfigItem;
+	const { data, containerSelector, itemSelector, includeSiblings } = rawConfigItem;
 
 	const errorMessage = (property: string) =>
 		`Missing property '${property}' in array configuration: ${JSON.stringify(
@@ -92,6 +92,7 @@ function parseArrayConfig(rawConfig: IRawArrayConfig): IArrayConfig {
 	const config = new ArrayConfig();
 	config.containerSelector = containerSelector;
 	config.itemSelector = itemSelector;
+	config.includeSiblings = !!includeSiblings;
 	config.data = parseConfig(data);
 
 	return config;

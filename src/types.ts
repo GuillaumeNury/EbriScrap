@@ -27,11 +27,13 @@ export class ArrayConfig<TData extends ConfigTypes = ConfigTypes>
 	public containerSelector: string;
 	public itemSelector: string;
 	public data: TData;
+	public includeSiblings?: boolean;
 }
 
 export interface IArrayConfig {
 	containerSelector: string;
 	itemSelector: string;
+	includeSiblings?: boolean;
 	data: ConfigTypes;
 }
 
@@ -62,6 +64,7 @@ export interface IRawArrayConfig extends Array<IRawArrayConfigItem> {}
 export interface IRawArrayConfigItem<T = any> {
 	containerSelector: string;
 	itemSelector: string;
+	includeSiblings?: boolean;
 	data: T;
 }
 

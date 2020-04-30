@@ -4,5 +4,5 @@ module.exports = {
   testPathIgnorePatterns: ['examples', 'dist'],
   collectCoverage: true,
   coverageDirectory: './coverage/',
-  collectCoverageFrom: ['src/**/*.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/**/index.ts'],
 };

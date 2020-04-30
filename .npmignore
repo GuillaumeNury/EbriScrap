@@ -1,9 +1,0 @@
-dist/src/*.spec.*
-dist/examples/private
-src/
-coverage/
-index.ts
-yarn.lock
-.prettierrc
-.travis.yml
-tsconfig.json

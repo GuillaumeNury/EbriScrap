@@ -1,5 +1,5 @@
 import { parse } from "./parsers";
-import { EbriScrapConfig } from "./types";
+import { EbriScrapConfig, EbriScrapConfigObject } from "./types";
 
 function assert<T>(_arg: T) {}
 
@@ -14,6 +14,8 @@ describe('Types', () => {
             parse(html, 'p')
         );
 
+        assert<EbriScrapConfigObject<any>>({ test: 'a' });
+
         assert<{ test: string }>(
             parse(html, { test: 'a' })
         );
@@ -24,6 +26,13 @@ describe('Types', () => {
 
         assert<{ test: string }[]>(
             parse(html, [{ containerSelector: 'a', itemSelector: 'a', data: { test : 's' } }])
+        );
+    })
+
+    it('should have correct return type when using string', () => {
+        const config1: EbriScrapConfig<string> = 'a';
+        assert<string>(
+            parse(html, config1)
         );
     })
 
@@ -45,7 +54,7 @@ describe('Types', () => {
 
     it('should have correct return type when using ArrayConfig', () => {
         type Data2 = string[];
-        const config1: EbriScrapConfig<Data2> = [
+        const config: EbriScrapConfig<Data2> = [
             {
                 containerSelector: 'a',
                 itemSelector: 'a',
@@ -53,9 +62,24 @@ describe('Types', () => {
             }
         ];
 
-        assert<Data2>(parse(html, config1));
-        assert<EbriScrapConfig<Data2>>(config1);
-        assert<EbriScrapConfig>(config1);
+        assert<Data2>(parse(html, config));
+        assert<EbriScrapConfig<Data2>>(config);
+        assert<EbriScrapConfig>(config);
+    })
+
+    it('should have correct return type when using ArrayConfig', () => {
+        type Data3 = { test1: string, test2: string };
+        const config: EbriScrapConfig<Data3[]> = [
+            {
+                containerSelector: 'a',
+                itemSelector: 'a',
+                data: { test1: 'a', test2: 'a' }
+            }
+        ];
+
+        assert<Data3[]>(parse(html, config));
+        assert<EbriScrapConfig<Data3[]>>(config);
+        assert<EbriScrapConfig>(config);
     })
 
     it('should infer correct config', () => {

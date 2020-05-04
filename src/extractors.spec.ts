@@ -67,6 +67,34 @@ describe('Extractors', () => {
 
 		expect(result).toEqual('');
 	});
+	it('should work when extract = outerHtml', () => {
+		const nodes = parseDOM(
+			`<div><a href="a-super-link">Link</a></div>`,
+		);
+
+		const config = {
+			extractor: { name: 'outerHtml', args: [] },
+			selector: 'div',
+		} as FieldConfig;
+
+		const result = extract(nodes, config);
+
+		expect(result).toEqual('<div><a href="a-super-link">Link</a></div>');
+	});
+	it('should work when extract = outerHtml and when selector do not match anything', () => {
+		const nodes = parseDOM(
+			`<div><a href="a-super-link">Link</a></div>`,
+		);
+
+		const config = {
+			extractor: { name: 'outerHtml', args: [] },
+			selector: 'h1',
+		} as FieldConfig;
+
+		const result = extract(nodes, config);
+
+		expect(result).toEqual('');
+	});
 	it('should work when extract = css', () => {
 		const nodes = parseDOM(`<div style="color: white"></div>`);
 
@@ -100,7 +128,7 @@ describe('Extractors', () => {
 		} as FieldConfig;
 
 		expect(() => extract(nodes, config)).toThrowError(
-			'Invalid extract property in configuration. Supported values are: html, text, prop, css',
+			'Invalid extract property in configuration. Supported values are: html, outerHtml, text, prop, css',
 		);
 	});
 });

@@ -109,7 +109,7 @@ describe('Config parsers', () => {
 			const config = 'h1 | extract:not-existing';
 
 			expect(() => parseConfig(config)).toThrowError(
-				'Error while parsing "h1 | extract:not-existing". Error: Invalid extractor "not-existing". Allowed extractors are html, text, prop, css.',
+				'Error while parsing "h1 | extract:not-existing". Error: Invalid extractor "not-existing". Allowed extractors are html, outerHtml, text, prop, css.',
 			);
 		});
 		it('should throw when two extractors', () => {

@@ -1,5 +1,8 @@
+import { Node } from "domhandler";
+
 export enum ExtractTypes {
 	HTML = 'html',
+	OUTER_HTML = 'outerHtml',
 	TEXT = 'text',
 	PROP = 'prop',
 	CSS = 'css',
@@ -70,6 +73,22 @@ export interface IRawArrayConfigItem<T = any> {
 
 export interface IRawGroupConfig {
 	[key: string]: any;
+}
+
+export interface EbriscrapDebugStep {
+	selectors: string[];
+	path: string;
+}
+
+export interface DebugStep {
+	nodes: Node[];
+	config: ConfigTypes;
+	path: string;
+}
+
+export interface EbriscrapDebugResult<T> {
+	debug: EbriscrapDebugStep[];
+	result: EbriScrapData<T>;
 }
 
 export type EbriScrapConfigArray<T> = IRawArrayConfigItem<EbriScrapConfig<T>>[];

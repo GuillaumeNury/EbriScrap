@@ -2,7 +2,7 @@ import { Element, Node } from 'domhandler';
 import { ExtractTypes, FieldConfig } from './types';
 
 import { enumAsString } from './utils';
-import { getText, getAttributeValue, getInnerHTML } from 'domutils';
+import { getText, getAttributeValue, getInnerHTML, getOuterHTML } from 'domutils';
 import { selectAll } from 'css-select';
 
 function getAttribute(nodes: Node[], attribute: string): string {
@@ -42,6 +42,8 @@ export function extract(
 	switch (config.extractor.name) {
 		case ExtractTypes.HTML:
 			return matchingNodes.map(node => getInnerHTML(node)).join() || '';
+		case ExtractTypes.OUTER_HTML:
+			return getOuterHTML(matchingNodes) || '';
 		case ExtractTypes.TEXT:
 			return getText(matchingNodes) || '';
 		case ExtractTypes.PROP:

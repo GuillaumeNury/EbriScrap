@@ -190,6 +190,66 @@ describe('Formators', () => {
 
 		expect(result).toBe('WowThisIsAmazing');
 	});
+	it('should return sliced value when format = slice with two valid parameters', () => {
+		const rawValue = 'WowThisIsAmazing((';
+
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.SLICE,
+				args: ['0','-2'],
+			},
+		] as IPipe[]);
+
+		expect(result).toBe('WowThisIsAmazing');
+	});
+	it('should return sliced value when format = slice with one valid parameter', () => {
+		const rawValue = '((WowThisIsAmazing';
+
+		const result = format(rawValue, [
+			{
+				name: FormatTypes.SLICE,
+				args: ['2'],
+			},
+		] as IPipe[]);
+
+		expect(result).toBe('WowThisIsAmazing');
+	});
+	it('should throw when format = slice without parameters', () => {
+		const rawValue = '((WowThisIsAmazing';
+
+		const result = () => format(rawValue, [
+			{
+				name: FormatTypes.SLICE,
+				args: [],
+			},
+		] as IPipe[]);
+
+		expect(result).toThrowError('Cannot use slice formattor. Missing first parameter. Use selector | format:slice:0:-1');
+	});
+	it('should throw when format = slice with invalid first parameter parameters', () => {
+		const rawValue = '((WowThisIsAmazing';
+
+		const result = () => format(rawValue, [
+			{
+				name: FormatTypes.SLICE,
+				args: ['a'],
+			},
+		] as IPipe[]);
+
+		expect(result).toThrowError('Cannot use slice formattor. Invalid first parameter. Should be an integer.');
+	});
+	it('should throw when format = slice with invalid second parameter parameters', () => {
+		const rawValue = '((WowThisIsAmazing';
+
+		const result = () => format(rawValue, [
+			{
+				name: FormatTypes.SLICE,
+				args: ['0', 'a'],
+			},
+		] as IPipe[]);
+
+		expect(result).toThrowError('Cannot use slice formattor. Invalid second parameter. Should be an integer or nothing.');
+	});
 	it('should return undefined when rawValue is undefined', () => {
 		const rawValue: string = undefined;
 		const formatTypes = stringEnumValues(FormatTypes);
@@ -213,7 +273,7 @@ describe('Formators', () => {
 				{ name: 'not-existing', args: [] },
 			] as IPipe[]),
 		).toThrowError(
-			'Unknown formattor "not-existing". Allowed formators are string, one-line-string, html-to-text, number, url, regex',
+			'Unknown formattor "not-existing". Allowed formators are string, slice, one-line-string, html-to-text, number, url, regex',
 		);
 	});
 });

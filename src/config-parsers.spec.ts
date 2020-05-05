@@ -102,7 +102,7 @@ describe('Config parsers', () => {
 			const config = 'h1 | format:not-existing';
 
 			expect(() => parseConfig(config)).toThrowError(
-				'Error while parsing "h1 | format:not-existing". Error: Invalid formator "not-existing". Allowed formators are string, one-line-string, html-to-text, number, url, regex, trim.',
+				'Error while parsing "h1 | format:not-existing". Error: Invalid formator "not-existing". Allowed formators are string, slice, one-line-string, html-to-text, number, url, regex, trim.',
 			);
 		});
 		it('should throw when extract = not existing', () => {

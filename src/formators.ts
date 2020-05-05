@@ -11,6 +11,7 @@ const formattorsMap = {
 	[FormatTypes.URL]: ignoreUndefined(formatUrl),
 	[FormatTypes.REGEX]: ignoreUndefined(formatRegex),
 	[FormatTypes.TRIM]: ignoreUndefined(formatTrim),
+	[FormatTypes.SLICE]: ignoreUndefined(formatSlice),
 } as { [format: string]: FormatFunc };
 
 type FormatFunc = (
@@ -100,4 +101,29 @@ function formatRegex(
 
 function formatTrim(rawValue: string): string {
 	return rawValue.trim();
+}
+
+function formatSlice(rawValue: string, from: string, to: string): string {
+	if (!from) {
+		throw new Error(
+			'Cannot use slice formattor. Missing first parameter. Use selector | format:slice:0:-1',
+		);
+	}
+	const fromValue = parseInt(from, 10);
+
+	if (isNaN(fromValue)) {
+		throw new Error(
+			'Cannot use slice formattor. Invalid first parameter. Should be an integer.',
+		);
+	}
+
+	const toValue = to && parseInt(to);
+
+	if (to && isNaN(toValue)) {
+		throw new Error(
+			'Cannot use slice formattor. Invalid second parameter. Should be an integer or nothing.',
+		);
+	}
+
+	return to ? rawValue.slice(fromValue, toValue) : rawValue.slice(fromValue)
 }

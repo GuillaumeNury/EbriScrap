@@ -10,6 +10,7 @@ export enum ExtractTypes {
 
 export enum FormatTypes {
 	STRING = 'string',
+	SLICE = 'slice',
 	ONE_LINE_STRING = 'one-line-string',
 	HTML_TO_TEXT = 'html-to-text',
 	NUMBER = 'number',

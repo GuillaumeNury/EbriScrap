@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "cheerio": "1.0.0-rc.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.20",
     "snyk": "^1.290.1"
   },
   "devDependencies": {

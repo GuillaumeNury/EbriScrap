@@ -1,0 +1,16 @@
+{
+	"count": "[class^=subTitle] | format:number",
+	"items": [
+		{
+			"data": {
+				"url": "meta[itemprop=url] | extract:prop:content",
+				"name": "[itemprop=name]",
+				"price": "[itemprop=price] | format:number",
+				"kilometers": "[class^=content] [class^=details] [class^=detail]:nth-child(4) span | format:number",
+				"mainPictureUrl": "img | extract:prop:src"
+			},
+			"itemSelector": "[class^=adCardOuter]",
+			"containerSelector": "[class^=resultCard]"
+		}
+	]
+}

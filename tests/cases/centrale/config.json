@@ -1,0 +1,16 @@
+{
+	"count": ".numAnn | format:number",
+	"items": [
+		{
+			"data": {
+				"url": "a.linkAd | extract:prop:href | format:url:'https://www.lacentrale.fr'",
+				"name": ".brandModelTitle",
+				"price": ".kmYearPrice .fieldPrice | format:number",
+				"kilometers": ".kmYearPrice .fieldMileage | format:number",
+				"mainPictureUrl": ".imgContent img | extract:prop:src"
+			},
+			"itemSelector": ".adContainer",
+			"containerSelector": ".resultList"
+		}
+	]
+}

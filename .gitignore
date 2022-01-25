@@ -1,4 +1,5 @@
 dist
+browser
 node_modules
 yarn.lock
 coverage

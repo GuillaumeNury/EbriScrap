@@ -1,5 +1,8 @@
+import { Node } from "domhandler";
+
 export enum ExtractTypes {
 	HTML = 'html',
+	OUTER_HTML = 'outerHtml',
 	TEXT = 'text',
 	PROP = 'prop',
 	CSS = 'css',
@@ -7,6 +10,7 @@ export enum ExtractTypes {
 
 export enum FormatTypes {
 	STRING = 'string',
+	SLICE = 'slice',
 	ONE_LINE_STRING = 'one-line-string',
 	HTML_TO_TEXT = 'html-to-text',
 	NUMBER = 'number',
@@ -27,11 +31,13 @@ export class ArrayConfig<TData extends ConfigTypes = ConfigTypes>
 	public containerSelector: string;
 	public itemSelector: string;
 	public data: TData;
+	public includeSiblings?: boolean;
 }
 
 export interface IArrayConfig {
 	containerSelector: string;
 	itemSelector: string;
+	includeSiblings?: boolean;
 	data: ConfigTypes;
 }
 
@@ -62,6 +68,7 @@ export interface IRawArrayConfig extends Array<IRawArrayConfigItem> {}
 export interface IRawArrayConfigItem<T = any> {
 	containerSelector: string;
 	itemSelector: string;
+	includeSiblings?: boolean;
 	data: T;
 }
 
@@ -69,43 +76,38 @@ export interface IRawGroupConfig {
 	[key: string]: any;
 }
 
-export type EbriScrapConfig =
-	| IRawArrayConfig
-	| IRawGroupConfig
-	| string;
+export interface EbriscrapDebugStep {
+	selectors: string[];
+	path: string;
+}
 
-interface TypedEbriScrapConfigArray<T>
-	extends Array<IRawArrayConfigItem<TypedEbriScrapConfig<T>>> {}
+export interface DebugStep {
+	nodes: Node[];
+	config: ConfigTypes;
+	path: string;
+}
 
-export type TypedEbriScrapConfig<T> = T extends (
-	| string
-	| number
-	| boolean)
+export interface EbriscrapDebugResult<T> {
+	debug: EbriscrapDebugStep[];
+	result: EbriScrapData<T>;
+}
+
+export type EbriScrapConfigArray<T> = IRawArrayConfigItem<EbriScrapConfig<T>>[];
+
+export type EbriScrapConfigObject<T> = {
+	[K in keyof T]: EbriScrapConfig<T[K]>
+}
+
+export type EbriScrapConfig<T = any> = T extends Array<any>
+	? EbriScrapConfigArray<T[number]>
+	: T extends object
+		? EbriScrapConfigObject<T>
+		: string;
+
+export type EbriScrapData<TConfig> = TConfig extends string
 	? string
-	: T extends (infer U)[]
-	? TypedEbriScrapConfigArray<U>
-	: { [K in keyof T]: TypedEbriScrapConfig<T[K]> };
-
-export type DebugInfo =
-	| IFieldDebugInfo
-	| IGroupDebugInfo
-	| IArrayDebugInfo;
-
-export interface IDebugInfo<T> {
-	debugInfo: DebugInfo;
-	parsed: T;
-}
-
-export interface IFieldDebugInfo {
-	raw?: string;
-	parsed?: string;
-}
-
-export interface IGroupDebugInfo {
-	[key: string]: DebugInfo;
-}
-
-export interface IArrayDebugInfo {
-	raw: string;
-	parsed: DebugInfo[];
-}
+	: TConfig extends Array<IRawArrayConfigItem<infer TArrayConfigData>>
+		? EbriScrapData<TArrayConfigData>[]
+		: TConfig extends object
+			? { [K in keyof TConfig]: EbriScrapData<TConfig[K]> }
+			: unknown;

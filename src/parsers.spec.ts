@@ -1,5 +1,4 @@
-import { parse, parseWithDebugInfo } from './parsers';
-import { TypedEbriScrapConfig } from './types';
+import { parse } from './parsers';
 
 describe('Field parser', () => {
 	describe('Extract types', () => {
@@ -163,6 +162,44 @@ describe('Array parser', () => {
 			['Value 3.1', 'Value 3.2'],
 		]);
 	});
+	it('should work when using includeSiblings', () => {
+		const html = `
+			<body>
+				<section>
+					<h1>Title 1</h1>
+					<p>Text 1.1</p>
+					<p>Text 1.2</p>
+					<p>Text 1.3</p>
+					<h1>Title 2</h1>
+					<p>Text 2.1</p>
+					<p>Text 2.2</p>
+					<p>Text 2.3</p>
+				</section>
+				<footer>Not this text</footer>
+			</body>
+		`;
+
+		const config = [
+			{
+				containerSelector: 'section',
+				itemSelector: 'h1',
+				includeSiblings: true,
+				data: {
+					title: 'h1',
+					text: 'p'
+				},
+			},
+		];
+
+		const result = parse(html, config);
+
+		expect(result).toEqual(
+			[
+				{ title: 'Title 1', text: 'Text 1.1Text 1.2Text 1.3' },
+				{ title: 'Title 2', text: 'Text 2.1Text 2.2Text 2.3' },
+			]
+		);
+	});
 });
 
 describe('Group parser', () => {
@@ -236,63 +273,5 @@ describe('Group parser', () => {
 			header: 'Header',
 			values: ['Value 1', 'Value 2', 'Value 3'],
 		});
-	});
-});
-
-describe('parseWithDebug', () => {
-	it('should return correct debug info', () => {
-		const html = `
-			<ul>
-				<li>Item 1</li>
-				<li>Item 2</li>
-			</ul>
-		`;
-
-		type ResultType = { items: { text: string }[] };
-
-		const config: TypedEbriScrapConfig<ResultType> = {
-			items: [
-				{
-					itemSelector: 'li',
-					containerSelector: 'ul',
-					data: {
-						text: 'li',
-					},
-				},
-			],
-		};
-
-		const { parsed, debugInfo } = parseWithDebugInfo(html, config);
-
-		const expectedResult: ResultType = {
-			items: [{ text: 'Item 1' }, { text: 'Item 2' }],
-		};
-		const expectedRawHtml = `<html><head></head><body><ul>
-				<li>Item 1</li>
-				<li>Item 2</li>
-			</ul>
-		</body></html>`;
-		const expectedDebugInfo = {
-			items: {
-				raw: expectedRawHtml,
-				parsed: [
-					{
-						text: {
-							raw: '<li>Item 1</li>',
-							parsed: 'Item 1',
-						},
-					},
-					{
-						text: {
-							raw: '<li>Item 2</li>',
-							parsed: 'Item 2',
-						},
-					},
-				],
-			},
-		};
-
-		expect(parsed).toEqual(expectedResult);
-		expect(debugInfo).toEqual(expectedDebugInfo);
 	});
 });

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Node.js — Wikipédia</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":!1,"wgSeparatorTransformTable":[",\t."," \t,"],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],"wgRequestId":"7bd3f13a-1e60-4c60-bcc0-c089d613d382","wgCSPNonce":!1,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Node.js","wgTitle":"Node.js","wgCurRevisionId":169349461,"wgRevisionId":169349461,"wgArticleId":4919740,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Page utilisant P571","Page utilisant P348","Page utilisant P1324","Page utilisant P277","Page utilisant P306","Page utilisant P31","Page utilisant P275","Page utilisant P856","Article utilisant une Infobox","Article contenant un appel à traduction en anglais",
+"Catégorie Commons avec lien local identique sur Wikidata","Portail:Informatique/Articles liés","Portail:Technologies/Articles liés","Portail:Sciences/Articles liés","Portail:Programmation informatique/Articles liés","Portail:Logiciels libres/Articles liés","Portail:Logiciel/Articles liés","Framework de programmation","JavaScript","Logiciel libre sous licence X11","Node.js","Serveur web"],"wgPageContentLanguage":"fr","wgPageContentModel":"wikitext","wgRelevantPageName":"Node.js","wgRelevantArticleId":4919740,"wgIsProbablyEditable":!0,"wgRelevantPageIsProbablyEditable":!0,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgMediaViewerOnClick":!0,"wgMediaViewerEnabledByDefault":!0,"wgPopupsReferencePreviews":!1,"wgPopupsConflictsWithNavPopupGadget":!1,"wgVisualEditor":{"pageLanguageCode":"fr","pageLanguageDir":"ltr","pageVariantFallbacks":"fr"},"wgMFDisplayWikibaseDescriptions":{"search":!0,"nearby":!0,"watchlist":!0,"tagline":!0},
+"wgWMESchemaEditAttemptStepOversample":!1,"wgULSCurrentAutonym":"français","wgNoticeProject":"wikipedia","wgWikibaseItemId":"Q756100","wgCentralAuthMobileDomain":!1,"wgEditSubmitButtonLabelPublish":!0};RLSTATE={"ext.globalCssJs.user.styles":"ready","site.styles":"ready","noscript":"ready","user.styles":"ready","ext.globalCssJs.user":"ready","user":"ready","user.options":"loading","ext.cite.styles":"ready","ext.pygments":"ready","mediawiki.toc.styles":"ready","skins.vector.styles.legacy":"ready","wikibase.client.init":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready","ext.uls.interlanguage":"ready","ext.wikimediaBadges":"ready"};RLPAGEMODULES=["ext.cite.ux-enhancements","site","mediawiki.page.startup","skins.vector.js","mediawiki.page.ready","mediawiki.toc","ext.gadget.ArchiveLinks","ext.gadget.MonobookToolbarStandard","ext.gadget.Wdsearch","ext.centralauth.centralautologin","mmv.head","mmv.bootstrap.autostart","ext.popups",
+"ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.eventLogging","ext.wikimediaEvents","ext.navigationTiming","ext.uls.compactlinks","ext.uls.interface","ext.cx.eventlogging.campaigns","ext.quicksurveys.init","ext.centralNotice.geoIP","ext.centralNotice.startUp"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@1hzgi",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});mw.user.options.set({"variant":"fr"});
+});});</script>
+<link rel="stylesheet" href="/w/load.php?lang=fr&amp;modules=ext.cite.styles%7Cext.pygments%2CwikimediaBadges%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cmediawiki.toc.styles%7Cskins.vector.styles.legacy%7Cwikibase.client.init&amp;only=styles&amp;skin=vector"/>
+<script async="" src="/w/load.php?lang=fr&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="/w/load.php?lang=fr&amp;modules=site.styles&amp;only=styles&amp;skin=vector"/>
+<meta name="generator" content="MediaWiki 1.35.0-wmf.27"/>
+<meta name="referrer" content="origin"/>
+<meta name="referrer" content="origin-when-crossorigin"/>
+<meta name="referrer" content="origin-when-cross-origin"/>
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png"/>
+<link rel="alternate" type="application/x-wiki" title="Modifier" href="/w/index.php?title=Node.js&amp;action=edit"/>
+<link rel="edit" title="Modifier" href="/w/index.php?title=Node.js&amp;action=edit"/>
+<link rel="apple-touch-icon" href="/static/apple-touch/wikipedia.png"/>
+<link rel="shortcut icon" href="/static/favicon/wikipedia.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Wikipédia (fr)"/>
+<link rel="EditURI" type="application/rsd+xml" href="//fr.wikipedia.org/w/api.php?action=rsd"/>
+<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/"/>
+<link rel="alternate" type="application/atom+xml" title="Flux Atom de Wikipédia" href="/w/index.php?title=Sp%C3%A9cial:Modifications_r%C3%A9centes&amp;feed=atom"/>
+<link rel="canonical" href="https://fr.wikipedia.org/wiki/Node.js"/>
+<link rel="dns-prefetch" href="//login.wikimedia.org"/>
+<link rel="dns-prefetch" href="//meta.wikimedia.org" />
+<!--[if lt IE 9]><script src="/w/resources/lib/html5shiv/html5shiv.js"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject mw-editable page-Node_js rootpage-Node_js skin-vector action-view">
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice" class="mw-body-content"><!-- CentralNotice --></div>
+	<div class="mw-indicators mw-body-content">
+</div>
+
+	<h1 id="firstHeading" class="firstHeading" lang="fr">Node.js</h1>
+	
+	<div id="bodyContent" class="mw-body-content">
+		<div id="siteSub" class="noprint">Un article de Wikipédia, l&#039;encyclopédie libre.</div>
+		<div id="contentSub"></div>
+		
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Sauter à la navigation</a>
+		<a class="mw-jump-link" href="#p-search">Sauter à la recherche</a>
+		<div id="mw-content-text" lang="fr" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output"><div class="infobox_v3">
+<div class="entete icon informatique" style="background-color: #; color: #000000;"><style data-mw-deduplicate="TemplateStyles:r151815299">.mw-parser-output .entete.informatique{background-image:url("//upload.wikimedia.org/wikipedia/commons/a/ae/Picto-infoboxinfo.png")}</style>
+<div>Node.js</div>
+</div>
+<div class="images"><a href="/w/index.php?title=Fichier:Node.js_logo.svg&amp;lang=fr" class="image"><img alt="Description de l&#39;image Node.js logo.svg." src="//upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/langfr-220px-Node.js_logo.svg.png" decoding="async" width="220" height="135" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/langfr-330px-Node.js_logo.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/langfr-440px-Node.js_logo.svg.png 2x" data-file-width="590" data-file-height="361" /></a> 
+</div>
+<p class="mw-empty-elt">
+
+</p>
+<table><caption style="background:#;color:#000000;">Informations</caption>
+
+
+
+<tbody><tr>
+<th scope="row"><a href="/wiki/D%C3%A9veloppeur" title="Développeur">Développé par</a></th>
+<td>
+Ryan Lienhart Dahl et les <a rel="nofollow" class="external text" href="https://github.com/ry/node/blob/master/AUTHORS">développeurs de Node.js</a></td>
+</tr>
+
+
+
+<tr>
+<th scope="row"> Première version
+ </th>
+<td>
+<span class="wd_p571"><time class="nowrap" datetime="2009-05-27" data-sort-value="2009-05-27">27 mai 2009</time><sup id="cite_ref-wikidata-4c8276fc830fb73cf57cae44380321426c61324c_1-0" class="reference"><a href="#cite_note-wikidata-4c8276fc830fb73cf57cae44380321426c61324c-1"><span class="cite_crochet">[</span>1<span class="cite_crochet">]</span></a></sup><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/Q756100?uselang=fr#P571" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+<tr>
+<th scope="row"> <a href="/wiki/Version_d%27un_logiciel" title="Version d&#39;un logiciel">Dernière version</a>
+ </th>
+<td>
+<span class="wd_p348">13.13.0 (<time class="nowrap" datetime="2020-04-14" data-sort-value="2020-04-14">14 avril 2020</time>)<sup id="cite_ref-wikidata-1ab9a9a3c853ad31506a63e810504c945df6bd5b_2-0" class="reference"><a href="#cite_note-wikidata-1ab9a9a3c853ad31506a63e810504c945df6bd5b-2"><span class="cite_crochet">[</span>2<span class="cite_crochet">]</span></a></sup><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/Q756100?uselang=fr#P348" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+
+
+<tr>
+<th scope="row"><a href="/wiki/D%C3%A9p%C3%B4t_(informatique)" title="Dépôt (informatique)">Dépôt</a></th>
+<td>
+<span class="wd_p1324"><a rel="nofollow" class="external text" href="https://github.com/nodejs/node">github.com/nodejs/node</a><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/?uselang=fr#P1324" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+
+
+
+
+<tr>
+<th scope="row"> <a href="/wiki/Langage_de_programmation" title="Langage de programmation">Écrit en</a>
+ </th>
+<td>
+<span class="wd_p277"><a href="/wiki/C%2B%2B" title="C++">C++</a>, <a href="/wiki/JavaScript" title="JavaScript">JavaScript</a> et <a href="/wiki/C_(langage)" title="C (langage)">C</a><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/Q756100?uselang=fr#P277" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+
+
+<tr>
+<th scope="row"><a href="/wiki/Syst%C3%A8me_d%27exploitation" title="Système d&#39;exploitation">Système d'exploitation</a></th>
+<td>
+<span class="wd_p306"><a href="/wiki/MacOS" title="MacOS">MacOS</a>, <a href="/wiki/GNU/Linux" class="mw-redirect" title="GNU/Linux">GNU/Linux</a>, <a href="/wiki/SmartOS" title="SmartOS">SmartOS</a>, <a href="/wiki/FreeBSD" title="FreeBSD">FreeBSD</a>, <a href="/wiki/Microsoft_Windows" title="Microsoft Windows">Microsoft Windows</a>, <a href="/wiki/AIX" title="AIX">AIX</a> et <a href="/wiki/Android" title="Android">Android</a><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/?uselang=fr#P306" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+
+
+
+
+
+
+
+
+<tr>
+<th scope="row"> Type
+ </th>
+<td>
+<span class="wd_p31">Langage de programmation événementielle <small>(<a href="https://www.wikidata.org/wiki/Q28920813" class="extiw" title="d:Q28920813"><span class="indicateur-langue" title="Voir l&#39;élément Wikidata correspondant">d</span></a>)</small><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/Q756100?uselang=fr#P31" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+
+
+<tr>
+<th scope="row"><a href="/wiki/Licence_de_logiciel" title="Licence de logiciel">Licence</a></th>
+<td>
+<span class="wd_p275">Licence X11 <small>(<a href="https://www.wikidata.org/wiki/Q18526202" class="extiw" title="d:Q18526202"><span class="indicateur-langue" title="Voir l&#39;élément Wikidata correspondant">d</span></a>)</small><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/?uselang=fr#P275" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+<tr>
+<th scope="row"><a href="/wiki/Site_web" title="Site web">Site web</a></th>
+<td>
+<span class="wd_p856"><a rel="nofollow" class="external text" href="https://nodejs.org">nodejs.org</a><span class="noprint wikidata-linkback"><a href="https://www.wikidata.org/wiki/?uselang=fr#P856" title="Voir et modifier les données sur Wikidata"><img alt="Voir et modifier les données sur Wikidata" src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/10px-Blue_pencil.svg.png" decoding="async" width="10" height="10" style="vertical-align: baseline" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/15px-Blue_pencil.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/73/Blue_pencil.svg/20px-Blue_pencil.svg.png 2x" data-file-width="600" data-file-height="600" /></a></span></span></td>
+</tr>
+
+</tbody></table>
+<p class="mw-empty-elt">
+
+</p>
+<p class="navbar bordered noprint" style="border-color:#;"><span class="plainlinks"><a class="external text" href="https://fr.wikipedia.org/w/index.php?title=Node.js&amp;veaction=edit&amp;section=0">modifier</a> - <a class="external text" href="https://fr.wikipedia.org/w/index.php?title=Node.js&amp;action=edit&amp;section=0">modifier le code</a> - <a href="https://www.wikidata.org/wiki/Special:ItemByTitle/frwiki/Node.js" class="extiw" title="d:Special:ItemByTitle/frwiki/Node.js">voir Wikidata</a> <a href="/wiki/Aide:Infobox_Wikidata" title="Aide:Infobox Wikidata">(aide)</a></span> <a href="/wiki/Mod%C3%A8le:Infobox_Logiciel" title="Consultez la documentation du modèle"><img alt="Consultez la documentation du modèle" src="//upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Gtk-dialog-info.svg/12px-Gtk-dialog-info.svg.png" decoding="async" width="12" height="12" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Gtk-dialog-info.svg/18px-Gtk-dialog-info.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Gtk-dialog-info.svg/24px-Gtk-dialog-info.svg.png 2x" data-file-width="60" data-file-height="60" /></a></p></div>
+<p><b>Node.js</b> est une <a href="/wiki/Plate-forme_(informatique)" title="Plate-forme (informatique)">plateforme logicielle</a> <a href="/wiki/Logiciel_libre" title="Logiciel libre">libre</a> en <a href="/wiki/JavaScript" title="JavaScript">JavaScript</a> orientée vers les applications <a href="/wiki/R%C3%A9seau_informatique" title="Réseau informatique">réseau</a> <a href="/wiki/Programmation_%C3%A9v%C3%A9nementielle" title="Programmation événementielle">événementielles</a> hautement <a href="/wiki/Ing%C3%A9nierie_concourante" title="Ingénierie concourante">concurrentes</a> qui doivent pouvoir <a href="/wiki/Scalability" title="Scalability">monter en charge</a>.
+</p><p>Elle utilise la <a href="/wiki/Machine_virtuelle" title="Machine virtuelle">machine virtuelle</a> <a href="/wiki/V8_(moteur_JavaScript)" title="V8 (moteur JavaScript)">V8</a>, la librairie <a href="https://en.wikipedia.org/wiki/libuv" class="extiw" title="en:libuv">libuv</a> pour sa <a href="https://en.wikipedia.org/wiki/Event_loop" class="extiw" title="en:Event loop">boucle d'évènements</a>, et implémente sous <a href="/wiki/Licence_MIT" title="Licence MIT">licence MIT</a> les spécifications <a href="/wiki/CommonJS" title="CommonJS">CommonJS</a>.
+</p><p>Parmi les modules natifs de Node.js, on retrouve http qui permet le développement de <a href="/wiki/Serveur_HTTP" class="mw-redirect" title="Serveur HTTP">serveur HTTP</a>. Il est donc possible de se passer de serveurs web tels que <a href="/wiki/Nginx" class="mw-redirect" title="Nginx">Nginx</a> ou <a href="/wiki/Apache_HTTP_Server" title="Apache HTTP Server">Apache</a> lors du déploiement de sites et d'applications web développés avec Node.js.
+</p><p>Concrètement, Node.js est un environnement bas niveau permettant l’exécution de <a href="/wiki/JavaScript" title="JavaScript">JavaScript</a> côté serveur.
+</p><p>Node.js est utilisé notamment comme plateforme de serveur Web, elle est utilisée par <a href="/wiki/Groupon" title="Groupon">Groupon</a><sup id="cite_ref-3" class="reference"><a href="#cite_note-3"><span class="cite_crochet">[</span>3<span class="cite_crochet">]</span></a></sup>, <a href="/wiki/Vivaldi_(navigateur_web)" title="Vivaldi (navigateur web)">Vivaldi</a>, <a href="/wiki/SAP_(Progiciel)" class="mw-redirect" title="SAP (Progiciel)">SAP</a><sup id="cite_ref-sapappbuilder_4-0" class="reference"><a href="#cite_note-sapappbuilder-4"><span class="cite_crochet">[</span>4<span class="cite_crochet">]</span></a></sup>, <a href="/wiki/LinkedIn" title="LinkedIn">LinkedIn</a><sup id="cite_ref-vbliipad_5-0" class="reference"><a href="#cite_note-vbliipad-5"><span class="cite_crochet">[</span>5<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-6" class="reference"><a href="#cite_note-6"><span class="cite_crochet">[</span>6<span class="cite_crochet">]</span></a></sup>, <a href="/wiki/Microsoft" title="Microsoft">Microsoft</a><sup id="cite_ref-guardianMS_7-0" class="reference"><a href="#cite_note-guardianMS-7"><span class="cite_crochet">[</span>7<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-8" class="reference"><a href="#cite_note-8"><span class="cite_crochet">[</span>8<span class="cite_crochet">]</span></a></sup>, <a href="/wiki/Yahoo!" title="Yahoo!">Yahoo!</a><sup id="cite_ref-9" class="reference"><a href="#cite_note-9"><span class="cite_crochet">[</span>9<span class="cite_crochet">]</span></a></sup>, <a href="/wiki/Walmart" title="Walmart">Walmart</a><sup id="cite_ref-vbwalmart_10-0" class="reference"><a href="#cite_note-vbwalmart-10"><span class="cite_crochet">[</span>10<span class="cite_crochet">]</span></a></sup>, <a href="/wiki/Rakuten" title="Rakuten">Rakuten</a>, <a href="/wiki/Sage_(entreprise)" title="Sage (entreprise)">Sage</a> et <a href="/wiki/PayPal" title="PayPal">PayPal</a><sup id="cite_ref-11" class="reference"><a href="#cite_note-11"><span class="cite_crochet">[</span>11<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-12" class="reference"><a href="#cite_note-12"><span class="cite_crochet">[</span>12<span class="cite_crochet">]</span></a></sup>.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="fr" dir="ltr"><h2 id="mw-toc-heading">Sommaire</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Historique"><span class="tocnumber">1</span> <span class="toctext">Historique</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Forks"><span class="tocnumber">1.1</span> <span class="toctext">Forks</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Exemple"><span class="tocnumber">2</span> <span class="toctext">Exemple</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Frameworks_pour_Node.js"><span class="tocnumber">3</span> <span class="toctext">Frameworks pour Node.js</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Outils_pour_Node.js"><span class="tocnumber">4</span> <span class="toctext">Outils pour Node.js</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Certification_Node.js"><span class="tocnumber">5</span> <span class="toctext">Certification Node.js</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Utilisation_courante"><span class="tocnumber">6</span> <span class="toctext">Utilisation courante</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Références"><span class="tocnumber">7</span> <span class="toctext">Références</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Annexes"><span class="tocnumber">8</span> <span class="toctext">Annexes</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Articles_connexes"><span class="tocnumber">8.1</span> <span class="toctext">Articles connexes</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Liens_externes"><span class="tocnumber">8.2</span> <span class="toctext">Liens externes</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Historique">Historique</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=1" class="mw-editsection-visualeditor" title="Modifier la section : Historique">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=1" title="Modifier la section : Historique">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="/wiki/Fichier:Ryan_Dahl.jpg" class="image"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Ryan_Dahl.jpg/220px-Ryan_Dahl.jpg" decoding="async" width="220" height="330" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Ryan_Dahl.jpg/330px-Ryan_Dahl.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Ryan_Dahl.jpg/440px-Ryan_Dahl.jpg 2x" data-file-width="3456" data-file-height="5184" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Fichier:Ryan_Dahl.jpg" class="internal" title="Agrandir"></a></div>Ryan Dahl, créateur de Node.js.</div></div></div>
+<p>Node.js a été créé par Ryan Dahl en 2009. 
+Son développement et sa maintenance sont effectués par l'entreprise <a href="/w/index.php?title=Joyent&amp;action=edit&amp;redlink=1" class="new" title="Joyent (page inexistante)">Joyent</a>&#160;<a href="https://en.wikipedia.org/wiki/Joyent" class="extiw" title="en:Joyent"><span class="indicateur-langue" title="Équivalent de l’article «&#32;Joyent&#32;» dans une autre langue">(en)</span></a><sup id="cite_ref-13" class="reference"><a href="#cite_note-13"><span class="cite_crochet">[</span>13<span class="cite_crochet">]</span></a></sup>.
+Dahl a eu l'idée de créer <i>Node.js</i> après avoir observé la <a href="/wiki/Barre_de_progression" title="Barre de progression">barre de progression</a> d'un chargement de fichier sous <a href="/wiki/Flickr" title="Flickr">Flickr</a>&#160;: le navigateur ne savait pas quel pourcentage du fichier était chargé et devait adresser une requête au serveur web.
+Dahl voulait développer une méthode plus simple<sup id="cite_ref-14" class="reference"><a href="#cite_note-14"><span class="cite_crochet">[</span>14<span class="cite_crochet">]</span></a></sup>.
+Le <a href="/wiki/Mongrel_(serveur_HTTP)" title="Mongrel (serveur HTTP)">serveur web Mongrel</a> de Ruby a été l'autre source d'inspiration pour Dahl<sup id="cite_ref-15" class="reference"><a href="#cite_note-15"><span class="cite_crochet">[</span>15<span class="cite_crochet">]</span></a></sup>.
+Dahl avait échoué dans plusieurs projets en C, Lua et Haskell, mais, quand <a href="/wiki/V8_(moteur_JavaScript)" title="V8 (moteur JavaScript)">le moteur V8</a> fut diffusé, il commença à s'intéresser à JavaScript<sup id="cite_ref-16" class="reference"><a href="#cite_note-16"><span class="cite_crochet">[</span>16<span class="cite_crochet">]</span></a></sup>.
+Même si son idée d'origine était d'utiliser des entrées et sorties non bloquantes, il en reviendra un peu dans son module système car cela provoquait des problèmes de chargement de bibliothèques externes<sup id="cite_ref-17" class="reference"><a href="#cite_note-17"><span class="cite_crochet">[</span>17<span class="cite_crochet">]</span></a></sup>.
+</p><p>Node.js est utilisé au cœur du système d'exploitation <a href="/wiki/Palm_webOS" class="mw-redirect" title="Palm webOS">Palm webOS</a><sup id="cite_ref-18" class="reference"><a href="#cite_note-18"><span class="cite_crochet">[</span>18<span class="cite_crochet">]</span></a></sup>.
+</p>
+<h3><span class="mw-headline" id="Forks">Forks</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=2" class="mw-editsection-visualeditor" title="Modifier la section : Forks">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=2" title="Modifier la section : Forks">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Fin 2014, en désaccord avec le rôle de l'entreprise Joyent, plusieurs des développeurs principaux de node.js décident de forker celui-ci et créent alors io.js. Un an plus tard, ils décident de fusionner à nouveau avec node.js<sup id="cite_ref-19" class="reference"><a href="#cite_note-19"><span class="cite_crochet">[</span>19<span class="cite_crochet">]</span></a></sup>.
+</p><p>En <time class="nowrap" datetime="2017-08" data-sort-value="2017-08">août 2017</time>, node.js est à nouveau forké et plusieurs contributeurs créent alors ayo.js<sup id="cite_ref-20" class="reference"><a href="#cite_note-20"><span class="cite_crochet">[</span>20<span class="cite_crochet">]</span></a></sup><sup class="reference cite_virgule">,</sup><sup id="cite_ref-21" class="reference"><a href="#cite_note-21"><span class="cite_crochet">[</span>21<span class="cite_crochet">]</span></a></sup>
+</p>
+<h2><span class="mw-headline" id="Exemple">Exemple</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=3" class="mw-editsection-visualeditor" title="Modifier la section : Exemple">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=3" title="Modifier la section : Exemple">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Voici un exemple d'implémentation du programme <a href="/wiki/Hello_World" class="mw-redirect" title="Hello World">Hello World</a> sous forme de serveur web&#160;:
+</p>
+<div class="mw-highlight mw-highlight-lang-js mw-content-ltr" dir="ltr"><pre><span></span><span class="lineno">1 </span><span class="kr">const</span> <span class="p">{</span> <span class="nx">createServer</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="lineno">2 </span>
+<span class="lineno">3 </span><span class="c1">//Creation du serveur</span>
+<span class="lineno">4 </span><span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">createServer</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="lineno">5 </span>    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">});</span>
+<span class="lineno">6 </span>    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Hello World\n&#39;</span><span class="p">);</span>
+<span class="lineno">7 </span><span class="p">});</span>
+<span class="lineno">8 </span>
+<span class="lineno">9 </span><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Adresse du serveur : http://localhost:3000&#39;</span><span class="p">));</span>
+</pre></div>
+<p>Trois points transparaissent dans ce code&#160;:
+</p>
+<ul><li>un chargeur de module (require)</li>
+<li>la présence native d'une bibliothèque HTTP</li>
+<li>l'aspect asynchrone du langage</li></ul>
+<h2><span class="mw-headline" id="Frameworks_pour_Node.js">Frameworks pour Node.js</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=4" class="mw-editsection-visualeditor" title="Modifier la section : Frameworks pour Node.js">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=4" title="Modifier la section : Frameworks pour Node.js">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div style="column-width:15em;margin:.3em 0;" class="colonnes"><div style="margin:-.3em 0;">
+<ul><li><a href="/wiki/Express.js" title="Express.js">Express</a></li>
+<li>kraken.js</li>
+<li>Hapi.js</li>
+<li>Koa.js</li>
+<li>TotalJS</li>
+<li>Locomotive</li>
+<li>Flatiron</li>
+<li>diet.js</li>
+<li>SailsJS</li>
+<li>Nodal</li>
+<li>Adonis</li>
+<li>Trails</li>
+<li>Strapi</li>
+<li>RhapsodyJS</li>
+<li>Compound.js</li>
+<li>ThinkJS</li>
+<li>Geddy</li>
+<li><a href="/wiki/Meteor_(framework)" title="Meteor (framework)">Meteor</a></li>
+<li>DerbyJS</li>
+<li>GeddyJS</li>
+<li>TowerJS</li>
+<li>Mean.js et Mean.io</li>
+<li>Mojito</li>
+<li>Feathers</li>
+<li>Keystone</li>
+<li>Knockout.js</li>
+<li>SocketStream</li>
+<li>seneca.js</li>
+<li>Catberry</li>
+<li>AllcountJS.</li>
+<li>Connect</li>
+<li>Socket.IO</li>
+<li>Noda</li>
+<li>RESTify</li>
+<li>Frisby</li>
+<li>Partial.js</li>
+<li>Raddish</li>
+<li>Fortune.js</li>
+<li>percolator</li>
+<li>Ionic<a href="/w/index.php?title=Devisjs&amp;action=edit&amp;redlink=1" class="new" title="Devisjs (page inexistante)">Devisjs</a>&#160;<a href="https://en.wikipedia.org/wiki/Devisjs" class="extiw" title="en:Devisjs"><span class="indicateur-langue" title="Équivalent de l’article «&#32;Devisjs&#32;» dans une autre langue">(en)</span></a></li>
+<li>Nest.js</li>
+<li>FoalTS</li></ul>
+</div></div>
+<h2><span class="mw-headline" id="Outils_pour_Node.js">Outils pour Node.js</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=5" class="mw-editsection-visualeditor" title="Modifier la section : Outils pour Node.js">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=5" title="Modifier la section : Outils pour Node.js">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<ul><li>nCombo&#160;: framework pour le cloud</li>
+<li>TestCafé<sup id="cite_ref-22" class="reference"><a href="#cite_note-22"><span class="cite_crochet">[</span>22<span class="cite_crochet">]</span></a></sup>: outil d'automatisation de tests d'applications web.</li>
+<li>Browserify&#160;: outil pour utiliser les modules Node.js dans le navigateur</li>
+<li>Babel: Compilateur JavaScript open-source</li>
+<li>Mongoose&#160;: couche de persistance pour <a href="/wiki/MongoDB" title="MongoDB">MongoDB</a></li>
+<li><a href="/wiki/Grunt_(informatique)" title="Grunt (informatique)">Grunt</a>&#160;: outil d'automatisation des tâches</li>
+<li>PM2&#160;: outil de surveillance et d'automatisation de taches en cas de crash d'une application Node JS</li>
+<li>memwatch-next&#160;: un paquet fournit par Node Package Manager (npm) pour la surveillance de l'utilisation de mémoire. Utile pour détecter les fuites de mémoires lentes.</li>
+<li><a href="/wiki/Gulp.js" title="Gulp.js">Gulp</a>&#160;: outil d'automatisation des tâches (basé sur les streams)</li>
+<li>Bower<sup id="cite_ref-23" class="reference"><a href="#cite_note-23"><span class="cite_crochet">[</span>23<span class="cite_crochet">]</span></a></sup>&#160;: gestionnaire de paquet pour le web</li>
+<li><a href="/wiki/Yeoman_(informatique)" title="Yeoman (informatique)">Yeoman</a>&#160;: générateur de site web utilisant Grunt et Bower</li>
+<li><a href="/wiki/Unit.js" title="Unit.js">Unit.js</a>&#160;: framework pour l'écriture des <a href="/wiki/Test_unitaire" title="Test unitaire">tests unitaires</a></li>
+<li><a href="/w/index.php?title=Mocha_(informatique)&amp;action=edit&amp;redlink=1" class="new" title="Mocha (informatique) (page inexistante)">Mocha</a>&#160;<a href="https://en.wikipedia.org/wiki/Mocha_(JavaScript_framework)" class="extiw" title="en:Mocha (JavaScript framework)"><span class="indicateur-langue" title="Équivalent de l’article «&#32;Mocha (informatique)&#32;» dans une autre langue">(en)</span></a>&#160;: runner pour exécuter les tests unitaires</li>
+<li><a href="/w/index.php?title=Jasmine_(informatique)&amp;action=edit&amp;redlink=1" class="new" title="Jasmine (informatique) (page inexistante)">Jasmine</a>&#160;<a href="https://en.wikipedia.org/wiki/Jasmine_(JavaScript_testing_framework)" class="extiw" title="en:Jasmine (JavaScript testing framework)"><span class="indicateur-langue" title="Équivalent de l’article «&#32;Jasmine (informatique)&#32;» dans une autre langue">(en)</span></a>&#160;: <a href="/wiki/Test_unitaire" title="Test unitaire">tests unitaires</a></li></ul>
+<h2><span class="mw-headline" id="Certification_Node.js">Certification Node.js</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=6" class="mw-editsection-visualeditor" title="Modifier la section : Certification Node.js">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=6" title="Modifier la section : Certification Node.js">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Depuis <time class="nowrap" datetime="2017-01" data-sort-value="2017-01">janvier 2017</time>, la fondation Node.js a pour projet de créer une certification professionnelle, la NCD<sup id="cite_ref-24" class="reference"><a href="#cite_note-24"><span class="cite_crochet">[</span>24<span class="cite_crochet">]</span></a></sup> (Nodejs Certified Developer). Cette certification est proposée en partenariat avec la <a href="/wiki/Fondation_Linux" title="Fondation Linux">Fondation Linux</a> et est actuellement disponible en accès anticipé.
+</p>
+<h2><span class="mw-headline" id="Utilisation_courante">Utilisation courante</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=7" class="mw-editsection-visualeditor" title="Modifier la section : Utilisation courante">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=7" title="Modifier la section : Utilisation courante">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Node.js est utilisé pour faire des applications <a href="/wiki/Cross-plateforme" class="mw-redirect" title="Cross-plateforme">cross-plateforme</a> avec des framework comme <a href="/wiki/Ionic_(framework)" title="Ionic (framework)">Ionic</a> pour les applications mobiles ou encore <a href="/wiki/Electron_(framework)" title="Electron (framework)">Electron</a> pour les applications desktop. Les géants comme <a href="/wiki/Discord_(logiciel)" title="Discord (logiciel)">Discord</a> ou encore <a href="/wiki/Slack_(plateforme)" title="Slack (plateforme)">Slack</a> utilisent ce système.
+</p><p>Node.js est aussi beaucoup utilisé pour faire des serveurs de <a href="/wiki/Bot_informatique" title="Bot informatique">bot informatique</a> ou bien des serveurs web. Certaines API Rest pour l'authentification sont faites avec Node.js.
+</p>
+<h2><span id="R.C3.A9f.C3.A9rences"></span><span class="mw-headline" id="Références">Références</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=8" class="mw-editsection-visualeditor" title="Modifier la section : Références">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=8" title="Modifier la section : Références">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="references-small decimal" style="column-width:36em;"><ol class="references">
+<li id="cite_note-wikidata-4c8276fc830fb73cf57cae44380321426c61324c-1"><span class="mw-cite-backlink noprint"><a href="#cite_ref-wikidata-4c8276fc830fb73cf57cae44380321426c61324c_1-0">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="https://github.com/nodejs/node-v0.x-archive/tags?after=v0.0.4">«&#160;<cite style="font-style: normal;"><span class="lang-en" lang="en">node-v0.x-archive on GitHub</span></cite>&#160;»</a></span></span>
+</li>
+<li id="cite_note-wikidata-1ab9a9a3c853ad31506a63e810504c945df6bd5b-2"><span class="mw-cite-backlink noprint"><a href="#cite_ref-wikidata-1ab9a9a3c853ad31506a63e810504c945df6bd5b_2-0">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="https://github.com/nodejs/node/releases/tag/v13.13.0">«&#160;<cite style="font-style: normal;"><span class="lang-en" lang="en">Release 13.13.0</span></cite>&#160;»</a>, <time class="nowrap" datetime="2020-04-14" data-sort-value="2020-04-14">14 avril 2020</time> <small style="line-height:1em;">(consulté le <span class="nowrap">15 avril 2020</span>)</small></span></span>
+</li>
+<li id="cite_note-3"><span class="mw-cite-backlink noprint"><a href="#cite_ref-3">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Geitgey2013"><span class="ouvrage" id="Adam_Geitgey2013">Adam <span class="nom_auteur">Geitgey</span>, <a rel="nofollow" class="external text" href="https://engineering.groupon.com/2013/misc/i-tier-dismantling-the-monoliths/">«&#160;<cite style="font-style: normal;">I-Tier: Dismantling the Monoliths</cite>&#160;»</a>, <i>Groupon</i>, <time class="nowrap" datetime="2013-10-30" data-sort-value="2013-10-30">30 octobre 2013</time> <small style="line-height:1em;">(consulté le <span class="nowrap">30 avril 2014</span>)</small></span></span></span>
+</li>
+<li id="cite_note-sapappbuilder-4"><span class="mw-cite-backlink noprint"><a href="#cite_ref-sapappbuilder_4-0">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2014"><a rel="nofollow" class="external text" href="http://help.sap.com/appbuilder">«&#160;<cite style="font-style: normal;">SAP AppBuilder</cite>&#160;»</a>, <i>SAP</i>, <time class="nowrap" datetime="2014-03-10" data-sort-value="2014-03-10">10 mars 2014</time> <small style="line-height:1em;">(consulté le <span class="nowrap">10 mars 2014</span>)</small></span></span>
+</li>
+<li id="cite_note-vbliipad-5"><span class="mw-cite-backlink noprint"><a href="#cite_ref-vbliipad_5-0">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2012"><a rel="nofollow" class="external text" href="https://venturebeat.com/2012/05/02/linkedin-ipad-app-engineering/">«&#160;<cite style="font-style: normal;">You'll never believe how LinkedIn built its new iPad app</cite>&#160;»</a>, <i>VentureBeat</i>, <time class="nowrap" datetime="2012-05-02" data-sort-value="2012-05-02">2 mai 2012</time> <small style="line-height:1em;">(consulté le <span class="nowrap">10 mai 2012</span>)</small></span></span>
+</li>
+<li id="cite_note-6"><span class="mw-cite-backlink noprint"><a href="#cite_ref-6">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="http://engineering.linkedin.com/nodejs/blazing-fast-nodejs-10-performance-tips-linkedin-mobile">«&#160;<cite style="font-style: normal;">Blazing fast node.js: 10 performance tips from LinkedIn Mobile</cite>&#160;»</a> <small style="line-height:1em;">(consulté le <span class="nowrap">2 août 2014</span>)</small></span></span>
+</li>
+<li id="cite_note-guardianMS-7"><span class="mw-cite-backlink noprint"><a href="#cite_ref-guardianMS_7-0">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2011"><a rel="nofollow" class="external text" href="http://www.guardian.co.uk/technology/blog/2011/nov/09/programming-microsoft">«&#160;<cite style="font-style: normal;">Here's why you should be happy that Microsoft is embracing Node.js</cite>&#160;»</a>, <i>The Guardian</i>, <time class="nowrap" datetime="2011-11-09" data-sort-value="2011-11-09">9 novembre 2011</time> <small style="line-height:1em;">(consulté le <span class="nowrap">10 mai 2012</span>)</small></span></span>
+</li>
+<li id="cite_note-8"><span class="mw-cite-backlink noprint"><a href="#cite_ref-8">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="http://www.hanselman.com/blog/WebMatrix2FrontEndWebDevelopersTakeNoteASPNETPHPNodejsAndMore.aspx">«&#160;<cite style="font-style: normal;">WebMatrix - Front End Web Developers take note (ASP.NET, PHP, node.js and more)</cite>&#160;»</a> <small style="line-height:1em;">(consulté le <span class="nowrap">2 août 2014</span>)</small></span></span>
+</li>
+<li id="cite_note-9"><span class="mw-cite-backlink noprint"><a href="#cite_ref-9">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2011"><a rel="nofollow" class="external text" href="https://developer.yahoo.com/blogs/ydn/yahoo-announces-cocktails-shaken-not-stirred-51439.html">«&#160;<cite style="font-style: normal;">Yahoo! Announces Cocktails Shaken, Not Stirred</cite>&#160;»</a>, <time class="nowrap" datetime="2011-11-02" data-sort-value="2011-11-02">2 novembre 2011</time> <small style="line-height:1em;">(consulté le <span class="nowrap">10 mai 2015</span>)</small></span>.</span>
+</li>
+<li id="cite_note-vbwalmart-10"><span class="mw-cite-backlink noprint"><a href="#cite_ref-vbwalmart_10-0">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2012"><a rel="nofollow" class="external text" href="https://venturebeat.com/2012/01/24/why-walmart-is-using-node-js/">«&#160;<cite style="font-style: normal;">Why Walmart is using Node.js</cite>&#160;»</a>, <i>VentureBeat</i>, <time class="nowrap" datetime="2012-01-24" data-sort-value="2012-01-24">24 janvier 2012</time> <small style="line-height:1em;">(consulté le <span class="nowrap">10 mai 2012</span>)</small></span></span>
+</li>
+<li id="cite_note-11"><span class="mw-cite-backlink noprint"><a href="#cite_ref-11">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2013"><a rel="nofollow" class="external text" href="https://www.youtube.com/watch?v=tZWGb0HU2QM">«&#160;<cite style="font-style: normal;">Clash of the Titans: Releasing the Kraken, NodeJS @paypal</cite>&#160;»</a>, <i>fluentconf.com</i>, <time class="nowrap" datetime="2013-05-28" data-sort-value="2013-05-28">28 mai 2013</time> <small style="line-height:1em;">(consulté le <span class="nowrap">11 septembre 2013</span>)</small></span></span>
+</li>
+<li id="cite_note-12"><span class="mw-cite-backlink noprint"><a href="#cite_ref-12">↑</a> </span><span class="reference-text"><span class="ouvrage"><a rel="nofollow" class="external text" href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node">«&#160;<cite style="font-style: normal;">All such companies and their products in which Node.js is used</cite>&#160;»</a> <small style="line-height:1em;">(consulté le <span class="nowrap">2 août 2014</span>)</small></span>.</span>
+</li>
+<li id="cite_note-13"><span class="mw-cite-backlink noprint"><a href="#cite_ref-13">↑</a> </span><span class="reference-text"><cite class="ouvrage" id="site_officiel" style="font-style: normal;"><a rel="nofollow" class="external text" href="http://www.joyent.com">Site officiel</a></cite></span>
+</li>
+<li id="cite_note-14"><span class="mw-cite-backlink noprint"><a href="#cite_ref-14">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Harris2012"><span class="ouvrage" id="Amber_Harris2012"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Amber Harris, <span lang="en"><a rel="nofollow" class="external text" href="http://devopsangle.com/2013/04/01/the-birth-of-node-where-did-it-come-from-creator-ryan-dahl-shares-the-history/">«&#160;<cite style="font-style: normal;">The Birth of Node: Where Did it Come From? Creator Ryan Dahl Shares the History</cite>&#160;»</a></span>, Devops Angle, <time class="nowrap" datetime="2012-04-01" data-sort-value="2012-04-01"><abbr class="abbr" title="premier">1<sup>er</sup></abbr> avril 2012</time> <small style="line-height:1em;">(consulté le <span class="nowrap">21 janvier 2014</span>)</small></span></span></span>
+</li>
+<li id="cite_note-15"><span class="mw-cite-backlink noprint"><a href="#cite_ref-15">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Synodinos2010"><span class="ouvrage" id="Dio_Synodinos2010"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Dio <span class="nom_auteur">Synodinos</span>, <span lang="en"><a rel="nofollow" class="external text" href="http://www.infoq.com/interviews/node-ryan-dahl">«&#160;<cite style="font-style: normal;">Deep inside Node.js with Ryan Dahl</cite>&#160;»</a></span>, InfoQ, <time class="nowrap" datetime="2010-12-13" data-sort-value="2010-12-13">13 décembre 2010</time> <small style="line-height:1em;">(consulté le <span class="nowrap">21 janvier 2014</span>)</small></span></span></span>
+</li>
+<li id="cite_note-16"><span class="mw-cite-backlink noprint"><a href="#cite_ref-16">↑</a> </span><span class="reference-text"><span class="ouvrage" id="McCarthy2011"><span class="ouvrage" id="Kevin_McCarthy2011"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Kevin McCarthy, <span lang="en"><a rel="nofollow" class="external text" href="http://bostinno.streetwise.co/2011/01/31/node-js-interview-4-questions-with-creator-ryan-dahl/">«&#160;<cite style="font-style: normal;">Node.js Interview: 4 Questions with Creator Ryan Dahl</cite>&#160;»</a></span>, Streetwise Media, <time class="nowrap" datetime="2011-01-31" data-sort-value="2011-01-31">31 janvier 2011</time> <small style="line-height:1em;">(consulté le <span class="nowrap">21 janvier 2014</span>)</small></span></span></span>
+</li>
+<li id="cite_note-17"><span class="mw-cite-backlink noprint"><a href="#cite_ref-17">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Podsechin2010"><span class="ouvrage" id="Oleg_Podsechin2010"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> Oleg Podsechin, <span lang="en"><a rel="nofollow" class="external text" href="http://dailyjs.com/2010/08/10/ryan-dahl-interview/">«&#160;<cite style="font-style: normal;">Ryan Dahl Interview: Part 1</cite>&#160;»</a></span>, DailyJS, <time class="nowrap" datetime="2010-08-10" data-sort-value="2010-08-10">10 août 2010</time> <small style="line-height:1em;">(consulté le <span class="nowrap">21 janvier 2014</span>)</small></span></span></span>
+</li>
+<li id="cite_note-18"><span class="mw-cite-backlink noprint"><a href="#cite_ref-18">↑</a> </span><span class="reference-text"><span class="ouvrage" id="Pépin2010"><span class="ouvrage" id="Guénaël_Pépin2010">Guénaël Pépin, <a rel="nofollow" class="external text" href="http://www.businessmobile.fr/actualites/les-nouveautes-de-webos-20-se-devoilent-39754236.htm">«&#160;<cite style="font-style: normal;">Les nouveautés de webOS 2.0 se dévoilent</cite>&#160;»</a>, businessMOBILE.fr, <time class="nowrap" datetime="2010-09-01" data-sort-value="2010-09-01"><abbr class="abbr" title="premier">1<sup>er</sup></abbr> septembre 2010</time></span></span></span>
+</li>
+<li id="cite_note-19"><span class="mw-cite-backlink noprint"><a href="#cite_ref-19">↑</a> </span><span class="reference-text"><a rel="nofollow" class="external free" href="https://iojs.org/fr">https://iojs.org/fr</a></span>
+</li>
+<li id="cite_note-20"><span class="mw-cite-backlink noprint"><a href="#cite_ref-20">↑</a> </span><span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/ayojs/ayo">https://github.com/ayojs/ayo</a></span>
+</li>
+<li id="cite_note-21"><span class="mw-cite-backlink noprint"><a href="#cite_ref-21">↑</a> </span><span class="reference-text"><span class="ouvrage" id="2017">«&#160;<cite style="font-style:normal;">Node.js n’en finit pas de forker</cite>&#160;», <i>Silicon</i>,&#8206; <time class="nowrap" datetime="2017-08-25" data-sort-value="2017-08-25">25 août 2017</time> <small style="line-height:1em;">(<a rel="nofollow" class="external text" href="http://www.silicon.fr/node-js-nen-finit-pas-de-forker-182681.html">lire en ligne</a>, consulté le <span class="nowrap">12 septembre 2017</span>)</small><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=Node.js+n%E2%80%99en+finit+pas+de+forker&amp;rft.jtitle=Silicon&amp;rft.date=2017-08-25&amp;rfr_id=info%3Asid%2Ffr.wikipedia.org%3ANode.js" id="COinS_19613"></span></span></span>
+</li>
+<li id="cite_note-22"><span class="mw-cite-backlink noprint"><a href="#cite_ref-22">↑</a> </span><span class="reference-text">Site de <a rel="nofollow" class="external text" href="http://testcafe.devexpress.com/">TestCafé</a></span>
+</li>
+<li id="cite_note-23"><span class="mw-cite-backlink noprint"><a href="#cite_ref-23">↑</a> </span><span class="reference-text">Site de <a rel="nofollow" class="external text" href="http://bower.io">Bower</a></span>
+</li>
+<li id="cite_note-24"><span class="mw-cite-backlink noprint"><a href="#cite_ref-24">↑</a> </span><span class="reference-text">Page officielle <a rel="nofollow" class="external text" href="https://foundation.nodejs.org/resources/certification">NCD</a></span>
+</li>
+</ol>
+</div>
+<h2><span class="mw-headline" id="Annexes">Annexes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=9" class="mw-editsection-visualeditor" title="Modifier la section : Annexes">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=9" title="Modifier la section : Annexes">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h2>
+<style data-mw-deduplicate="TemplateStyles:r151529982">.mw-parser-output .autres-projets ul{margin:0;padding:0}.mw-parser-output .autres-projets li{list-style-type:none;list-style-image:none;margin:0.2em 0;text-indent:0;padding-left:24px;min-height:20px;text-align:left}.mw-parser-output .autres-projets .titre{text-align:center;margin:0.2em 0}.mw-parser-output .autres-projets li a{font-style:italic}</style><div class="autres-projets boite-grise boite-a-droite noprint js-interprojets">
+<p class="titre">Sur les autres projets Wikimedia&#160;:</p>
+<ul class="noarchive plainlinks">
+<li class="commons"><a class="external text" href="https://commons.wikimedia.org/wiki/Category:Node.js?uselang=fr">Node.js</a>, sur <span class="project">Wikimedia Commons</span></li>
+</ul>
+</div>
+<h3><span class="mw-headline" id="Articles_connexes">Articles connexes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=10" class="mw-editsection-visualeditor" title="Modifier la section : Articles connexes">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=10" title="Modifier la section : Articles connexes">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h3>
+<ul><li><a href="/wiki/Npm" title="Npm">npm</a>, <a href="/wiki/Gestionnaire_de_paquet" class="mw-redirect" title="Gestionnaire de paquet">gestionnaire de paquet</a> utilisé pour Node.js.</li>
+<li><a href="/wiki/Twisted" title="Twisted">Twisted</a>, un framework pour application réseau en <a href="/wiki/Python_(langage)" title="Python (langage)">Python</a></li>
+<li><a href="/wiki/Vert.x" title="Vert.x">Vert.x</a>, un framework événementiel pour la <a href="/wiki/Java_virtual_machine" class="mw-redirect" title="Java virtual machine">JVM</a>.</li></ul>
+<h3><span class="mw-headline" id="Liens_externes">Liens externes</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Node.js&amp;veaction=edit&amp;section=11" class="mw-editsection-visualeditor" title="Modifier la section : Liens externes">modifier</a><span class="mw-editsection-divider"> | </span><a href="/w/index.php?title=Node.js&amp;action=edit&amp;section=11" title="Modifier la section : Liens externes">modifier le code</a><span class="mw-editsection-bracket">]</span></span></h3>
+<ul><li><cite class="ouvrage" id="site_officiel" style="font-style: normal;"><abbr class="abbr indicateur-langue" title="Langue&#32;: anglais">(en)</abbr> <a rel="nofollow" class="external text" href="http://nodejs.org/">Site officiel</a></cite></li></ul>
+<div class="navbox-container" style="clear:both;">
+<table class="navbox collapsible noprint autocollapse" data-autocollapse-group="palette" style="">
+<tbody><tr><th class="navbox-title" colspan="2" style=""><div style="float:left; width:6em; text-align:left"><div class="noprint plainlinksneverexpand nowrap tnavbar" style="background-color:transparent; padding:0; font-size:xx-small; color:#000000;"><a href="/wiki/Mod%C3%A8le:Palette_Serveurs_HTTP" title="Modèle:Palette Serveurs HTTP"><abbr class="abbr" title="Voir ce modèle.">v</abbr></a>&#160;· <a class="external text" href="https://fr.wikipedia.org/w/index.php?title=Mod%C3%A8le:Palette_Serveurs_HTTP&amp;action=edit"><abbr class="abbr" title="Modifier ce modèle. Merci de prévisualiser avant de sauvegarder.">m</abbr></a></div></div><div style="font-size:110%"><a href="/wiki/Serveur_HTTP" class="mw-redirect" title="Serveur HTTP">Serveurs HTTP</a></div></th>
+</tr>  <tr>
+<th class="navbox-group" style=""><a href="/wiki/C_(langage)" title="C (langage)">C</a></th>
+<td class="navbox-list" style=""><style data-mw-deduplicate="TemplateStyles:r151529978">.mw-parser-output .sep-liste{font-weight:bold}</style><span class="nowrap"><a href="/wiki/Apache_HTTP_Server" title="Apache HTTP Server">Apache</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Cherokee_Web_Server" title="Cherokee Web Server">Cherokee</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Hiawatha_(serveur_HTTP)" title="Hiawatha (serveur HTTP)">Hiawatha</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Lighttpd" title="Lighttpd">lighttpd</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Monkey_web_server" title="Monkey web server">Monkey web server</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/NGINX" title="NGINX">NGINX</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Zeus_Web_Server" title="Zeus Web Server">Zeus</a></span></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/ASP.NET" title="ASP.NET">ASP.NET</a></th>
+<td class="navbox-list navbox-even" style=""><a href="/wiki/Internet_Information_Services" title="Internet Information Services">IIS</a></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Java_(langage)" title="Java (langage)">Java</a></th>
+<td class="navbox-list" style=""><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r151529978"/><span class="nowrap"><a href="/wiki/Apache_Tomcat" title="Apache Tomcat">Tomcat</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/GlassFish" title="GlassFish">GlassFish</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/WildFly" title="WildFly">WildFly</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Jetty" title="Jetty">Jetty</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/JOnAS" title="JOnAS">JOnAS</a></span></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/JavaScript" title="JavaScript">JavaScript</a></th>
+<td class="navbox-list navbox-even" style=""><a class="mw-selflink selflink">Node.js</a></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Python_(langage)" title="Python (langage)">Python</a></th>
+<td class="navbox-list" style=""><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r151529978"/><span class="nowrap"><a href="/wiki/Gunicorn" title="Gunicorn">Gunicorn</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Zope" title="Zope">Zope</a></span></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Pike_(langage)" title="Pike (langage)">Pike</a></th>
+<td class="navbox-list navbox-even" style=""><a href="/wiki/Caudium_(logiciel)" title="Caudium (logiciel)">Caudium</a></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Ruby" title="Ruby">Ruby</a></th>
+<td class="navbox-list" style=""><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r151529978"/><span class="nowrap"><a href="/wiki/WEBrick" title="WEBrick">WEBrick</a></span>&#160;<span class="sep-liste">·</span> <span class="nowrap"><a href="/wiki/Mongrel_(serveur_HTTP)" title="Mongrel (serveur HTTP)">Mongrel</a></span></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Erlang_(langage)" title="Erlang (langage)">Erlang</a></th>
+<td class="navbox-list navbox-even" style=""><a href="/wiki/Yaws" title="Yaws">Yaws</a></td>
+</tr>                       </tbody></table>
+<table class="navbox collapsible noprint autocollapse" data-autocollapse-group="palette" style="">
+<tbody><tr><th class="navbox-title" colspan="3" style=""><div style="float:left; width:6em; text-align:left"><div class="noprint plainlinksneverexpand nowrap tnavbar" style="background-color:transparent; padding:0; font-size:xx-small; color:#000000;"><a href="/wiki/Mod%C3%A8le:Palette_JavaScript" title="Modèle:Palette JavaScript"><abbr class="abbr" title="Voir ce modèle.">v</abbr></a>&#160;· <a class="external text" href="https://fr.wikipedia.org/w/index.php?title=Mod%C3%A8le:Palette_JavaScript&amp;action=edit"><abbr class="abbr" title="Modifier ce modèle. Merci de prévisualiser avant de sauvegarder.">m</abbr></a></div></div><div style="font-size:110%"><a href="/wiki/JavaScript" title="JavaScript">JavaScript</a></div></th>
+</tr>  <tr>
+<th class="navbox-group" style=""><a href="/wiki/Analyse_statique_de_programmes" title="Analyse statique de programmes">Analyse statique de programmes</a></th>
+<td class="navbox-list" style=""><div class="liste-horizontale">
+<ul><li><a href="/w/index.php?title=JSHint&amp;action=edit&amp;redlink=1" class="new" title="JSHint (page inexistante)">JSHint</a></li>
+<li><a href="/wiki/JSLint" title="JSLint">JSLint</a></li></ul>
+</div></td>
+<td class="navbox-image" rowspan="13" style="vertical-align:middle;padding-left:7px"><a href="/wiki/Fichier:Unofficial_JavaScript_logo_2.svg" class="image"><img alt="Unofficial JavaScript logo 2.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/120px-Unofficial_JavaScript_logo_2.svg.png" decoding="async" width="120" height="120" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/180px-Unofficial_JavaScript_logo_2.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/240px-Unofficial_JavaScript_logo_2.svg.png 2x" data-file-width="512" data-file-height="512" /></a></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Compilateur_source_%C3%A0_source" title="Compilateur source à source">Compilateur source à source</a></th>
+<td class="navbox-list navbox-even" style=""><div class="liste-horizontale">
+<ul><li><a href="/w/index.php?title=Babel_(compiler)&amp;action=edit&amp;redlink=1" class="new" title="Babel (compiler) (page inexistante)">Babel.js</a></li>
+<li><a href="/wiki/CoffeeScript" title="CoffeeScript">CoffeeScript</a></li>
+<li><a href="/wiki/Dart_(langage)" title="Dart (langage)">Dart</a></li>
+<li><a href="/wiki/Emscripten" title="Emscripten">Emscripten</a></li>
+<li><a href="/w/index.php?title=Google_Closure_Compiler&amp;action=edit&amp;redlink=1" class="new" title="Google Closure Compiler (page inexistante)">Google Closure Compiler</a></li>
+<li><a href="/wiki/Google_Web_Toolkit" title="Google Web Toolkit">Google Web Toolkit</a></li>
+<li><a href="/wiki/Morfik" title="Morfik">Morfik</a></li>
+<li><a href="/wiki/TypeScript" title="TypeScript">TypeScript</a></li>
+<li><a href="/w/index.php?title=AtScript&amp;action=edit&amp;redlink=1" class="new" title="AtScript (page inexistante)">AtScript</a></li>
+<li><a href="/wiki/Opa_(logiciel)" title="Opa (logiciel)">Opa</a></li>
+<li><a href="/wiki/Nim_(langage)" title="Nim (langage)">Nim</a></li>
+<li><a href="/wiki/Haxe" title="Haxe">Haxe</a></li>
+<li><a href="/wiki/Clojure" title="Clojure">Clojure</a></li>
+<li><a href="/w/index.php?title=WebSharper&amp;action=edit&amp;redlink=1" class="new" title="WebSharper (page inexistante)">WebSharper</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style="">Concepts</th>
+<td class="navbox-list" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/Ajax_(informatique)" title="Ajax (informatique)">Ajax</a></li>
+<li><a href="/w/index.php?title=Client-side_JavaScript&amp;action=edit&amp;redlink=1" class="new" title="Client-side JavaScript (page inexistante)">Client-side</a></li>
+<li><a href="/wiki/HTML_dynamique" title="HTML dynamique">HTML dynamique</a></li>
+<li><a href="/wiki/Framework_JavaScript" title="Framework JavaScript">Framework JavaScript</a></li>
+<li><a href="/wiki/Syntaxe_JavaScript" title="Syntaxe JavaScript">Syntaxe JavaScript</a></li>
+<li><a href="/wiki/Javascript_discret" title="Javascript discret">Javascript discret</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/D%C3%A9bogueur" title="Débogueur">Débogueur</a></th>
+<td class="navbox-list navbox-even" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/Firebug" title="Firebug">Firebug</a></li>
+<li><a href="/w/index.php?title=Komodo_IDE&amp;action=edit&amp;redlink=1" class="new" title="Komodo IDE (page inexistante)">Komodo IDE</a></li>
+<li><a href="/w/index.php?title=Microsoft_Script_Debugger&amp;action=edit&amp;redlink=1" class="new" title="Microsoft Script Debugger (page inexistante)">Microsoft Script Debugger</a></li>
+<li><a href="/w/index.php?title=Microsoft_Script_Editor&amp;action=edit&amp;redlink=1" class="new" title="Microsoft Script Editor (page inexistante)">Microsoft Script Editor</a></li>
+<li><a href="/w/index.php?title=Opera_Dragonfly&amp;action=edit&amp;redlink=1" class="new" title="Opera Dragonfly (page inexistante)">Opera Dragonfly</a></li>
+<li><a href="/w/index.php?title=Venkman&amp;action=edit&amp;redlink=1" class="new" title="Venkman (page inexistante)">Venkman</a></li>
+<li><a href="/w/index.php?title=Web_Inspector&amp;action=edit&amp;redlink=1" class="new" title="Web Inspector (page inexistante)">Web Inspector</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/G%C3%A9n%C3%A9rateur_de_documentation" title="Générateur de documentation">Générateur de documentation</a></th>
+<td class="navbox-list" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/JSDoc" title="JSDoc">JSDoc</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style="">Éditeurs (<span style="font-weight:normal"><a href="/w/index.php?title=Comparaison_des_%C3%A9diteurs_JavaScript&amp;action=edit&amp;redlink=1" class="new" title="Comparaison des éditeurs JavaScript (page inexistante)">comparaison</a>&#160;<a href="https://en.wikipedia.org/wiki/Comparison_of_JavaScript-based_source_code_editors" class="extiw" title="en:Comparison of JavaScript-based source code editors"><span class="indicateur-langue" title="Équivalent de l’article «&#32;Comparaison des éditeurs JavaScript&#32;» dans une autre langue">(en)</span></a></span>)</th>
+<td class="navbox-list navbox-even" style=""><div class="liste-horizontale">
+<ul><li><a href="/w/index.php?title=Ace_(logiciel)&amp;action=edit&amp;redlink=1" class="new" title="Ace (logiciel) (page inexistante)">Ace</a>
+<ul><li><a href="/w/index.php?title=Cloud9_IDE&amp;action=edit&amp;redlink=1" class="new" title="Cloud9 IDE (page inexistante)">Cloud9 IDE</a></li></ul></li>
+<li><a href="/wiki/Atom_(%C3%A9diteur_de_texte)" title="Atom (éditeur de texte)">Atom</a></li>
+<li><a href="/w/index.php?title=CodeMirror&amp;action=edit&amp;redlink=1" class="new" title="CodeMirror (page inexistante)">CodeMirror</a>
+<ul><li><a href="/w/index.php?title=Light_Table&amp;action=edit&amp;redlink=1" class="new" title="Light Table (page inexistante)">Light Table</a></li>
+<li><a href="/wiki/Brackets" title="Brackets">Brackets</a></li></ul></li>
+<li><a href="/wiki/Koding" title="Koding">Koding</a></li>
+<li><a href="/wiki/Orion_(logiciel)" title="Orion (logiciel)">Orion</a></li>
+<li><a href="/wiki/PhpStorm" title="PhpStorm">PhpStorm</a></li>
+<li><a href="/wiki/Microsoft_Visual_Studio" title="Microsoft Visual Studio">Visual Studio</a>
+<ul><li><a href="/wiki/Microsoft_Visual_Studio_Express" title="Microsoft Visual Studio Express">Visual Studio Express</a></li>
+<li><a href="/wiki/Visual_Studio_Code" title="Visual Studio Code">Visual Studio Code</a></li>
+<li><a href="/wiki/Microsoft_Visual_Studio#Team_Services" title="Microsoft Visual Studio">Visual Studio Team Services</a></li></ul></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style="">Moteur</th>
+<td class="navbox-list" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/Moteur_JavaScript" title="Moteur JavaScript">Moteur JavaScript</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Framework" title="Framework">Framework</a></th>
+<td class="navbox-list navbox-even" style=""><div class="liste-horizontale">
+<ul><li><a href="/w/index.php?title=Comparaison_des_frameworks_JavaScript&amp;action=edit&amp;redlink=1" class="new" title="Comparaison des frameworks JavaScript (page inexistante)">Comparaison des frameworks JavaScript</a></li></ul>
+</div></td>
+</tr>  <tr>
+<th class="navbox-group" style="">Technologie associée</th>
+<td class="navbox-list navbox-even" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/Feuilles_de_style_en_cascade" title="Feuilles de style en cascade">Feuilles de style en cascade</a></li>
+<li><a href="/wiki/Document_Object_Model" title="Document Object Model">Document Object Model</a></li>
+<li><a href="/wiki/Hypertext_Markup_Language" title="Hypertext Markup Language">HTML</a></li>
+<li><a href="/wiki/JavaScript_Object_Notation" title="JavaScript Object Notation">JSON</a></li>
+<li><a href="/wiki/WebAssembly" title="WebAssembly">WebAssembly</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Gestionnaire_de_paquets" title="Gestionnaire de paquets">Gestionnaire de paquets</a></th>
+<td class="navbox-list" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/Npm" title="Npm">npm</a></li>
+<li><a href="/w/index.php?title=NuGet&amp;action=edit&amp;redlink=1" class="new" title="NuGet (page inexistante)">NuGet</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style="">Côté serveur</th>
+<td class="navbox-list navbox-even" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/Active_Server_Pages" title="Active Server Pages">Active Server Pages</a></li>
+<li><a href="/wiki/CommonJS" title="CommonJS">CommonJS</a></li>
+<li><a href="/w/index.php?title=JSGI&amp;action=edit&amp;redlink=1" class="new" title="JSGI (page inexistante)">JSGI</a></li>
+<li><a class="mw-selflink selflink">Node.js</a></li>
+<li><a href="/w/index.php?title=Wakanda_(logiciel)&amp;action=edit&amp;redlink=1" class="new" title="Wakanda (logiciel) (page inexistante)">Wakanda</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style=""><a href="/wiki/Test_unitaire" title="Test unitaire">Test unitaire</a></th>
+<td class="navbox-list" style=""><div class="liste-horizontale">
+<ul><li><a href="/w/index.php?title=Jasmine_(JavaScript)&amp;action=edit&amp;redlink=1" class="new" title="Jasmine (JavaScript) (page inexistante)">Jasmine</a></li>
+<li><a href="/w/index.php?title=Mocha_(JavaScript)&amp;action=edit&amp;redlink=1" class="new" title="Mocha (JavaScript) (page inexistante)">Mocha</a></li>
+<li><a href="/w/index.php?title=QUnit&amp;action=edit&amp;redlink=1" class="new" title="QUnit (page inexistante)">QUnit</a></li></ul>
+</div></td>
+</tr> <tr>
+<th class="navbox-group" style="">Personnalité</th>
+<td class="navbox-list navbox-even" style=""><div class="liste-horizontale">
+<ul><li><a href="/wiki/Douglas_Crockford" title="Douglas Crockford">Douglas Crockford</a></li>
+<li><a href="/wiki/Brendan_Eich" title="Brendan Eich">Brendan Eich</a></li>
+<li><a href="/wiki/John_Resig" title="John Resig">John Resig</a></li></ul>
+</div></td>
+</tr>                 </tbody></table>
+</div>
+<ul id="bandeau-portail" class="bandeau-portail"><li><span class="bandeau-portail-element"><span class="bandeau-portail-icone"><a href="/wiki/Portail:Informatique" title="Portail de l’informatique"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/24px-Circle-icons-computer.svg.png" decoding="async" width="24" height="24" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/36px-Circle-icons-computer.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/02/Circle-icons-computer.svg/48px-Circle-icons-computer.svg.png 2x" data-file-width="512" data-file-height="512" /></a></span> <span class="bandeau-portail-texte"><a href="/wiki/Portail:Informatique" title="Portail:Informatique">Portail de l’informatique</a></span> </span></li> <li><span class="bandeau-portail-element"><span class="bandeau-portail-icone"><a href="/wiki/Portail:Programmation_informatique" title="Portail de la programmation informatique"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Circle-icons-dev.svg/24px-Circle-icons-dev.svg.png" decoding="async" width="24" height="24" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Circle-icons-dev.svg/36px-Circle-icons-dev.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Circle-icons-dev.svg/48px-Circle-icons-dev.svg.png 2x" data-file-width="512" data-file-height="512" /></a></span> <span class="bandeau-portail-texte"><a href="/wiki/Portail:Programmation_informatique" title="Portail:Programmation informatique">Portail de la programmation informatique</a></span> </span></li> <li><span class="bandeau-portail-element"><span class="bandeau-portail-icone"><a href="/wiki/Portail:Logiciels_libres" title="Portail des logiciels libres"><img alt="" src="//upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Nuvola_apps_emacs.png/24px-Nuvola_apps_emacs.png" decoding="async" width="24" height="24" class="noviewer" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Nuvola_apps_emacs.png/36px-Nuvola_apps_emacs.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Nuvola_apps_emacs.png/48px-Nuvola_apps_emacs.png 2x" data-file-width="128" data-file-height="128" /></a></span> <span class="bandeau-portail-texte"><a href="/wiki/Portail:Logiciels_libres" title="Portail:Logiciels libres">Portail des logiciels libres</a></span> </span></li>                  </ul>
+<!-- 
+NewPP limit report
+Parsed by mw1334
+Cached time: 20200415020052
+Cache expiry: 2592000
+Dynamic content: false
+Complications: []
+CPU time usage: 0.840 seconds
+Real time usage: 1.085 seconds
+Preprocessor visited node count: 5423/1000000
+Post‐expand include size: 129373/2097152 bytes
+Template argument size: 27283/2097152 bytes
+Highest expansion depth: 20/40
+Expensive parser function count: 7/500
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 22146/5000000 bytes
+Number of Wikibase entities loaded: 1/400
+Lua time usage: 0.459/10.000 seconds
+Lua memory usage: 8.16 MB/50 MB
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  978.825      1 -total
+ 55.88%  546.964      1 Modèle:Infobox_Logiciel
+ 54.78%  536.235     42 Modèle:Wikidata
+ 39.29%  384.616     20 Modèle:Infobox_V3/Tableau_Ligne_mixte
+ 16.59%  162.424      1 Modèle:Portail
+ 12.04%  117.802     11 Modèle:Infobox_V3/Tableau_Ligne_mixte_Wikidata
+ 11.04%  108.072      1 Modèle:Catégorisation_badges
+  9.05%   88.538      1 Modèle:Références
+  8.22%   80.500      1 Modèle:Palette
+  5.80%   56.799      2 Modèle:Infobox_V3/Image_Wikidata
+-->
+
+<!-- Saved in parser cache with key frwiki:pcache:idhash:4919740-0!canonical and timestamp 20200415020052 and revision id 169349461
+ -->
+</div><noscript><img src="//fr.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript></div>
+		<div class="printfooter">Ce document provient de «&#160;<a dir="ltr" href="https://fr.wikipedia.org/w/index.php?title=Node.js&amp;oldid=169349461">https://fr.wikipedia.org/w/index.php?title=Node.js&amp;oldid=169349461</a>&#160;».</div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Cat%C3%A9gorie:Accueil" title="Catégorie:Accueil">Catégories</a> : <ul><li><a href="/wiki/Cat%C3%A9gorie:Framework_de_programmation" title="Catégorie:Framework de programmation">Framework de programmation</a></li><li><a href="/wiki/Cat%C3%A9gorie:JavaScript" title="Catégorie:JavaScript">JavaScript</a></li><li><a href="/wiki/Cat%C3%A9gorie:Logiciel_libre_sous_licence_X11" title="Catégorie:Logiciel libre sous licence X11">Logiciel libre sous licence X11</a></li><li><a href="/wiki/Cat%C3%A9gorie:Node.js" title="Catégorie:Node.js">Node.js</a></li><li><a href="/wiki/Cat%C3%A9gorie:Serveur_web" title="Catégorie:Serveur web">Serveur web</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Catégories cachées : <ul><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P571" title="Catégorie:Page utilisant P571">Page utilisant P571</a></li><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P348" title="Catégorie:Page utilisant P348">Page utilisant P348</a></li><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P1324" title="Catégorie:Page utilisant P1324">Page utilisant P1324</a></li><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P277" title="Catégorie:Page utilisant P277">Page utilisant P277</a></li><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P306" title="Catégorie:Page utilisant P306">Page utilisant P306</a></li><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P31" title="Catégorie:Page utilisant P31">Page utilisant P31</a></li><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P275" title="Catégorie:Page utilisant P275">Page utilisant P275</a></li><li><a href="/wiki/Cat%C3%A9gorie:Page_utilisant_P856" title="Catégorie:Page utilisant P856">Page utilisant P856</a></li><li><a href="/wiki/Cat%C3%A9gorie:Article_utilisant_une_Infobox" title="Catégorie:Article utilisant une Infobox">Article utilisant une Infobox</a></li><li><a href="/wiki/Cat%C3%A9gorie:Article_contenant_un_appel_%C3%A0_traduction_en_anglais" title="Catégorie:Article contenant un appel à traduction en anglais">Article contenant un appel à traduction en anglais</a></li><li><a href="/wiki/Cat%C3%A9gorie:Cat%C3%A9gorie_Commons_avec_lien_local_identique_sur_Wikidata" title="Catégorie:Catégorie Commons avec lien local identique sur Wikidata">Catégorie Commons avec lien local identique sur Wikidata</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Informatique/Articles_li%C3%A9s" title="Catégorie:Portail:Informatique/Articles liés">Portail:Informatique/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Technologies/Articles_li%C3%A9s" title="Catégorie:Portail:Technologies/Articles liés">Portail:Technologies/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Sciences/Articles_li%C3%A9s" title="Catégorie:Portail:Sciences/Articles liés">Portail:Sciences/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Programmation_informatique/Articles_li%C3%A9s" title="Catégorie:Portail:Programmation informatique/Articles liés">Portail:Programmation informatique/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Logiciels_libres/Articles_li%C3%A9s" title="Catégorie:Portail:Logiciels libres/Articles liés">Portail:Logiciels libres/Articles liés</a></li><li><a href="/wiki/Cat%C3%A9gorie:Portail:Logiciel/Articles_li%C3%A9s" title="Catégorie:Portail:Logiciel/Articles liés">Portail:Logiciel/Articles liés</a></li></ul></div></div>
+		<div class="visualClear"></div>
+		
+	</div>
+</div>
+<div id='mw-data-after-content'>
+	<div class="read-more-container"></div>
+</div>
+
+<div id="mw-navigation">
+    <h2>Menu de navigation</h2>
+    <div id="mw-head">
+        
+        <div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+        	<h3 id="p-personal-label">Outils personnels</h3>
+        	<ul >
+        		
+        		<li id="pt-anonuserpage">Non connecté</li>
+        		<li id="pt-anontalk"><a href="/wiki/Sp%C3%A9cial:Mes_discussions" title="La page de discussion pour les contributions depuis cette adresse IP [n]" accesskey="n">Discussion</a></li><li id="pt-anoncontribs"><a href="/wiki/Sp%C3%A9cial:Mes_contributions" title="Une liste des modifications effectuées depuis cette adresse IP [y]" accesskey="y">Contributions</a></li><li id="pt-createaccount"><a href="/w/index.php?title=Sp%C3%A9cial:Cr%C3%A9er_un_compte&amp;returnto=Node.js" title="Nous vous encourageons à créer un compte utilisateur et vous connecter ; ce n’est cependant pas obligatoire.">Créer un compte</a></li><li id="pt-login"><a href="/w/index.php?title=Sp%C3%A9cial:Connexion&amp;returnto=Node.js" title="Nous vous encourageons à vous connecter ; ce n’est cependant pas obligatoire. [o]" accesskey="o">Se connecter</a></li>
+        	</ul>
+        </div>
+        <div id="left-navigation">
+            <div id="p-namespaces" role="navigation" class="vectorTabs " aria-labelledby="p-namespaces-label">
+            	<h3 id="p-namespaces-label">Espaces de noms</h3>
+            	<ul >
+            		<li id="ca-nstab-main" class="selected"><a href="/wiki/Node.js" title="Voir le contenu de la page [c]" accesskey="c">Article</a></li><li id="ca-talk"><a href="/wiki/Discussion:Node.js" rel="discussion" title="Discussion au sujet de cette page de contenu [t]" accesskey="t">Discussion</a></li>
+            	</ul>
+            </div>
+            <div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+            	<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-variants-label" />
+            	<h3 id="p-variants-label">
+            		<span>Variantes</span>
+            	</h3>
+            	<ul class="menu" >
+            		
+            	</ul>
+            </div>
+        </div>
+        <div id="right-navigation">
+            <div id="p-views" role="navigation" class="vectorTabs " aria-labelledby="p-views-label">
+            	<h3 id="p-views-label">Affichages</h3>
+            	<ul >
+            		<li id="ca-view" class="collapsible selected"><a href="/wiki/Node.js">Lire</a></li><li id="ca-ve-edit" class="collapsible"><a href="/w/index.php?title=Node.js&amp;veaction=edit" title="Modifier cette page [v]" accesskey="v">Modifier</a></li><li id="ca-edit" class="collapsible"><a href="/w/index.php?title=Node.js&amp;action=edit" title="Vous pouvez modifier cette page ! [e]" accesskey="e">Modifier le code</a></li><li id="ca-history" class="collapsible"><a href="/w/index.php?title=Node.js&amp;action=history" title="Historique des versions de cette page [h]" accesskey="h">Voir l’historique</a></li>
+            	</ul>
+            </div>
+            <div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+            	<input type="checkbox" class="vectorMenuCheckbox" aria-labelledby="p-cactions-label" />
+            	<h3 id="p-cactions-label">
+            		<span>Plus</span>
+            	</h3>
+            	<ul class="menu" >
+            		
+            	</ul>
+            </div>
+            <div id="p-search" role="search">
+            	<h3 >
+            		<label for="searchInput">Rechercher</label>
+            	</h3>
+            	<form action="/w/index.php" id="searchform">
+            		<div id="simpleSearch">
+            			<input type="search" name="search" placeholder="Rechercher dans Wikipédia" title="Rechercher dans Wikipédia [f]" accesskey="f" id="searchInput"/>
+            			<input type="hidden" value="Spécial:Recherche" name="title"/>
+            			<input type="submit" name="fulltext" value="Rechercher" title="Rechercher les pages comportant ce texte." id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/>
+            			<input type="submit" name="go" value="Continuer" title="Accédez à une page du même nom si elle existe" id="searchButton" class="searchButton"/>
+            		</div>
+            	</form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="mw-panel">
+    	<div id="p-logo" role="banner">
+    		<a  title="Visiter la page d’accueil" class="mw-wiki-logo" href="/wiki/Wikip%C3%A9dia:Accueil_principal"></a>
+    	</div>
+    	<div class="portal" role="navigation" id="p-navigation"  aria-labelledby="p-navigation-label">
+    		<h3  id="p-navigation-label">
+    			Navigation
+    		</h3>
+    		<div class="body">
+    			<ul><li id="n-mainpage-description"><a href="/wiki/Wikip%C3%A9dia:Accueil_principal" title="Accueil général [z]" accesskey="z">Accueil</a></li><li id="n-thema"><a href="/wiki/Portail:Accueil">Portails thématiques</a></li><li id="n-randompage"><a href="/wiki/Sp%C3%A9cial:Page_au_hasard" title="Affiche un article au hasard [x]" accesskey="x">Article au hasard</a></li><li id="n-contact"><a href="/wiki/Wikip%C3%A9dia:Contact">Contact</a></li></ul>
+    			
+    		</div>
+    	</div>
+    	
+    	<div class="portal" role="navigation" id="p-Contribuer"  aria-labelledby="p-Contribuer-label">
+    		<h3  id="p-Contribuer-label">
+    			Contribuer
+    		</h3>
+    		<div class="body">
+    			<ul><li id="n-aboutwp"><a href="/wiki/Aide:D%C3%A9buter">Débuter sur Wikipédia</a></li><li id="n-help"><a href="/wiki/Aide:Accueil" title="Accès à l’aide">Aide</a></li><li id="n-portal"><a href="/wiki/Wikip%C3%A9dia:Accueil_de_la_communaut%C3%A9" title="À propos du projet, ce que vous pouvez faire, où trouver les informations">Communauté</a></li><li id="n-recentchanges"><a href="/wiki/Sp%C3%A9cial:Modifications_r%C3%A9centes" title="Liste des modifications récentes sur le wiki [r]" accesskey="r">Modifications récentes</a></li><li id="n-sitesupport"><a href="//donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_fr.wikipedia.org&amp;uselang=fr" title="Soutenez-nous">Faire un don</a></li></ul>
+    			
+    		</div>
+    	</div>
+    	
+    	<div class="portal" role="navigation" id="p-tb"  aria-labelledby="p-tb-label">
+    		<h3  id="p-tb-label">
+    			Outils
+    		</h3>
+    		<div class="body">
+    			<ul><li id="t-whatlinkshere"><a href="/wiki/Sp%C3%A9cial:Pages_li%C3%A9es/Node.js" title="Liste des pages liées qui pointent sur celle-ci [j]" accesskey="j">Pages liées</a></li><li id="t-recentchangeslinked"><a href="/wiki/Sp%C3%A9cial:Suivi_des_liens/Node.js" rel="nofollow" title="Liste des modifications récentes des pages appelées par celle-ci [k]" accesskey="k">Suivi des pages liées</a></li><li id="t-upload"><a href="/wiki/Aide:Importer_un_fichier" title="Importer des fichiers [u]" accesskey="u">Téléverser un fichier</a></li><li id="t-specialpages"><a href="/wiki/Sp%C3%A9cial:Pages_sp%C3%A9ciales" title="Liste de toutes les pages spéciales [q]" accesskey="q">Pages spéciales</a></li><li id="t-permalink"><a href="/w/index.php?title=Node.js&amp;oldid=169349461" title="Adresse permanente de cette version de la page">Lien permanent</a></li><li id="t-info"><a href="/w/index.php?title=Node.js&amp;action=info" title="Plus d’informations sur cette page">Informations sur la page</a></li><li id="t-wikibase"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q756100" title="Lien vers l’élément de référentiel des données connectées [g]" accesskey="g">Élément Wikidata</a></li><li id="t-cite"><a href="/w/index.php?title=Sp%C3%A9cial:Citer&amp;page=Node.js&amp;id=169349461&amp;wpFormIdentifier=titleform" title="Informations sur la manière de citer cette page">Citer cette page</a></li></ul>
+    			
+    		</div>
+    	</div>
+    	
+    	<div class="portal" role="navigation" id="p-wikibase-otherprojects"  aria-labelledby="p-wikibase-otherprojects-label">
+    		<h3  id="p-wikibase-otherprojects-label">
+    			Dans d’autres projets
+    		</h3>
+    		<div class="body">
+    			<ul><li class="wb-otherproject-link wb-otherproject-commons"><a href="https://commons.wikimedia.org/wiki/Category:Node.js" hreflang="en">Wikimedia Commons</a></li><li class="wb-otherproject-link wb-otherproject-wikibooks"><a href="https://fr.wikibooks.org/wiki/Programmation_JavaScript/Node.js" hreflang="fr">Wikilivres</a></li></ul>
+    			
+    		</div>
+    	</div>
+    	
+    	<div class="portal" role="navigation" id="p-coll-print_export"  aria-labelledby="p-coll-print_export-label">
+    		<h3  id="p-coll-print_export-label">
+    			Imprimer / exporter
+    		</h3>
+    		<div class="body">
+    			<ul><li id="coll-create_a_book"><a href="/w/index.php?title=Sp%C3%A9cial:Livre&amp;bookcmd=book_creator&amp;referer=Node.js">Créer un livre</a></li><li id="coll-download-as-rl"><a href="/w/index.php?title=Sp%C3%A9cial:ElectronPdf&amp;page=Node.js&amp;action=show-download-screen">Télécharger comme PDF</a></li><li id="t-print"><a href="/w/index.php?title=Node.js&amp;printable=yes" title="Version imprimable de cette page [p]" accesskey="p">Version imprimable</a></li></ul>
+    			
+    		</div>
+    	</div>
+    	
+    	<div class="portal" role="navigation" id="p-lang"  aria-labelledby="p-lang-label">
+    		<h3  id="p-lang-label">
+    			Dans d’autres langues
+    		</h3>
+    		<div class="body">
+    			<ul><li class="interlanguage-link interwiki-ar"><a href="https://ar.wikipedia.org/wiki/%D9%86%D9%88%D8%AF.%D8%AC%D9%8A_%D8%A5%D8%B3" title="نود.جي إس — arabe" lang="ar" hreflang="ar" class="interlanguage-link-target">العربية</a></li><li class="interlanguage-link interwiki-ast"><a href="https://ast.wikipedia.org/wiki/Node.js" title="Node.js — asturien" lang="ast" hreflang="ast" class="interlanguage-link-target">Asturianu</a></li><li class="interlanguage-link interwiki-az"><a href="https://az.wikipedia.org/wiki/Node.js" title="Node.js — azéri" lang="az" hreflang="az" class="interlanguage-link-target">Azərbaycanca</a></li><li class="interlanguage-link interwiki-be"><a href="https://be.wikipedia.org/wiki/Node.js" title="Node.js — biélorusse" lang="be" hreflang="be" class="interlanguage-link-target">Беларуская</a></li><li class="interlanguage-link interwiki-bg"><a href="https://bg.wikipedia.org/wiki/Node.js" title="Node.js — bulgare" lang="bg" hreflang="bg" class="interlanguage-link-target">Български</a></li><li class="interlanguage-link interwiki-bn"><a href="https://bn.wikipedia.org/wiki/%E0%A6%A8%E0%A7%8B%E0%A6%A1.%E0%A6%9C%E0%A7%87%E0%A6%8F%E0%A6%B8" title="নোড.জেএস — bengali" lang="bn" hreflang="bn" class="interlanguage-link-target">বাংলা</a></li><li class="interlanguage-link interwiki-ca"><a href="https://ca.wikipedia.org/wiki/Node.js" title="Node.js — catalan" lang="ca" hreflang="ca" class="interlanguage-link-target">Català</a></li><li class="interlanguage-link interwiki-ckb"><a href="https://ckb.wikipedia.org/wiki/%D9%86%DB%86%D9%88%D8%AF.%D8%AC%DB%95%DB%8C_%D8%A6%DB%8E%D8%B3" title="نۆود.جەی ئێس — sorani" lang="ckb" hreflang="ckb" class="interlanguage-link-target">کوردی</a></li><li class="interlanguage-link interwiki-cs"><a href="https://cs.wikipedia.org/wiki/Node.js" title="Node.js — tchèque" lang="cs" hreflang="cs" class="interlanguage-link-target">Čeština</a></li><li class="interlanguage-link interwiki-da"><a href="https://da.wikipedia.org/wiki/Node.js" title="Node.js — danois" lang="da" hreflang="da" class="interlanguage-link-target">Dansk</a></li><li class="interlanguage-link interwiki-de"><a href="https://de.wikipedia.org/wiki/Node.js" title="Node.js — allemand" lang="de" hreflang="de" class="interlanguage-link-target">Deutsch</a></li><li class="interlanguage-link interwiki-el"><a href="https://el.wikipedia.org/wiki/Nodejs" title="Nodejs — grec" lang="el" hreflang="el" class="interlanguage-link-target">Ελληνικά</a></li><li class="interlanguage-link interwiki-en"><a href="https://en.wikipedia.org/wiki/Node.js" title="Node.js — anglais" lang="en" hreflang="en" class="interlanguage-link-target">English</a></li><li class="interlanguage-link interwiki-es"><a href="https://es.wikipedia.org/wiki/Node.js" title="Node.js — espagnol" lang="es" hreflang="es" class="interlanguage-link-target">Español</a></li><li class="interlanguage-link interwiki-et"><a href="https://et.wikipedia.org/wiki/Node.js" title="Node.js — estonien" lang="et" hreflang="et" class="interlanguage-link-target">Eesti</a></li><li class="interlanguage-link interwiki-eu"><a href="https://eu.wikipedia.org/wiki/Node.js" title="Node.js — basque" lang="eu" hreflang="eu" class="interlanguage-link-target">Euskara</a></li><li class="interlanguage-link interwiki-fa"><a href="https://fa.wikipedia.org/wiki/%D9%86%D9%88%D8%AF.%D8%AC%DB%8C%E2%80%8C%D8%A7%D8%B3" title="نود.جی‌اس — persan" lang="fa" hreflang="fa" class="interlanguage-link-target">فارسی</a></li><li class="interlanguage-link interwiki-fi"><a href="https://fi.wikipedia.org/wiki/Node.js" title="Node.js — finnois" lang="fi" hreflang="fi" class="interlanguage-link-target">Suomi</a></li><li class="interlanguage-link interwiki-he"><a href="https://he.wikipedia.org/wiki/Node.js" title="Node.js — hébreu" lang="he" hreflang="he" class="interlanguage-link-target">עברית</a></li><li class="interlanguage-link interwiki-hi"><a href="https://hi.wikipedia.org/wiki/%E0%A4%A8%E0%A5%8B%E0%A4%A1.%E0%A4%9C%E0%A5%87%E0%A4%8F%E0%A4%B8" title="नोड.जेएस — hindi" lang="hi" hreflang="hi" class="interlanguage-link-target">हिन्दी</a></li><li class="interlanguage-link interwiki-hu"><a href="https://hu.wikipedia.org/wiki/Node.js" title="Node.js — hongrois" lang="hu" hreflang="hu" class="interlanguage-link-target">Magyar</a></li><li class="interlanguage-link interwiki-hy"><a href="https://hy.wikipedia.org/wiki/Node.js" title="Node.js — arménien" lang="hy" hreflang="hy" class="interlanguage-link-target">Հայերեն</a></li><li class="interlanguage-link interwiki-id"><a href="https://id.wikipedia.org/wiki/Node.js" title="Node.js — indonésien" lang="id" hreflang="id" class="interlanguage-link-target">Bahasa Indonesia</a></li><li class="interlanguage-link interwiki-it"><a href="https://it.wikipedia.org/wiki/Node.js" title="Node.js — italien" lang="it" hreflang="it" class="interlanguage-link-target">Italiano</a></li><li class="interlanguage-link interwiki-ja"><a href="https://ja.wikipedia.org/wiki/Node.js" title="Node.js — japonais" lang="ja" hreflang="ja" class="interlanguage-link-target">日本語</a></li><li class="interlanguage-link interwiki-ko"><a href="https://ko.wikipedia.org/wiki/Node.js" title="Node.js — coréen" lang="ko" hreflang="ko" class="interlanguage-link-target">한국어</a></li><li class="interlanguage-link interwiki-ky"><a href="https://ky.wikipedia.org/wiki/Node.js" title="Node.js — kirghize" lang="ky" hreflang="ky" class="interlanguage-link-target">Кыргызча</a></li><li class="interlanguage-link interwiki-lmo"><a href="https://lmo.wikipedia.org/wiki/Node.js" title="Node.js — lombard" lang="lmo" hreflang="lmo" class="interlanguage-link-target">Lumbaart</a></li><li class="interlanguage-link interwiki-lv"><a href="https://lv.wikipedia.org/wiki/Node.js" title="Node.js — letton" lang="lv" hreflang="lv" class="interlanguage-link-target">Latviešu</a></li><li class="interlanguage-link interwiki-ml"><a href="https://ml.wikipedia.org/wiki/%E0%B4%A8%E0%B5%8B%E0%B4%A1%E0%B5%8D.%E0%B4%9C%E0%B5%86%E0%B4%8E%E0%B4%B8%E0%B5%8D" title="നോഡ്.ജെഎസ് — malayalam" lang="ml" hreflang="ml" class="interlanguage-link-target">മലയാളം</a></li><li class="interlanguage-link interwiki-ms"><a href="https://ms.wikipedia.org/wiki/Node.js" title="Node.js — malais" lang="ms" hreflang="ms" class="interlanguage-link-target">Bahasa Melayu</a></li><li class="interlanguage-link interwiki-nl"><a href="https://nl.wikipedia.org/wiki/Node.js" title="Node.js — néerlandais" lang="nl" hreflang="nl" class="interlanguage-link-target">Nederlands</a></li><li class="interlanguage-link interwiki-no"><a href="https://no.wikipedia.org/wiki/Node.js" title="Node.js — norvégien bokmål" lang="nb" hreflang="nb" class="interlanguage-link-target">Norsk bokmål</a></li><li class="interlanguage-link interwiki-pl"><a href="https://pl.wikipedia.org/wiki/Node.js" title="Node.js — polonais" lang="pl" hreflang="pl" class="interlanguage-link-target">Polski</a></li><li class="interlanguage-link interwiki-pt"><a href="https://pt.wikipedia.org/wiki/Node.js" title="Node.js — portugais" lang="pt" hreflang="pt" class="interlanguage-link-target">Português</a></li><li class="interlanguage-link interwiki-ru"><a href="https://ru.wikipedia.org/wiki/Node.js" title="Node.js — russe" lang="ru" hreflang="ru" class="interlanguage-link-target">Русский</a></li><li class="interlanguage-link interwiki-simple"><a href="https://simple.wikipedia.org/wiki/Node.js" title="Node.js — Simple English" lang="en-simple" hreflang="en-simple" class="interlanguage-link-target">Simple English</a></li><li class="interlanguage-link interwiki-sr"><a href="https://sr.wikipedia.org/wiki/Node.js" title="Node.js — serbe" lang="sr" hreflang="sr" class="interlanguage-link-target">Српски / srpski</a></li><li class="interlanguage-link interwiki-sv"><a href="https://sv.wikipedia.org/wiki/Node.js" title="Node.js — suédois" lang="sv" hreflang="sv" class="interlanguage-link-target">Svenska</a></li><li class="interlanguage-link interwiki-tr"><a href="https://tr.wikipedia.org/wiki/Node.js" title="Node.js — turc" lang="tr" hreflang="tr" class="interlanguage-link-target">Türkçe</a></li><li class="interlanguage-link interwiki-uk"><a href="https://uk.wikipedia.org/wiki/Node.js" title="Node.js — ukrainien" lang="uk" hreflang="uk" class="interlanguage-link-target">Українська</a></li><li class="interlanguage-link interwiki-ur"><a href="https://ur.wikipedia.org/wiki/%D9%86%D9%88%DA%88_%D8%AC%DB%92_%D8%A7%DB%8C%D8%B3" title="نوڈ جے ایس — ourdou" lang="ur" hreflang="ur" class="interlanguage-link-target">اردو</a></li><li class="interlanguage-link interwiki-vi"><a href="https://vi.wikipedia.org/wiki/Node.js" title="Node.js — vietnamien" lang="vi" hreflang="vi" class="interlanguage-link-target">Tiếng Việt</a></li><li class="interlanguage-link interwiki-zh"><a href="https://zh.wikipedia.org/wiki/Node.js" title="Node.js — chinois" lang="zh" hreflang="zh" class="interlanguage-link-target">中文</a></li><li class="interlanguage-link interwiki-zh-min-nan"><a href="https://zh-min-nan.wikipedia.org/wiki/Node.js" title="Node.js — Chinese (Min Nan)" lang="nan" hreflang="nan" class="interlanguage-link-target">Bân-lâm-gú</a></li></ul>
+    			<div class="after-portlet after-portlet-lang"><span class="wb-langlinks-edit wb-langlinks-link"><a href="https://www.wikidata.org/wiki/Special:EntityPage/Q756100#sitelinks-wikipedia" title="Modifier les liens interlangues" class="wbc-editpage">Modifier les liens</a></span></div>
+    		</div>
+    	</div>
+    	
+    </div>
+</div>
+
+<div id="footer" role="contentinfo" >
+	<ul id="footer-info" class="">
+		<li id="footer-info-lastmod"> La dernière modification de cette page a été faite le 9 avril 2020 à 16:18.</li>
+		<li id="footer-info-copyright"><span style="white-space: normal"><a class="internal" href="/wiki/Wikip%C3%A9dia:Citation_et_r%C3%A9utilisation_du_contenu_de_Wikip%C3%A9dia" title="Droit d'auteur">Droit d'auteur</a> : les textes sont disponibles sous <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr" title="Licence Creative Commons Attribution - partage dans les mêmes conditions 3.0 non transposé">licence Creative Commons attribution, partage dans les mêmes conditions</a> ; d’autres conditions peuvent s’appliquer. Voyez les <a href="https://wikimediafoundation.org/wiki/Conditions_d%27utilisation" title="Conditions d’utilisation de la Wikimedia Foundation">conditions d’utilisation</a> pour plus de détails, ainsi que les <a class="internal" href="/wiki/Wikip%C3%A9dia:Cr%C3%A9dits_graphiques" title="Droit d'auteur de certaines icônes">crédits graphiques</a>. En cas de réutilisation des textes de cette page, voyez <a class="internal" href="/wiki/Sp%C3%A9cial:Citer/Node.js" title="Citer ou réutiliser cette page">comment citer les auteurs et mentionner la licence</a>.<br />
+Wikipedia® est une marque déposée de la <a href="https://wikimediafoundation.org/" title="Wikimedia Foundation">Wikimedia Foundation, Inc.</a>, organisation de bienfaisance régie par le paragraphe <a class="internal" href="/wiki/501c" title="501c">501(c)(3)</a> du code fiscal des États-Unis.</span><br /></li>
+	</ul>
+	<ul id="footer-places" class="">
+		<li id="footer-places-privacy"><a href="https://meta.wikimedia.org/wiki/Privacy_policy/fr" class="extiw" title="m:Privacy policy/fr">Politique de confidentialité</a></li>
+		<li id="footer-places-about"><a href="/wiki/Wikip%C3%A9dia:%C3%80_propos_de_Wikip%C3%A9dia" title="Wikipédia:À propos de Wikipédia">À propos de Wikipédia</a></li>
+		<li id="footer-places-disclaimer"><a href="/wiki/Wikip%C3%A9dia:Avertissements_g%C3%A9n%C3%A9raux" title="Wikipédia:Avertissements généraux">Avertissements</a></li>
+		<li id="footer-places-contact"><a href="//fr.wikipedia.org/wiki/Wikipédia:Contact">Contact</a></li>
+		<li id="footer-places-developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Développeurs</a></li>
+		<li id="footer-places-statslink"><a href="https://stats.wikimedia.org/#/fr.wikipedia.org">Statistiques</a></li>
+		<li id="footer-places-cookiestatement"><a href="https://foundation.wikimedia.org/wiki/Cookie_statement">Déclaration sur les témoins (cookies)</a></li>
+		<li id="footer-places-mobileview"><a href="//fr.m.wikipedia.org/w/index.php?title=Node.js&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Version mobile</a></li>
+	</ul>
+	<ul id="footer-icons" class="noprint">
+		<li id="footer-copyrightico"><a href="https://wikimediafoundation.org/"><img src="/static/images/wikimedia-button.png" srcset="/static/images/wikimedia-button-1.5x.png 1.5x, /static/images/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation"/></a></li>
+		<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/"><img src="/static/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/static/images/poweredby_mediawiki_132x47.png 1.5x, /static/images/poweredby_mediawiki_176x62.png 2x" width="88" height="31"/></a></li>
+	</ul>
+	<div style="clear: both;"></div>
+</div>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"limitreport":{"cputime":"0.840","walltime":"1.085","ppvisitednodes":{"value":5423,"limit":1000000},"postexpandincludesize":{"value":129373,"limit":2097152},"templateargumentsize":{"value":27283,"limit":2097152},"expansiondepth":{"value":20,"limit":40},"expensivefunctioncount":{"value":7,"limit":500},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":22146,"limit":5000000},"entityaccesscount":{"value":1,"limit":400},"timingprofile":["100.00%  978.825      1 -total"," 55.88%  546.964      1 Modèle:Infobox_Logiciel"," 54.78%  536.235     42 Modèle:Wikidata"," 39.29%  384.616     20 Modèle:Infobox_V3/Tableau_Ligne_mixte"," 16.59%  162.424      1 Modèle:Portail"," 12.04%  117.802     11 Modèle:Infobox_V3/Tableau_Ligne_mixte_Wikidata"," 11.04%  108.072      1 Modèle:Catégorisation_badges","  9.05%   88.538      1 Modèle:Références","  8.22%   80.500      1 Modèle:Palette","  5.80%   56.799      2 Modèle:Infobox_V3/Image_Wikidata"]},"scribunto":{"limitreport-timeusage":{"value":"0.459","limit":"10.000"},"limitreport-memusage":{"value":8557726,"limit":52428800}},"cachereport":{"origin":"mw1334","timestamp":"20200415020052","ttl":2592000,"transientcontent":false}}});});</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Article","name":"Node.js","url":"https:\/\/fr.wikipedia.org\/wiki\/Node.js","sameAs":"http:\/\/www.wikidata.org\/entity\/Q756100","mainEntity":"http:\/\/www.wikidata.org\/entity\/Q756100","author":{"@type":"Organization","name":"Contributeurs aux projets de Wikim\u00e9dia"},"publisher":{"@type":"Organization","name":"Wikimedia Foundation, Inc.","logo":{"@type":"ImageObject","url":"https:\/\/www.wikimedia.org\/static\/images\/wmf-hor-googpub.png"}},"datePublished":"2010-09-01T22:36:59Z","dateModified":"2020-04-09T14:18:10Z","image":"https:\/\/upload.wikimedia.org\/wikipedia\/commons\/d\/d9\/Node.js_logo.svg","headline":"logiciel libre et framework JavaScript c\u00f4t\u00e9 serveur"}</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":129,"wgHostname":"mw1265"});});</script></body></html>

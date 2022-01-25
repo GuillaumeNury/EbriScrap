@@ -20,7 +20,7 @@ EbriScrap is a tool that parse a HTML string, and return a JS object with all in
 
 ## Examples
 
-Go to [Examples](./examples) to see EbriScrap in action.
+Go to [Examples](./tests/cases) to see EbriScrap in action.
 
 ## Documentation
 
@@ -128,7 +128,7 @@ It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selec
 
   /* WARNING: as https://one-fake-domain.com contains colons, quotes (single or double) are mandatory ! */
   const config =
-  	"a | extract:prop:href | format:url:'https://one-fake-domain.com'";
+   "a | extract:prop:href | format:url:'https://one-fake-domain.com'";
 
   parse(html, config); // Output: "https://one-fake-domain.com/unicorn-world"
   ```
@@ -146,14 +146,14 @@ Example:
 
 ```javascript
 const html = `
-	<section>
-		<h1>What a wonderful world</h1>
-		<p>Lorem Ipsum...</p>
-	</section>`;
+ <section>
+  <h1>What a wonderful world</h1>
+  <p>Lorem Ipsum...</p>
+ </section>`;
 
 const config = {
-	title: 'h1',
-	content: 'p',
+ title: 'h1',
+ content: 'p',
 };
 
 parse(html, config); // Output: { title: 'What a wonderful world': content: 'Lorem Ipsum...' }
@@ -166,32 +166,65 @@ Array configuration are a bit more complicated. It is an array, with a single it
 - `containerSelector`: the selector of the container (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
 - `itemSelector`: the selector on which you want to iterate (It should be a valid [Cheerio](https://github.com/cheeriojs/cheerio) / CSS selector.)
 - `data`: a Field/Group/Array configuration
+- `includeSiblings`: _optional_ include siblings of selected item (see example below)
 
 Example:
 
 ```javascript
 const html = `
-	<ul>
-		<li>
-			<p>Content 1</p>
-		</li>
-		<li>
-			<p>Content 2</p>
-		</li>
-		<li>
-			<p>Content 3</p>
-		</li>
-	</ul>`;
+ <ul>
+  <li>
+   <p>Content 1</p>
+  </li>
+  <li>
+   <p>Content 2</p>
+  </li>
+  <li>
+   <p>Content 3</p>
+  </li>
+ </ul>`;
 
 const config = [
-	{
-		containerSelector: 'ul',
-		itemSelector: 'li',
-		data: 'p',
-	},
+ {
+  containerSelector: 'ul',
+  itemSelector: 'li',
+  data: 'p',
+ },
 ];
 
 parse(html, config); // Output: ['Content 1', 'Content 2', 'Content 3']
+```
+
+```javascript
+const html = `<body>
+  <h1>Title 1</h1>
+  <p>Text 1.1</p>
+  <p>Text 1.2</p>
+  <p>Text 1.3</p>
+
+  <h1>Title 2</h1>
+  <p>Text 2.1</p>
+  <p>Text 2.2</p>
+  <p>Text 2.3</p>
+</body>`;
+
+const config = [
+  {
+    containerSelector: 'section',
+    itemSelector: 'h1',
+    includeSiblings: true,
+    data: {
+      title: 'h1',
+      text: 'p'
+    },
+  },
+];
+
+parse(html, config);
+/* Output: [
+  { title: 'Title 1', text: 'Text 1.1Text 1.2Text 1.3' },
+  { title: 'Title 2', text: 'Text 2.1Text 2.2Text 2.3' },
+] */
 ```
 
 ### Walkthrough example

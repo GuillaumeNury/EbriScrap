@@ -1,7 +1,7 @@
-import * as cheerio from 'cheerio';
-import { reduce } from 'lodash';
 import { FormatTypes, IPipe } from './types';
 import { enumAsString, urlJoin } from './utils';
+import { parseDocument } from 'htmlparser2';
+import { textContent } from 'domutils';
 
 const formattorsMap = {
 	[FormatTypes.STRING]: ignoreUndefined(formatString),
@@ -11,6 +11,7 @@ const formattorsMap = {
 	[FormatTypes.URL]: ignoreUndefined(formatUrl),
 	[FormatTypes.REGEX]: ignoreUndefined(formatRegex),
 	[FormatTypes.TRIM]: ignoreUndefined(formatTrim),
+	[FormatTypes.SLICE]: ignoreUndefined(formatSlice),
 } as { [format: string]: FormatFunc };
 
 type FormatFunc = (
@@ -19,8 +20,7 @@ type FormatFunc = (
 ) => string | number;
 
 export function format(rawValue: any, formators: IPipe[] = []): any {
-	const formattedValue = reduce(
-		formators,
+	const formattedValue = formators.reduce(
 		(acc, formatorConfig) => {
 			const formator = formattorsMap[formatorConfig.name];
 
@@ -52,10 +52,7 @@ function formatHtmlToText(rawValue: string): string {
 		.replace(/<p>(.*?)<\/p>/g, (_, match) => `\n${match}\n`)
 		.replace(/<div>(.*?)<\/div>/g, (_, match) => `\n${match}\n`);
 
-	return cheerio
-		.load(sanitizedHtml)
-		.root()
-		.text();
+	return textContent(parseDocument(sanitizedHtml));
 }
 
 function formatOneLineString(rawValue: string): string {
@@ -104,4 +101,29 @@ function formatRegex(
 
 function formatTrim(rawValue: string): string {
 	return rawValue.trim();
+}
+
+function formatSlice(rawValue: string, from: string, to: string): string {
+	if (!from) {
+		throw new Error(
+			'Cannot use slice formattor. Missing first parameter. Use selector | format:slice:0:-1',
+		);
+	}
+	const fromValue = parseInt(from, 10);
+
+	if (isNaN(fromValue)) {
+		throw new Error(
+			'Cannot use slice formattor. Invalid first parameter. Should be an integer.',
+		);
+	}
+
+	const toValue = to && parseInt(to);
+
+	if (to && isNaN(toValue)) {
+		throw new Error(
+			'Cannot use slice formattor. Invalid second parameter. Should be an integer or nothing.',
+		);
+	}
+
+	return to ? rawValue.slice(fromValue, toValue) : rawValue.slice(fromValue)
 }

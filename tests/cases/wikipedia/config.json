@@ -1,0 +1,10 @@
+{
+	"title": "#firstHeading",
+	"frameworks": [
+		{
+			"containerSelector": ".colonnes ul",
+			"itemSelector": "li",
+			"data": "li"
+		}
+	]
+}

@@ -1,0 +1,4 @@
+{
+	"data": "script:nth-child(4) | extract:html | format:regex:\\{(.*?)\\}$:{$1} | format:one-line-string",
+	"count": "script:nth-child(4) | extract:html | format:regex:total_pro.*?([0-9]+):$1 | format:number"
+}

@@ -1,103 +1,140 @@
-import * as cheerio from 'cheerio';
+import { selectAll } from 'css-select';
+import { Element, Node, NodeWithChildren } from "domhandler";
+import { parseDocument, ElementType } from 'htmlparser2';
+
 import { parseConfig } from './config-parsers';
 import { extract } from './extractors';
 import { format } from './formators';
 import {
 	ArrayConfig,
 	ConfigTypes,
-	EbriScrapConfig,
+	DebugStep,
 	FieldConfig,
 	GroupConfig,
 	IArrayConfig,
-	IArrayDebugInfo,
-	IDebugInfo,
-	IFieldDebugInfo,
 	IGroupConfig,
-	IGroupDebugInfo,
+	EbriScrapConfig,
+	EbriScrapData,
+	EbriscrapDebugResult,
+	EbriscrapDebugStep,
 } from './types';
 
-export function parse<T = any>(
-	html: string,
-	config: EbriScrapConfig,
-): T {
-	return parseWithDebugInfo<T>(html, config).parsed;
+export function parse<T extends EbriScrapConfig>(html: string, config: T): EbriScrapData<T> {
+	const parsedConfig = parseConfig(config);
+	const doc = parseDocument(html, { decodeEntities: true });
+	return genericParse(doc.children, parsedConfig, null, '');
 }
 
-export function parseWithDebugInfo<T = any>(
-	html: string,
-	config: EbriScrapConfig,
-): IDebugInfo<T> {
+export function parseWithDebug<T extends EbriScrapConfig>(html: string, config: T): EbriscrapDebugResult<T> {
 	const parsedConfig = parseConfig(config);
-	const $ = cheerio.load(html);
+	const doc = parseDocument(html, { decodeEntities: true });
+	const debug: DebugStep[] = [];
+	const result = genericParse(doc.children, parsedConfig, debug, '');
+	return { result, debug: parseDebug(debug) };
+}
 
-	const debugInfo = {};
-	const parsed = genericParse($, parsedConfig, debugInfo);
+function getNodeSelector(node: Node): string[] {
+	if (node.type !== ElementType.Tag) return [];
+	if (!node.parent) return node instanceof Element ? [node.tagName] : [];
 
-	return { debugInfo, parsed };
+	// nth-child selector index starts at 1
+	let childIndex = 1;
+	let index = 0;
+
+	while (index < node.parent.children.length) {
+		const child = node.parent.children[index];
+		if (child === node) break;
+		if (child.type === ElementType.Tag) childIndex++;
+		index++;
+	}
+
+	return [...getNodeSelector(node.parent), `:nth-child(${childIndex})`];
+}
+
+function parseDebug(steps: DebugStep[]): EbriscrapDebugStep[] {
+	return steps.map(step => ({
+		selectors: step.nodes
+			.filter(n => n.type === ElementType.Tag)
+			.map(n => getNodeSelector(n).join(' > ')),
+		path: step.path
+	}));
 }
 
 function genericParse(
-	$: CheerioStatic,
+	nodes: Node[],
 	config: ConfigTypes,
-	debugInfo: any,
+	debug: DebugStep[],
+	path: string,
 ): any {
+	debug && debug.push({ nodes, config, path });
+
 	if (config instanceof FieldConfig) {
-		return parseField($, config, debugInfo);
+		return parseField(nodes, config);
 	}
 	if (config instanceof GroupConfig) {
-		return parseGroup($, config, debugInfo);
+		return parseGroup(nodes, config, debug, path);
 	}
 	if (config instanceof ArrayConfig) {
-		return parseArray($, config, debugInfo);
+		return parseArray(nodes, config, debug, path);
 	}
 }
 
 function parseField(
-	$: CheerioStatic,
-	config: FieldConfig,
-	debugInfo: IFieldDebugInfo,
+	nodes: Node[],
+	config: FieldConfig
 ): any {
-	const rawValue = extract($, config);
+	const rawValue = extract(nodes, config);
 	const parsed = format(rawValue, config.formators);
-
-	debugInfo.raw = $.html();
-	debugInfo.parsed = parsed;
-
 	return parsed;
 }
 
 function parseArray(
-	$: CheerioStatic,
+	nodes: Node[],
 	config: IArrayConfig,
-	debugInfo: IArrayDebugInfo,
+	debug: DebugStep[],
+	path: string,
 ): any {
-	const result = [] as any[];
+	return selectAll(config.containerSelector, nodes)
+		.reduce((acc, container, index) => {
+			debug && debug.push({ nodes: [container], config, path: `${path}/${index}` });
 
-	debugInfo.raw = $.html();
-	debugInfo.parsed = [];
+			return [
+			...acc,
+			...parseArrayItems(config, container, debug, `${path}/${index}`),
+			]
+		}, []);
+}
 
-	$(config.containerSelector)
-		.find(config.itemSelector)
-		.map((_idx, $elem) => {
-			const innerDebugInfo = {};
+function parseArrayItems(
+	config: IArrayConfig,
+	container: Node,
+	debug: DebugStep[],
+	path: string,
+): any {
+	const items = selectAll(config.itemSelector, container);
 
-			const item = genericParse(
-				cheerio.load($elem),
-				config.data,
-				innerDebugInfo,
-			);
+	if (!config.includeSiblings || !(container instanceof NodeWithChildren)) {
+		return items.map((item, itemIndex) => genericParse([item], config.data, debug, `${path}/${itemIndex}`));
+	}
+	
+	return items.map((item, itemIndex) => {
+		const { children } = container
+		const fromIndex = children.indexOf(item);
+		const toIndex = itemIndex === items.length - 1
+			// Take all remaining children
+			? children.length - 1
+			// Find element just before next item
+			: children.indexOf(items[itemIndex + 1]) - 1;
 
-			debugInfo.parsed.push(innerDebugInfo);
-			result.push(item);
-		});
-
-	return result;
+		return genericParse(children.slice(fromIndex, toIndex), config.data, debug, `${path}/${itemIndex}`);
+	});
 }
 
 function parseGroup(
-	$: CheerioStatic,
+	nodes: Node[],
 	config: IGroupConfig,
-	debugInfo: IGroupDebugInfo,
+	debug: DebugStep[],
+	path: string,
 ): any {
 	const keys = getKeys(config);
 
@@ -105,8 +142,7 @@ function parseGroup(
 		(acc, key) => {
 			const child = config[key];
 
-			debugInfo[key] = {};
-			acc[key] = genericParse($, child, debugInfo[key]);
+			acc[key] = genericParse(nodes, child, debug, `${path}/${key}`);
 
 			return acc;
 		},

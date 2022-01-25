@@ -82,6 +82,26 @@ describe('Types', () => {
         assert<EbriScrapConfig>(config);
     })
 
+    it('should have correct return type when using ArrayConfig', () => {
+        type Data4 = { count: string, scripts: string[] };
+        const config = {
+          count: ".numAnn | format:number",
+          scripts: [
+            {
+              data: "script | extract:html",
+              itemSelector: "script",
+              containerSelector: "body"
+            }
+          ]
+        };
+
+        const data = parse(html, config);
+
+        assert<Data4>(data);
+        assert<EbriScrapConfig<Data4>>(config);
+        assert<EbriScrapConfig>(config);
+    })
+
     it('should infer correct config', () => {
         const config1 = [
             {

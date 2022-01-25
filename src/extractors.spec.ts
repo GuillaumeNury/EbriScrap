@@ -1,10 +1,10 @@
 import { FieldConfig } from './types';
 import { extract } from './extractors';
-import { parseDOM } from 'htmlparser2';
+import { parseDocument } from 'htmlparser2';
 
 describe('Extractors', () => {
 	it('should work when extract = text', () => {
-		const nodes = parseDOM(`<h1>Title</h1>`);
+		const nodes = parseDocument(`<h1>Title</h1>`).children;
 
 		const config = {
 			extractor: { name: 'text', args: [] },
@@ -16,7 +16,7 @@ describe('Extractors', () => {
 		expect(result).toEqual('Title');
 	});
 	it('should work when extract = text and when selector do not match anything', () => {
-		const nodes = parseDOM(`<h1>Title</h1>`);
+		const nodes = parseDocument(`<h1>Title</h1>`).children;
 
 		const config = {
 			extractor: { name: 'text', args: [] },
@@ -28,7 +28,7 @@ describe('Extractors', () => {
 		expect(result).toEqual('');
 	});
 	it('should work when extract = prop', () => {
-		const nodes = parseDOM(`<a href="a-super-link">Link</a>`);
+		const nodes = parseDocument(`<a href="a-super-link">Link</a>`).children;
 
 		const config = {
 			extractor: { name: 'prop', args: ['href'] },
@@ -40,9 +40,9 @@ describe('Extractors', () => {
 		expect(result).toEqual('a-super-link');
 	});
 	it('should work when extract = html', () => {
-		const nodes = parseDOM(
+		const nodes = parseDocument(
 			`<div><a href="a-super-link">Link</a></div>`,
-		);
+		).children;
 
 		const config = {
 			extractor: { name: 'html', args: [] },
@@ -54,9 +54,9 @@ describe('Extractors', () => {
 		expect(result).toEqual('<a href="a-super-link">Link</a>');
 	});
 	it('should work when extract = html and when selector do not match anything', () => {
-		const nodes = parseDOM(
+		const nodes = parseDocument(
 			`<div><a href="a-super-link">Link</a></div>`,
-		);
+		).children;
 
 		const config = {
 			extractor: { name: 'html', args: [] },
@@ -68,9 +68,9 @@ describe('Extractors', () => {
 		expect(result).toEqual('');
 	});
 	it('should work when extract = outerHtml', () => {
-		const nodes = parseDOM(
+		const nodes = parseDocument(
 			`<div><a href="a-super-link">Link</a></div>`,
-		);
+		).children;
 
 		const config = {
 			extractor: { name: 'outerHtml', args: [] },
@@ -82,9 +82,9 @@ describe('Extractors', () => {
 		expect(result).toEqual('<div><a href="a-super-link">Link</a></div>');
 	});
 	it('should work when extract = outerHtml and when selector do not match anything', () => {
-		const nodes = parseDOM(
+		const nodes = parseDocument(
 			`<div><a href="a-super-link">Link</a></div>`,
-		);
+		).children;
 
 		const config = {
 			extractor: { name: 'outerHtml', args: [] },
@@ -96,7 +96,7 @@ describe('Extractors', () => {
 		expect(result).toEqual('');
 	});
 	it('should work when extract = css', () => {
-		const nodes = parseDOM(`<div style="color: white"></div>`);
+		const nodes = parseDocument(`<div style="color: white"></div>`).children;
 
 		const config = {
 			extractor: { name: 'css', args: ['color'] },
@@ -108,7 +108,7 @@ describe('Extractors', () => {
 		expect(result).toEqual('white');
 	});
 	it('should work when extract = css and no style', () => {
-		const nodes = parseDOM(`<div></div>`);
+		const nodes = parseDocument(`<div></div>`).children;
 
 		const config = {
 			extractor: { name: 'css', args: ['color'] },
@@ -120,7 +120,7 @@ describe('Extractors', () => {
 		expect(result).toEqual('');
 	});
 	it('should throw when extract = not existing', () => {
-		const nodes = parseDOM(`<h1>Title</h1>`);
+		const nodes = parseDocument(`<h1>Title</h1>`).children;
 
 		const config = {
 			extractor: { name: 'not exising', args: ['color'] },

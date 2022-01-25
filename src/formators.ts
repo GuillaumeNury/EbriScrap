@@ -1,7 +1,7 @@
 import { FormatTypes, IPipe } from './types';
 import { enumAsString, urlJoin } from './utils';
-import { parseDOM } from 'htmlparser2';
-import { getText } from 'domutils';
+import { parseDocument } from 'htmlparser2';
+import { textContent } from 'domutils';
 
 const formattorsMap = {
 	[FormatTypes.STRING]: ignoreUndefined(formatString),
@@ -52,7 +52,7 @@ function formatHtmlToText(rawValue: string): string {
 		.replace(/<p>(.*?)<\/p>/g, (_, match) => `\n${match}\n`)
 		.replace(/<div>(.*?)<\/div>/g, (_, match) => `\n${match}\n`);
 
-	return getText(parseDOM(sanitizedHtml));
+	return textContent(parseDocument(sanitizedHtml));
 }
 
 function formatOneLineString(rawValue: string): string {

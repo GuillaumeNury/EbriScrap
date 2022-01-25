@@ -1,6 +1,6 @@
 import { selectAll } from 'css-select';
 import { Element, Node, NodeWithChildren } from "domhandler";
-import { parseDOM, ElementType } from 'htmlparser2';
+import { parseDocument, ElementType } from 'htmlparser2';
 
 import { parseConfig } from './config-parsers';
 import { extract } from './extractors';
@@ -21,15 +21,15 @@ import {
 
 export function parse<T extends EbriScrapConfig>(html: string, config: T): EbriScrapData<T> {
 	const parsedConfig = parseConfig(config);
-	const nodes = parseDOM(html, { decodeEntities: true });
-	return genericParse(nodes, parsedConfig, null, '');
+	const doc = parseDocument(html, { decodeEntities: true });
+	return genericParse(doc.children, parsedConfig, null, '');
 }
 
 export function parseWithDebug<T extends EbriScrapConfig>(html: string, config: T): EbriscrapDebugResult<T> {
 	const parsedConfig = parseConfig(config);
-	const nodes = parseDOM(html, { decodeEntities: true });
+	const doc = parseDocument(html, { decodeEntities: true });
 	const debug: DebugStep[] = [];
-	const result = genericParse(nodes, parsedConfig, debug, '');
+	const result = genericParse(doc.children, parsedConfig, debug, '');
 	return { result, debug: parseDebug(debug) };
 }
 

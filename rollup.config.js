@@ -36,7 +36,7 @@ const generateBrowserBundle = (minify) => ({
 						events: 'export function EventEmitter() {}',
 				}),
 				json(),
-				typescript(),
+				typescript({ tsconfig: './tsconfig.json', declaration: false }),
 				commonjs(),
 				nodeResolve({ browser: true }),
 				...(minify ? [terser()] : []),
@@ -53,7 +53,7 @@ const generateNodeJsBundle = () => ({
 				...Object.keys(pkg.dependencies || {}),
 				...Object.keys(pkg.peerDependencies || {}),
 		],
-		plugins: [typescript()],
+		plugins: [typescript({ tsconfig: './tsconfig.json', declarationDir: './' })],
 });
 
 export default [
